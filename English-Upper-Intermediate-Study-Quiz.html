@@ -1,0 +1,1752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Grammar Pro</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0b0f1a;--surface:#141927;--surface2:#1c2438;--border:#2a3450;
+  --accent:#4f8ef7;--accent2:#a78bfa;--gold:#f59e0b;
+  --green:#34d399;--red:#f87171;--text:#e2e8f0;--muted:#64748b;
+  --mono:'DM Mono',monospace;
+}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;top:-200px;left:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(79,142,247,.06),transparent 70%);pointer-events:none;z-index:0}
+body::after{content:'';position:fixed;bottom:-200px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(167,139,250,.05),transparent 70%);pointer-events:none;z-index:0}
+.screen{display:none}.screen.active{display:block}
+
+/* ── HOME ── */
+.home-wrap{max-width:1060px;margin:0 auto;padding:50px 20px 120px;position:relative;z-index:1}
+.home-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:4px;color:var(--accent);text-transform:uppercase;text-align:center;margin-bottom:12px}
+.home-title{font-family:'DM Serif Display',serif;font-size:clamp(28px,5vw,50px);text-align:center;line-height:1.1;margin-bottom:8px}
+.home-title em{font-style:italic;color:var(--accent2)}
+.home-sub{text-align:center;color:var(--muted);font-size:14px;font-weight:300;margin-bottom:40px}
+
+.overall-stats{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:40px}
+.ostat{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 18px;text-align:center;min-width:100px}
+.ostat-val{font-family:var(--mono);font-size:20px;font-weight:700;color:var(--accent);display:block}
+.ostat-label{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:3px}
+
+/* Grammar Reference toggle */
+.ref-toggle{display:flex;justify-content:center;margin-bottom:24px}
+.ref-toggle button{font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:9px 22px;border-radius:20px;border:1px solid var(--border);background:var(--surface2);color:var(--muted);cursor:pointer;transition:all .2s}
+.ref-toggle button:hover,.ref-toggle button.active{border-color:var(--accent2);color:var(--accent2)}
+.ref-panel{display:none;margin-bottom:36px}
+.ref-panel.open{display:block}
+.ref-panel-inner{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.ref-table{width:100%;border-collapse:collapse;font-size:13px}
+.ref-table th{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);background:var(--surface2)}
+.ref-table td{padding:9px 14px;border-bottom:1px solid rgba(42,52,80,.5);vertical-align:top;line-height:1.5}
+.ref-table tr:last-child td{border-bottom:none}
+.ref-table tr:hover td{background:rgba(79,142,247,.04)}
+.ref-table .topic-header td{background:var(--surface2);font-weight:700;color:var(--accent2);font-size:12px;padding:7px 14px;letter-spacing:1px}
+.ref-formula{font-family:var(--mono);font-size:11px;color:var(--accent);background:rgba(79,142,247,.08);padding:2px 7px;border-radius:5px;display:inline-block;margin-top:2px}
+.ref-ex{color:var(--muted);font-style:italic}
+
+/* Section headers in home */
+.section-header{margin-bottom:16px}
+.section-header h2{font-family:'DM Serif Display',serif;font-size:22px;margin-bottom:2px}
+.section-header p{color:var(--muted);font-size:13px}
+.section-divider{border:none;border-top:1px solid var(--border);margin:36px 0 28px}
+
+/* Topic grid */
+.topic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-bottom:16px}
+.topic-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px 18px;cursor:pointer;transition:border-color .2s,transform .15s,box-shadow .2s;position:relative;overflow:hidden}
+.topic-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;opacity:.7;transition:opacity .2s}
+.topic-card:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.topic-card:hover::before{opacity:1}
+.topic-icon{font-size:26px;margin-bottom:10px;display:block}
+.topic-name{font-weight:700;font-size:14px;margin-bottom:4px}
+.topic-meta{font-family:var(--mono);font-size:10px;color:var(--muted);display:flex;gap:10px;margin-top:6px}
+.topic-stats-row{display:flex;gap:8px;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
+.ts{flex:1;text-align:center}
+.ts-val{font-family:var(--mono);font-size:13px;font-weight:700;display:block}
+.ts-lbl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.ts.g .ts-val{color:var(--green)}.ts.b .ts-val{color:var(--accent)}.ts.go .ts-val{color:var(--gold)}
+
+/* Boss card */
+.boss-card{background:linear-gradient(135deg,#1a0f0f 0%,#0b0f1a 100%);border:2px solid var(--red);border-radius:18px;padding:28px 28px 24px;cursor:pointer;position:relative;overflow:hidden;transition:all .2s;margin-top:12px}
+.boss-card:hover{border-color:#ff6b6b;box-shadow:0 0 40px rgba(248,113,113,.2);transform:translateY(-2px)}
+.boss-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#f87171,#f59e0b,#f87171);background-size:200% 100%;animation:bossglow 3s linear infinite}
+@keyframes bossglow{0%{background-position:0%}100%{background-position:200%}}
+.boss-tag{font-family:var(--mono);font-size:10px;letter-spacing:3px;color:var(--red);text-transform:uppercase;margin-bottom:10px}
+.boss-name{font-family:'DM Serif Display',serif;font-size:26px;color:#fff;margin-bottom:6px}
+.boss-name em{font-style:italic;color:var(--red)}
+.boss-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px}
+.boss-pills{display:flex;gap:8px;flex-wrap:wrap}
+.boss-pill{font-family:var(--mono);font-size:10px;padding:4px 10px;border-radius:20px;background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3);color:var(--red)}
+.boss-stats-row{display:flex;gap:12px;margin-top:14px;padding-top:14px;border-top:1px solid rgba(248,113,113,.2)}
+.boss-stat{flex:1;text-align:center}
+.boss-stat-val{font-family:var(--mono);font-size:18px;font-weight:700;display:block;color:var(--red)}
+.boss-stat-lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+
+/* ── QUIZ ── */
+.quiz-wrap{max-width:820px;margin:0 auto;padding:20px 20px 100px;position:relative;z-index:1}
+.top-bar{display:flex;align-items:center;gap:10px;margin-bottom:22px;flex-wrap:wrap}
+.btn-home{font-family:var(--mono);font-size:11px;letter-spacing:1px;padding:8px 14px;border-radius:8px;border:1px solid var(--border);background:var(--surface2);color:var(--muted);cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.btn-home:hover{border-color:var(--accent);color:var(--text)}
+.top-bar-title{font-family:'DM Serif Display',serif;font-size:18px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.top-bar-title em{font-style:italic;color:var(--accent2);font-size:13px;font-family:'Outfit',sans-serif;font-weight:300}
+.live-stats{display:flex;gap:7px;flex-wrap:wrap}
+.lstat{font-family:var(--mono);font-size:11px;padding:6px 10px;border-radius:8px;background:var(--surface2);border:1px solid var(--border);white-space:nowrap}
+
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px 30px;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:.6}
+.progress-row{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.progress-text{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap}
+.progress-bar-wrap{flex:1;height:4px;background:var(--border);border-radius:2px;overflow:hidden}
+.progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px;transition:width .4s ease}
+.section-label{font-family:var(--mono);font-size:10px;letter-spacing:3px;color:var(--accent);text-transform:uppercase;margin-bottom:8px}
+.exercise-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:18px;padding:12px 16px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--accent2)}
+.sentence{font-size:18px;line-height:1.8;margin-bottom:22px;color:var(--text)}
+.clue{color:var(--gold);font-weight:600}.blank-word{color:var(--accent);font-weight:600}
+
+.input-free{width:100%;padding:13px 16px;border-radius:10px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-family:'Outfit',sans-serif;font-size:16px;outline:none;transition:border-color .2s;margin-bottom:14px;resize:vertical;min-height:52px}
+.input-free:focus{border-color:var(--accent)}.input-free:disabled{opacity:.6;cursor:not-allowed}
+
+.choices{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.choice-btn{padding:13px 18px;border-radius:10px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-family:'Outfit',sans-serif;font-size:15px;cursor:pointer;text-align:left;transition:border-color .2s,background .2s,transform .1s;display:flex;align-items:center;gap:12px}
+.choice-btn:hover:not(:disabled){border-color:var(--accent);background:var(--surface);transform:translateX(4px)}
+.choice-btn:disabled{cursor:not-allowed}
+.choice-btn.selected{border-color:var(--accent);background:rgba(79,142,247,.1)}
+.choice-btn.correct-choice{border-color:var(--green);background:rgba(52,211,153,.1);color:var(--green)}
+.choice-btn.wrong-choice{border-color:var(--red);background:rgba(248,113,113,.1);color:var(--red)}
+.choice-letter{font-family:var(--mono);font-size:11px;width:22px;height:22px;border-radius:6px;background:var(--border);display:grid;place-items:center;flex-shrink:0;transition:background .2s}
+.choice-btn.selected .choice-letter{background:var(--accent)}
+.choice-btn.correct-choice .choice-letter{background:var(--green);color:#000}
+.choice-btn.wrong-choice .choice-letter{background:var(--red);color:#000}
+
+.feedback{margin-top:14px;padding:13px 16px;border-radius:10px;display:none;font-size:14px;line-height:1.6}
+.feedback.correct{background:rgba(52,211,153,.1);border:1px solid var(--green);color:var(--green)}
+.feedback.wrong{background:rgba(248,113,113,.08);border:1px solid var(--red);color:var(--red)}
+
+details{margin-top:12px;border-radius:10px;overflow:hidden;border:1px solid var(--border)}
+summary{padding:10px 14px;cursor:pointer;font-size:13px;font-weight:600;color:var(--muted);background:var(--surface2);list-style:none;display:flex;align-items:center;gap:6px;transition:color .2s}
+summary:hover{color:var(--text)}
+details[open] summary{color:var(--text)}
+.tip-body{padding:12px 14px;font-size:13px;color:#cbd5f5;background:var(--surface2);border-top:1px solid var(--border);line-height:1.6}
+
+.btn{padding:10px 18px;border:none;border-radius:10px;font-family:'Outfit',sans-serif;font-weight:600;font-size:14px;cursor:pointer;transition:all .2s}
+.btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{background:#6d9ef8;transform:translateY(-1px)}
+.btn-ghost{background:var(--surface2);color:var(--text);border:1px solid var(--border)}.btn-ghost:hover{border-color:var(--accent)}
+.btn-danger{background:#dc2626;color:#fff}.btn-danger:hover{background:#ef4444}
+.btn-warning{background:var(--gold);color:#000;font-weight:700}.btn-warning:hover{background:#fbbf24}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;align-items:center}
+
+.result-card-inner{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px;position:relative;overflow:hidden;text-align:center}
+.result-card-inner::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.result-card-inner.party{border-color:var(--green)}.result-card-inner.good{border-color:var(--gold)}.result-card-inner.funeral{border-color:var(--red)}
+.result-card-inner.party::before{background:var(--green)}.result-card-inner.good::before{background:var(--gold)}.result-card-inner.funeral::before{background:var(--red)}
+.result-h2{font-family:'DM Serif Display',serif;font-size:26px;margin-bottom:10px}
+.result-card-inner.party .result-h2{color:var(--green)}.result-card-inner.good .result-h2{color:var(--gold)}.result-card-inner.funeral .result-h2{color:var(--red)}
+.result-msg{font-size:15px;color:var(--text);line-height:1.7;margin-bottom:20px}
+.result-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:12px;margin-bottom:16px}
+.rstat{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:14px 10px;text-align:center}
+.rstat-val{font-family:var(--mono);font-size:20px;font-weight:700;display:block}
+.rstat-label{font-size:10px;color:var(--muted);letter-spacing:1px;margin-top:4px}
+.rstat.green .rstat-val{color:var(--green)}.rstat.red .rstat-val{color:var(--red)}.rstat.gold .rstat-val{color:var(--gold)}.rstat.blue .rstat-val{color:var(--accent)}
+.result-errors{font-size:13px;color:var(--muted);margin-bottom:24px;line-height:1.6}
+
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:1000;place-items:center}
+.modal-overlay.open{display:grid}
+.modal-box{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px;max-width:400px;width:90%;text-align:center}
+.modal-box h3{font-family:'DM Serif Display',serif;font-size:22px;margin-bottom:10px}
+.modal-box p{color:var(--muted);font-size:14px;margin-bottom:24px}
+.modal-btns{display:flex;gap:10px;justify-content:center}
+
+.col-drop-zone{transition:border-color .2s}.col-drop-zone:hover{border-color:var(--accent2)}
+#col-picker,#wg-picker{font-family:'Outfit',sans-serif}
+#build-dz{transition:border-color .2s}#build-dz:hover{border-color:var(--accent2)}
+
+@media(max-width:600px){
+  .card,.result-card-inner{padding:20px 16px}
+  .top-bar{gap:7px}
+  .topic-grid{grid-template-columns:repeat(2,1fr)}
+  .sentence{font-size:16px}
+  .boss-name{font-size:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ HOME ══════════ -->
+<div id="screen-home" class="screen active">
+<div class="home-wrap">
+  <div class="home-eyebrow">English Grammar · Practice Tests</div>
+  <h1 class="home-title">English Grammar <em>Pro</em></h1>
+  <p class="home-sub">Choose a topic to practise. Track your progress across every module.</p>
+
+  <div class="overall-stats">
+    <div class="ostat"><span class="ostat-val" id="o-attempts">0</span><div class="ostat-label">Total Attempts</div></div>
+    <div class="ostat"><span class="ostat-val" id="o-correct" style="color:var(--green)">0</span><div class="ostat-label">Total Correct</div></div>
+    <div class="ostat"><span class="ostat-val" id="o-wrong" style="color:var(--red)">0</span><div class="ostat-label">Total Wrong</div></div>
+    <div class="ostat"><span class="ostat-val" id="o-acc" style="color:var(--gold)">—</span><div class="ostat-label">Overall Accuracy</div></div>
+  </div>
+
+  <!-- Grammar Reference -->
+  <div class="ref-toggle">
+    <button id="ref-btn" onclick="toggleRef()">📋 Grammar Reference Table</button>
+  </div>
+  <div class="ref-panel" id="ref-panel">
+    <div class="ref-panel-inner">
+      <table class="ref-table">
+        <thead>
+          <tr>
+            <th style="width:18%">Tense / Structure</th>
+            <th style="width:22%">What it is</th>
+            <th style="width:24%">Formula</th>
+            <th style="width:36%">Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="topic-header"><td colspan="4">PAST TENSES</td></tr>
+          <tr><td>Past Simple</td><td>Completed action at a specific past time</td><td><span class="ref-formula">S + V-ed / irregular</span></td><td class="ref-ex">She <em>left</em> school at 6pm.</td></tr>
+          <tr><td>Past Continuous</td><td>Action in progress at a past moment</td><td><span class="ref-formula">S + was/were + V-ing</span></td><td class="ref-ex">He <em>was sitting</em> on the porch.</td></tr>
+          <tr><td>Past Perfect</td><td>Action completed before another past event</td><td><span class="ref-formula">S + had + past participle</span></td><td class="ref-ex">I saw she <em>had left</em> already.</td></tr>
+          <tr><td>Past Perfect Continuous</td><td>Ongoing action up to a past point</td><td><span class="ref-formula">S + had been + V-ing</span></td><td class="ref-ex">She <em>had been teaching</em> for 5 years.</td></tr>
+          <tr class="topic-header"><td colspan="4">PRESENT TENSES</td></tr>
+          <tr><td>Present Simple</td><td>Habits, facts, states</td><td><span class="ref-formula">S + V / S + V-s</span></td><td class="ref-ex">She <em>works</em> in London.</td></tr>
+          <tr><td>Present Continuous</td><td>Action happening now or temp. arrangement</td><td><span class="ref-formula">S + am/is/are + V-ing</span></td><td class="ref-ex">I <em>am going</em> to the dentist tomorrow.</td></tr>
+          <tr><td>Present Perfect</td><td>Past action with present relevance / experience</td><td><span class="ref-formula">S + have/has + past participle</span></td><td class="ref-ex">I <em>have heard</em> many stories.</td></tr>
+          <tr><td>Present Perfect Continuous</td><td>Action ongoing from past to now</td><td><span class="ref-formula">S + have/has been + V-ing</span></td><td class="ref-ex">She <em>has been teaching</em> since 2019.</td></tr>
+          <tr class="topic-header"><td colspan="4">FUTURE FORMS</td></tr>
+          <tr><td>will + infinitive</td><td>Prediction / spontaneous decision</td><td><span class="ref-formula">S + will + V</span></td><td class="ref-ex">I think I <em>will stay</em> here.</td></tr>
+          <tr><td>be going to</td><td>Planned intention / evidence-based prediction</td><td><span class="ref-formula">S + am/is/are going to + V</span></td><td class="ref-ex">She <em>is going to do</em> a training course.</td></tr>
+          <tr><td>Future Continuous</td><td>Action in progress at a future moment</td><td><span class="ref-formula">S + will be + V-ing</span></td><td class="ref-ex">This time next week I <em>will be lying</em> on a beach.</td></tr>
+          <tr class="topic-header"><td colspan="4">CONDITIONALS</td></tr>
+          <tr><td>First Conditional</td><td>Real / likely future situation</td><td><span class="ref-formula">If + Present Simple, will + V</span></td><td class="ref-ex">If I <em>find</em> it, I <em>will bring</em> it to you.</td></tr>
+          <tr><td>Second Conditional</td><td>Unreal / hypothetical present or future</td><td><span class="ref-formula">If + Past Simple, would + V</span></td><td class="ref-ex">If I <em>won</em> the lottery, I <em>would travel</em>.</td></tr>
+          <tr><td>Time Clauses</td><td>Future meaning after when/before/as soon as/until</td><td><span class="ref-formula">conjunction + Present Simple</span></td><td class="ref-ex">Call me <em>when</em> dinner <em>is</em> ready.</td></tr>
+          <tr class="topic-header"><td colspan="4">PASSIVES</td></tr>
+          <tr><td>Passive Voice</td><td>Subject receives the action</td><td><span class="ref-formula">S + be (correct tense) + past participle</span></td><td class="ref-ex">Oil <em>has been discovered</em> near the islands.</td></tr>
+          <tr><td>Modal Passive</td><td>Modal + passive infinitive</td><td><span class="ref-formula">modal + be + past participle</span></td><td class="ref-ex">Photos <em>must not be taken</em> here.</td></tr>
+          <tr class="topic-header"><td colspan="4">MODALS</td></tr>
+          <tr><td>must / can't</td><td>Logical deduction (present)</td><td><span class="ref-formula">must/can't + be/V</span></td><td class="ref-ex">He <em>must be</em> hungry. She <em>can't be</em> there.</td></tr>
+          <tr><td>must have / can't have</td><td>Logical deduction (past)</td><td><span class="ref-formula">must/can't + have + past participle</span></td><td class="ref-ex">He <em>must have left</em> already.</td></tr>
+          <tr><td>might / could + have</td><td>Past possibility / speculation</td><td><span class="ref-formula">might/could + have + past participle</span></td><td class="ref-ex">She <em>could have phoned</em> while I was out.</td></tr>
+          <tr class="topic-header"><td colspan="4">REPORTED SPEECH</td></tr>
+          <tr><td>Reported Statements</td><td>Backshift: present→past, will→would, can→could</td><td><span class="ref-formula">said (that) + backshifted clause</span></td><td class="ref-ex">"I'm fine" → She said <em>she was</em> fine.</td></tr>
+          <tr><td>Reported Questions</td><td>Statement word order, no auxiliary inversion</td><td><span class="ref-formula">asked + wh-/if + subject + verb</span></td><td class="ref-ex">"Where do you live?" → asked <em>where she lived</em>.</td></tr>
+          <tr><td>Reported Commands</td><td>Reporting verb + object + to-infinitive</td><td><span class="ref-formula">told/asked/warned + object + (not) to V</span></td><td class="ref-ex">She <em>asked him to open</em> the window.</td></tr>
+          <tr class="topic-header"><td colspan="4">VERB PATTERNS</td></tr>
+          <tr><td>Gerund (-ing)</td><td>After: avoid, enjoy, suggest, before, after</td><td><span class="ref-formula">verb + V-ing</span></td><td class="ref-ex">She <em>avoided making</em> eye contact.</td></tr>
+          <tr><td>Infinitive (to-V)</td><td>After: try, want, decide, in order, manage</td><td><span class="ref-formula">verb + to + V</span></td><td class="ref-ex">She tried <em>to ignore</em> the sounds.</td></tr>
+          <tr class="topic-header"><td colspan="4">ADJECTIVES</td></tr>
+          <tr><td>Base adjectives</td><td>Use with: very, quite, rather</td><td><span class="ref-formula">very/quite + base adj</span></td><td class="ref-ex">It's <em>very cold</em>. She's <em>quite tired</em>.</td></tr>
+          <tr><td>Strong adjectives</td><td>Use with: absolutely, completely, totally</td><td><span class="ref-formula">absolutely + strong adj</span></td><td class="ref-ex">It's <em>absolutely freezing</em>!</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Topic modules -->
+  <div class="section-header">
+    <h2>Practice by Topic</h2>
+    <p>Choose any topic to practise specific grammar points</p>
+  </div>
+  <div class="topic-grid" id="topic-grid"><!-- filled by JS --></div>
+
+  <!-- Story modules -->
+  <hr class="section-divider">
+  <div class="section-header">
+    <h2>Story Quizzes</h2>
+    <p>Fill-in-the-blank narrative exercises</p>
+  </div>
+  <div class="topic-grid" id="story-grid"><!-- filled by JS --></div>
+
+  <!-- Boss -->
+  <hr class="section-divider">
+  <div id="boss-card-wrap"><!-- filled by JS --></div>
+</div>
+</div>
+
+<!-- ══════════ QUIZ ══════════ -->
+<div id="screen-quiz" class="screen">
+  <div class="quiz-wrap">
+    <div class="top-bar">
+      <button class="btn-home" onclick="confirmHome()">← Home</button>
+      <div class="top-bar-title" id="quiz-title">Quiz</div>
+      <div class="live-stats">
+        <span class="lstat">✅ <span id="ls-c">0</span></span>
+        <span class="lstat">❌ <span id="ls-w">0</span></span>
+        <span class="lstat">🎯 <span id="ls-a">0%</span></span>
+      </div>
+    </div>
+    <div class="card" id="q-card">
+      <div class="progress-row">
+        <span class="progress-text" id="prog-txt">Q 1/1</span>
+        <div class="progress-bar-wrap"><div class="progress-bar-fill" id="prog-bar" style="width:0%"></div></div>
+        <span class="progress-text" id="prog-sec"></span>
+      </div>
+      <div class="section-label" id="q-lbl"></div>
+      <div class="exercise-desc" id="q-desc" style="display:none"></div>
+      <div class="sentence" id="q-sent"></div>
+      <div id="input-area"></div>
+      <div class="feedback" id="feedback"></div>
+      <details id="tip1-det" style="display:none"><summary>💡 Hint</summary><div class="tip-body" id="tip1-body"></div></details>
+      <details id="tip2-det" style="display:none"><summary>📘 Grammar Note</summary><div class="tip-body" id="tip2-body"></div></details>
+      <div class="btn-row">
+        <button class="btn btn-primary" id="submit-btn" onclick="submitAnswer()">Submit</button>
+        <button class="btn btn-ghost" onclick="prevQ()">⬅ Prev</button>
+        <button class="btn btn-ghost" onclick="nextQ()">Next ➡</button>
+        <button class="btn btn-warning" onclick="confirmRestart()" style="margin-left:auto">🔁 Restart</button>
+        <button class="btn btn-ghost" onclick="confirmHome()">🏠 Home</button>
+      </div>
+    </div>
+    <div id="result-card" style="display:none">
+      <div class="result-card-inner" id="result-inner">
+        <div class="result-h2" id="result-title"></div>
+        <div class="result-msg" id="result-msg"></div>
+        <div class="result-grid" id="result-grid"></div>
+        <div class="result-errors" id="result-errors"></div>
+        <div class="btn-row" style="justify-content:center">
+          <button class="btn btn-danger" onclick="restartModule()">🔁 Try Again</button>
+          <button class="btn btn-ghost" onclick="goHome()">🏠 Back to Home</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box">
+    <h3 id="modal-title">Are you sure?</h3>
+    <p id="modal-msg">Your progress will be lost.</p>
+    <div class="modal-btns">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-danger" id="modal-ok">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const T0=[
+{s:"Tenses",d:"Put the verb in brackets in the correct tense. Some verbs are passive; there are also examples of the Second Conditional, indirect questions, infinitives, gerunds, and reported speech.",
+ q:"Sarah Jenkins is an English teacher. She _______ (work) in a language school in London.",
+ t:"free",a:"works",alt:[],h1:"She still works there — present habit.",h2:"Present Simple"},
+{s:"Tenses",
+ q:"She _______ (teach) English since she _______ (leave) university five years ago.\n(Write both answers separated by /  e.g. answer2 / answer3)",
+ t:"free",a:"has been teaching / left",alt:["has taught / left"],h1:"2 = ongoing from a past point; 3 = completed past event.",h2:"Present Perfect Continuous / Past Simple"},
+{s:"Tenses",
+ q:'I asked her first if she _______ (enjoy) teaching English.\n"Yes, I do," she replied.',
+ t:"free",a:"enjoyed",alt:[],h1:"Reported speech shifts tense back — backshift.",h2:"Past Simple (reported speech)"},
+{s:"Tenses",
+ q:'"_______ you ever _______ (work) abroad?"\nWrite both words separated by /  (e.g. Have / worked)',
+ t:"free",a:"have / worked",alt:[],h1:"Life experience up to now, no specific time.",h2:"Present Perfect"},
+{s:"Tenses",
+ q:'"Yes," replied Sarah, "I _______ (spend) two years in Madrid."',
+ t:"free",a:"spent",alt:[],h1:"Completed past — the two years are over.",h2:"Past Simple"},
+{s:"Tenses",
+ q:'"But the school soon closed and I _______ (make) redundant."',
+ t:"free",a:"was made",alt:[],h1:"Subject received the action — past passive.",h2:"Past Simple Passive"},
+{s:"Tenses",
+ q:'"Luckily, some of my students asked me if I _______ (continue) to teach them privately, so I stayed in Madrid."',
+ t:"free",a:"would continue",alt:[],h1:"Reported speech: 'will' shifts to 'would'.",h2:"Reported Speech (would + infinitive)"},
+{s:"Tenses",
+ q:'"And how long _______ you _______ (teach) in London?" I asked.\n(Write both words separated by /)',
+ t:"free",a:"have / taught",alt:[],h1:"Started in the past and still happening now.",h2:"Present Perfect"},
+{s:"Tenses",
+ q:"Well, a funny thing _______ (happen) while I _______ (work) at the school in Madrid.\n(Write both answers separated by /)",
+ t:"free",a:"happened / was working",alt:[],h1:"Sudden event (10) interrupted an ongoing action (11).",h2:"Past Simple / Past Continuous"},
+{s:"Tenses",
+ q:"I had a student called Gloria. I tried very hard _______ (help) her, but things got worse.",
+ t:"free",a:"to help",alt:[],h1:"'Try' + this form = making an effort.",h2:"Full Infinitive (try + to)"},
+{s:"Tenses",
+ q:"The day before she _______ (tell) me a sad story about her boyfriend.",
+ t:"free",a:"had told",alt:[],h1:"She told the story before the moment already in the past.",h2:"Past Perfect"},
+{s:"Tenses",
+ q:"She looked surprised and told me that her name _______ (be) Victoria, not Gloria.",
+ t:"free",a:"was",alt:[],h1:"Reported speech: 'is' → 'was'.",h2:"Reported Speech (Past Simple)"},
+{s:"Tenses",
+ q:"'My twin sister and I _______ (alternate) in your classes since September — two for the price of one!'",
+ t:"free",a:"have been alternating",alt:["have alternated"],h1:"Repeated ongoing action that started in September and is still happening.",h2:"Present Perfect Continuous"},
+{s:"Tenses",
+ q:"\"Well, I'm very interested in teaching young children, so next September I _______ (do) a special training course.\"",
+ t:"free",a:"am going to do",alt:["'m going to do"],h1:"A planned, decided future intention.",h2:"be going to (future plan)"},
+{s:"Tenses",
+ q:"\"I _______ (promote) recently. I'm now Director of Studies.\"",
+ t:"free",a:"have been promoted",alt:["'ve been promoted"],h1:"Recent past with present relevance — passive.",h2:"Present Perfect Passive"},
+{s:"Tenses",
+ q:"\"So I think I _______ (stay) here for a few more years.\"",
+ t:"free",a:"will stay",alt:["'ll stay"],h1:"Prediction / decision made at the moment of speaking.",h2:"Future Simple (will)"},
+{s:"Tenses",
+ q:"\"Of course, if someone _______ (offer) me a well-paid job in Italy or Greece, I _______ (take) it!\"\n(Write both answers separated by /)",
+ t:"free",a:"offered / would take",alt:[],h1:"Unreal/unlikely present hypothesis — Second Conditional.",h2:"Second Conditional"},
+
+// ─── Ex.2: Conditionals (free-write the full sentence) ────────────────────
+];
+
+const T1=[
+{s:"Conditionals",d:"Using the prompts, write a complete sentence in either the first or second conditional. Write the full sentence.",
+ q:"'Are you coming to town with me this afternoon?'\n'Perhaps. If I / finish / decorating the living room, I / come / with you.'\n\nWrite the complete conditional sentence:",
+ t:"free",a:"if i finish decorating the living room, i'll come with you",
+ alt:["if i finish decorating the living room, i will come with you"],
+ h1:"Possible future — the speaker might finish the room.",h2:"First Conditional"},
+{s:"Conditionals",
+ q:"'I haven't got any money.'\nIf I / have / some money, I / buy / you a drink.\n\nWrite the complete conditional sentence:",
+ t:"free",a:"if i had some money, i would buy you a drink",
+ alt:["if i had some money, i'd buy you a drink"],
+ h1:"Unreal present — speaker has no money.",h2:"Second Conditional"},
+{s:"Conditionals",
+ q:"'I always go to Italy for my holidays.'\nIf the weather in Britain / be / better, I / take / my holidays / there.\n\nWrite the complete conditional sentence:",
+ t:"free",a:"if the weather in britain were better, i would take my holidays there",
+ alt:["if the weather in britain was better, i would take my holidays there","if the weather in britain were better, i'd take my holidays there","if the weather in britain was better, i'd take my holidays there"],
+ h1:"Unreal — the British weather is not good enough.",h2:"Second Conditional"},
+{s:"Conditionals",
+ q:"'I've got so much work to do!'\n'I'm sorry, I have a lot of work too.'\nIf I / have / more time, I / help / you.\n\nWrite the complete conditional sentence:",
+ t:"free",a:"if i had more time, i would help you",
+ alt:["if i had more time, i'd help you"],
+ h1:"Unreal — the speaker does not have spare time.",h2:"Second Conditional"},
+{s:"Conditionals",
+ q:"'I'm a teacher.'\nIf I / be / the Minister for Education, I / spend / more money on schools.\n\nWrite the complete conditional sentence:",
+ t:"free",a:"if i were the minister for education, i would spend more money on schools",
+ alt:["if i was the minister for education, i would spend more money on schools","if i were the minister for education, i'd spend more money on schools","if i was the minister for education, i'd spend more money on schools"],
+ h1:"Hypothetical — the teacher is not the Minister.",h2:"Second Conditional"},
+{s:"Conditionals",
+ q:"'I've lost my address book.'\nIf I / find it, I / bring it to you.\n\nWrite the complete conditional sentence:",
+ t:"free",a:"if i find it, i'll bring it to you",
+ alt:["if i find it, i will bring it to you"],
+ h1:"Real/possible future — the book might be found.",h2:"First Conditional"},
+
+// ─── Ex.3: Passives (free-write the full passive sentence) ────────────────,
+{s:"Conditionals & Time Clauses",
+ d:"The beginning (A) and end (C) of the sentence are given. Choose the correct conjunction (B) to join them. Only one conjunction makes the sentence logical and grammatically correct.",
+ q:"A: I'd buy a new house\nC: I won the lottery.\n\nChoose the correct conjunction:",
+ t:"mc",o:["if","when","before","as soon as","until"],a:"if",alt:[],
+ h1:"'If' introduces an unreal/hypothetical condition — Second Conditional.",h2:"Second Conditional"},
+{s:"Conditionals & Time Clauses",
+ q:"A: I'll tidy the house\nC: my guests arrive.\n\nChoose the correct conjunction:",
+ t:"mc",o:["before","if","when","as soon as","unless"],a:"before",alt:[],
+ h1:"She tidies first, then the guests arrive. 'Before' = prior to that moment.",h2:"Time clause (before)"},
+{s:"Conditionals & Time Clauses",
+ q:"A: I'll call you\nC: dinner is ready.\n\nChoose the correct conjunction:",
+ t:"mc",o:["as soon as","when","before","if","after"],a:"as soon as",alt:[],
+ h1:"'As soon as' = at the very moment dinner is ready — immediate reaction.",h2:"Time clause (as soon as)"},
+{s:"Conditionals & Time Clauses",
+ q:"A: If you want a ticket, you should phone the theatre\nC: the ticket office opens.\n\nChoose the correct conjunction:",
+ t:"mc",o:["before","as soon as","when","if","until"],a:"before",alt:[],
+ h1:"Phone before it opens — action must happen prior to the event.",h2:"Time clause (before)"},
+{s:"Conditionals & Time Clauses",
+ q:"A: What will he do\nC: he gets the job?\n\nChoose the correct conjunction:",
+ t:"mc",o:["if","when","as soon as","before","unless"],a:"if",alt:[],
+ h1:"'If' = we don't know yet whether he'll get the job — conditional.",h2:"First Conditional"},
+{s:"Conditionals & Time Clauses",
+ q:"A: I'm watching TV right now, I promise I'll help you\nC: this programme finishes.\n\nChoose the correct conjunction:",
+ t:"mc",o:["when","as soon as","before","if","until"],a:"when",alt:[],
+ h1:"'When' = at the point the programme ends (it will definitely finish).",h2:"Time clause (when)"},
+{s:"Conditionals & Time Clauses",
+ q:"A: You'll recognize her\nC: you see her.\n\nChoose the correct conjunction:",
+ t:"mc",o:["when","if","before","as soon as","after"],a:"when",alt:[],
+ h1:"Recognition happens at the moment of seeing — 'when' is the natural connector here.",h2:"Time clause (when)"},
+{s:"Conditionals & Time Clauses",
+ q:"A: Do you have breakfast\nC: you go to work in the morning?\n\nChoose the correct conjunction:",
+ t:"mc",o:["before","when","if","as soon as","after"],a:"before",alt:[],
+ h1:"Breakfast happens first, then going to work — 'before' connects prior action.",h2:"Time clause (before)"},
+
+// ─── Vocabulary 2: Clothes shop story (free-write) ────────────────────────
+];
+
+const T2=[
+{s:"Passives",d:"Make these active sentences passive. Write the complete passive sentence.",
+ q:"Active: Do they still build ships in Scotland?\nPassive: Are ships still built in Scotland?\n\nNow you try:\nActive: Do you think aliens will ever visit Earth?\nPassive: Do you think Earth _______ ?",
+ t:"free",a:"do you think earth will ever be visited by aliens",
+ alt:[],
+ h1:"Future passive: will + be + past participle.",h2:"Future Passive"},
+{s:"Passives",
+ q:"Active: The Chinese invented printing.\nPassive: Printing _______ .",
+ t:"free",a:"printing was invented by the chinese",
+ alt:[],h1:"Past Simple Passive: was/were + past participle.",h2:"Past Simple Passive"},
+{s:"Passives",
+ q:"Active: You mustn't take photographs in the museum.\nPassive: Photographs _______ .",
+ t:"free",a:"photographs must not be taken in the museum",
+ alt:["photographs mustn't be taken in the museum"],
+ h1:"Modal passive: must not + be + past participle.",h2:"Modal Passive"},
+{s:"Passives",
+ q:"Active: They have recently discovered oil near the Falkland Islands.\nPassive: Oil _______ .",
+ t:"free",a:"oil has recently been discovered near the falkland islands",
+ alt:[],h1:"Present Perfect Passive: has/have + been + past participle.",h2:"Present Perfect Passive"},
+{s:"Passives",
+ q:"Active: They're planning a big celebration to mark the end of the millennium.\nPassive: A big celebration _______ .",
+ t:"free",a:"a big celebration is being planned to mark the end of the millennium",
+ alt:[],h1:"Present Continuous Passive: is/are + being + past participle.",h2:"Present Continuous Passive"},
+{s:"Passives",
+ q:"Active: The police think that someone might have murdered him.\nPassive: The police think he _______ .",
+ t:"free",a:"the police think he might have been murdered",
+ alt:[],h1:"Perfect modal passive: might + have been + past participle.",h2:"Perfect Modal Passive"},
+{s:"Passives",
+ q:"Active: They didn't know the bones were human until they had carried out a number of tests.\nPassive: ...until a number of tests _______ .",
+ t:"free",a:"until a number of tests had been carried out",
+ alt:[],h1:"Past Perfect Passive: had + been + past participle.",h2:"Past Perfect Passive"},
+{s:"Passives",
+ q:"Active: In some countries they are going to make soft drugs legal.\nPassive: In some countries soft drugs _______ .",
+ t:"free",a:"in some countries soft drugs are going to be made legal",
+ alt:[],h1:"Going-to passive: am/is/are + going to + be + past participle.",h2:"Going-to Passive"},
+{s:"Passives",
+ q:"Active: If the car is fitted with an alarm, they can't steal it.\nPassive: If the car is fitted with an alarm, it _______ .",
+ t:"free",a:"if the car is fitted with an alarm, it can't be stolen",
+ alt:["if the car is fitted with an alarm, it cannot be stolen"],
+ h1:"Modal Passive in a conditional: can't + be + past participle.",h2:"Modal Passive"},
+
+// ─── Ex.4: Modals (free-write the gap only) ───────────────────────────────
+];
+
+const T3=[
+{s:"Modals",d:"Finish each sentence (b) so that it means the same as sentence (a). Write only the missing words that complete sentence (b).",
+ q:"(a) The dog's barking. I'm sure he's hungry.\n(b) The dog's barking. He must _______",
+ t:"free",a:"be hungry",alt:[],
+ h1:"'I'm sure' = certainty → must + infinitive.",h2:"must (deduction)"},
+{s:"Modals",
+ q:"(a) There's no food in his bowl. I'm certain he hasn't eaten anything since this morning.\n(b) He can't _______",
+ t:"free",a:"have eaten anything since this morning",alt:[],
+ h1:"Negative certainty in the past → can't + have + past participle.",h2:"can't have + past participle"},
+{s:"Modals",
+ q:"(a) Sally hasn't got in touch with me. Perhaps she phoned while I was out.\n(b) She could _______",
+ t:"free",a:"have phoned while i was out",alt:[],
+ h1:"'Perhaps' = past possibility → could + have + past participle.",h2:"could have + past participle"},
+{s:"Modals",
+ q:"(a) Ah, the phone's ringing. Perhaps it's Sally.\n(b) It could _______",
+ t:"free",a:"be sally",alt:[],
+ h1:"'Perhaps' = present possibility → could + be.",h2:"could (present possibility)"},
+{s:"Modals",
+ q:"(a) Why did the car crash? Perhaps the driver didn't see the red light.\n(b) The driver might _______",
+ t:"free",a:"not have seen the red light",alt:[],
+ h1:"Past speculation → might + not + have + past participle.",h2:"might not have + past participle"},
+{s:"Modals",
+ q:"(a) I'm sure it was Tom I saw at the theatre last night.\n(b) It must _______",
+ t:"free",a:"have been tom",alt:["have been tom i saw at the theatre last night"],
+ h1:"Certainty about the past → must + have + past participle.",h2:"must have + past participle"},
+{s:"Modals",
+ q:"(a) Why is that man standing at the side of the road? Perhaps he's trying to hitch a lift.\n(b) He might _______",
+ t:"free",a:"be trying to hitch a lift",alt:[],
+ h1:"Present speculation → might + be + verb-ing.",h2:"might be + -ing"},
+
+// ─── Ex.5: Time expressions (keep as MC — already perfect) ───────────────
+];
+
+const T4=[
+{s:"Time Expressions",d:"Complete with: in, at, on, ago, for, since, or nothing (write a dash – for nothing).",
+ q:"I left college _______ 1982.",t:"mc",o:["in","at","on","since"],a:"in",alt:[],h1:"'In' with years.",h2:"in + year"},
+{s:"Time Expressions",q:"What are you doing _______ next Thursday?",t:"mc",o:["– (nothing)","on","at","in"],a:"– (nothing)",alt:[],h1:"No preposition with next/last + time word.",h2:"No preposition"},
+{s:"Time Expressions",q:"I like to relax _______ weekends.",t:"mc",o:["at","on","in","– (nothing)"],a:"at",alt:[],h1:"British English: 'at weekends'.",h2:"at weekends (BrE)"},
+{s:"Time Expressions",q:"He came to live here four years _______.",t:"mc",o:["ago","before","since","for"],a:"ago",alt:[],h1:"'Ago' = period of time before now.",h2:"ago"},
+{s:"Time Expressions",q:"He'd been painting _______ many years before he sold his first picture.",t:"mc",o:["for","since","ago","in"],a:"for",alt:[],h1:"'For' with a duration.",h2:"for + duration"},
+{s:"Time Expressions",q:"Shakespeare was born _______ 23 April, 1564.",t:"mc",o:["on","in","at","– (nothing)"],a:"on",alt:[],h1:"'On' with specific dates.",h2:"on + date"},
+{s:"Time Expressions",q:"Spring begins _______ March.",t:"mc",o:["in","on","at","– (nothing)"],a:"in",alt:[],h1:"'In' with months and seasons.",h2:"in + month"},
+{s:"Time Expressions",q:"We always eat turkey _______ Christmas.",t:"mc",o:["at","on","in","– (nothing)"],a:"at",alt:[],h1:"'At' with holiday periods.",h2:"at + holiday"},
+{s:"Time Expressions",q:"_______ you left, there have been many changes.",t:"mc",o:["Since","For","Ago","When"],a:"Since",alt:[],h1:"'Since' = from a past point up to now.",h2:"since + point in time"},
+{s:"Time Expressions",q:"I started my new job _______ last Monday.",t:"mc",o:["– (nothing)","on","at","since"],a:"– (nothing)",alt:[],h1:"No preposition before 'last Monday'.",h2:"No preposition"}
+];
+
+const T5=[
+{s:"Vocabulary",
+ d:"Complete the story with the correct word. Write one word per blank.",
+ q:"Last week I went to a clothes shop because I wanted to buy a new _______ (piece of clothing for your legs, not a skirt).",
+ t:"free",a:"pair of trousers",alt:["trousers","jeans","pair of jeans"],
+ h1:"Think of something you wear on your legs.",h2:"Clothing vocabulary"},
+{s:"Vocabulary",
+ q:"I _______ (tried on) several pairs but nothing fitted. The assistant asked me what _______ I was, and I said medium.\n(Write both answers separated by /)",
+ t:"free",a:"tried on / size",alt:["tried / size"],
+ h1:"2 = phrasal verb meaning to put on clothes to see if they fit; 3 = small/medium/large etc.",h2:"Phrasal verb / clothing vocabulary"},
+{s:"Vocabulary",
+ q:"She showed me some trousers that were in the _______ — they were 30% cheaper than usual.",
+ t:"free",a:"sale",alt:["sales"],
+ h1:"When a shop reduces prices, the items are 'in the ___'.",h2:"Shopping vocabulary"},
+{s:"Vocabulary",
+ q:"I decided to _______ them, so I went to the till and paid by credit _______.\n(Write both answers separated by /)",
+ t:"free",a:"buy them / card",alt:["take them / card","get them / card"],
+ h1:"5 = decide to purchase; 6 = the plastic payment method.",h2:"Shopping vocabulary"},
+
+// ─── Vocabulary 3: Sort adjectives Base vs Strong ─────────────────────────,
+{s:"Vocabulary",
+ d:"Sort these adjectives into two groups: BASE (mild) and STRONG (extreme). Drag each word to the correct column.",
+ q:"Sort all 20 adjectives into BASE or STRONG.",
+ t:"sort-table",
+ cols:["BASE","STRONG"],
+ correct:{
+   "BASE":["tired","surprised","difficult","tasty","cold","beautiful","clever","funny","pretty","frightened","dirty"],
+   "STRONG":["astonished","impossible","filthy","delicious","terrified","brilliant","exhausted","hilarious","freezing"]
+ },
+ h1:"Strong adjectives are extreme versions of base ones. They go with 'absolutely', not 'very'.",
+ h2:"Base vs Strong adjectives"},
+
+// ─── Vocabulary 4: Complete sentences with adjectives (free-write) ────────,
+{s:"Vocabulary",
+ d:"Word list: tired · surprised · difficult · tasty · cold · astonished · beautiful · clever · funny · impossible · pretty · frightened · brilliant · filthy · delicious · terrified · dirty · exhausted · hilarious · freezing",
+ q:"Put the fire on. It's absolutely _______ in here!",
+ t:"free",a:"freezing",alt:[],
+ h1:"'Absolutely' goes with STRONG adjectives. The extreme version of 'cold' is...?",h2:"Strong adjective: freezing"},
+{s:"Vocabulary",
+ d:"Word list: tired · surprised · difficult · tasty · cold · astonished · beautiful · clever · funny · impossible · pretty · frightened · brilliant · filthy · delicious · terrified · dirty · exhausted · hilarious · freezing",
+ q:"I was very _______ to see him. I thought he was in Australia!",
+ t:"free",a:"surprised",alt:[],
+ h1:"'Very' goes with BASE adjectives.",h2:"Base adjective: surprised"},
+{s:"Vocabulary",
+ d:"Word list: tired · surprised · difficult · tasty · cold · astonished · beautiful · clever · funny · impossible · pretty · frightened · brilliant · filthy · delicious · terrified · dirty · exhausted · hilarious · freezing",
+ q:"'How was your exam?' 'It was quite _______, but I managed to answer all the questions.'",
+ t:"free",a:"difficult",alt:["hard"],
+ h1:"'Quite' goes with base adjectives. 'Impossible' would need 'absolutely'.",h2:"Base adjective: difficult"},
+{s:"Vocabulary",
+ d:"Word list: tired · surprised · difficult · tasty · cold · astonished · beautiful · clever · funny · impossible · pretty · frightened · brilliant · filthy · delicious · terrified · dirty · exhausted · hilarious · freezing",
+ q:"We walked 20 kilometres. I was _______ when we got home!",
+ t:"free",a:"exhausted",alt:["absolutely exhausted"],
+ h1:"After 20km — use the strong, extreme adjective.",h2:"Strong adjective: exhausted"},
+{s:"Vocabulary",
+ d:"Word list: tired · surprised · difficult · tasty · cold · astonished · beautiful · clever · funny · impossible · pretty · frightened · brilliant · filthy · delicious · terrified · dirty · exhausted · hilarious · freezing",
+ q:"'How was the meal?' 'It was very _______. I really enjoyed it.'",
+ t:"free",a:"tasty",alt:[],
+ h1:"'Very' requires a BASE adjective. 'Delicious' would need 'absolutely'.",h2:"Base adjective: tasty"},
+{s:"Vocabulary",
+ d:"Word list: tired · surprised · difficult · tasty · cold · astonished · beautiful · clever · funny · impossible · pretty · frightened · brilliant · filthy · delicious · terrified · dirty · exhausted · hilarious · freezing",
+ q:"'What's the weather like?' 'It's quite _______, so put a coat on.'",
+ t:"free",a:"cold",alt:[],
+ h1:"'Quite' goes with BASE adjectives. 'Freezing' needs 'absolutely'.",h2:"Base adjective: cold"},
+{s:"Vocabulary",
+ d:"Word list: tired · surprised · difficult · tasty · cold · astonished · beautiful · clever · funny · impossible · pretty · frightened · brilliant · filthy · delicious · terrified · dirty · exhausted · hilarious · freezing",
+ q:"Albert Einstein was an absolutely _______ scientist.",
+ t:"free",a:"brilliant",alt:[],
+ h1:"'Absolutely' + STRONG adjective. The strong form of 'clever'.",h2:"Strong adjective: brilliant"},
+{s:"Vocabulary",
+ d:"Word list: tired · surprised · difficult · tasty · cold · astonished · beautiful · clever · funny · impossible · pretty · frightened · brilliant · filthy · delicious · terrified · dirty · exhausted · hilarious · freezing",
+ q:"The windows were very _______ so I washed them.",
+ t:"free",a:"dirty",alt:[],
+ h1:"'Very' + BASE adjective. 'Filthy' would need 'absolutely'.",h2:"Base adjective: dirty"},
+
+// ─── Translate (free-write in Portuguese) ────────────────────────────────,
+{s:"Vocabulary",
+ d:"Do these words and phrases come after PLAY, DO, MAKE, GO, or HAVE? Drag each word to the correct column.",
+ q:"Sort all the words and phrases into the correct verb column.",
+ t:"word-group",
+ cols:["PLAY","DO","MAKE","GO","HAVE"],
+ correct:{
+   "PLAY":["by ear","golf","football"],
+   "DO":["aerobics","athletics","your homework","the shopping"],
+   "MAKE":["a statement","a mistake","you good","a phone call","a decision","a meeting"],
+   "GO":["on holiday","sightseeing","skiing","for a jog","home"],
+   "HAVE":["a shower","a holiday","a day off"]
+ },
+ h1:"Some phrases only go with one verb — think about fixed collocations.",h2:"Verb collocations: play/do/make/go/have"},
+{s:"Vocabulary",
+ d:"Choose the word that is different from the others. After you answer, you'll see the reason why — whatever you choose.",
+ q:"1. want / know / enjoy / agree\nWhich is the odd one out?",
+ t:"ooo",o:["want","know","enjoy","agree"],a:"enjoy",alt:[],
+ reasons:{"want":"❌ Not the odd one out — 'want' is followed by the infinitive (want to do), like 'know' and 'agree'.","know":"❌ Not the odd one out — 'know' is followed by a that-clause or question word, similar to the others.","enjoy":"✅ Correct! 'Enjoy' is the odd one out — it is always followed by the -ing form (enjoy doing), while the others take the infinitive or a that-clause.","agree":"❌ Not the odd one out — 'agree' takes the infinitive (agree to do) or a that-clause."},
+ h1:"Think about the verb pattern: which one is followed by -ing instead of the infinitive?",h2:"Verb patterns"},
+{s:"Vocabulary",
+ q:"2. oil painting / sketch / palette / drawing\nWhich is the odd one out?",
+ t:"ooo",o:["oil painting","sketch","palette","drawing"],a:"palette",alt:[],
+ reasons:{"oil painting":"❌ Not the odd one out — an 'oil painting' is a type of finished artwork.","sketch":"❌ Not the odd one out — a 'sketch' is a quick drawing; a type of artwork.","palette":"✅ Correct! 'Palette' is the odd one out — it is a tool used to mix paint. The others are all types of artwork.","drawing":"❌ Not the odd one out — a 'drawing' is a type of artwork made with a pencil or pen."},
+ h1:"Three are types of artwork. Which one is a tool used to create art?",h2:"Art vocabulary"},
+{s:"Vocabulary",
+ q:"3. pop group / composer / orchestra / band\nWhich is the odd one out?",
+ t:"ooo",o:["pop group","composer","orchestra","band"],a:"composer",alt:[],
+ reasons:{"pop group":"❌ Not the odd one out — a 'pop group' is an ensemble of musicians who perform together.","composer":"✅ Correct! 'Composer' is the odd one out — it refers to one person who writes music. The others are all groups of musicians.","orchestra":"❌ Not the odd one out — an 'orchestra' is a large ensemble of musicians who perform together.","band":"❌ Not the odd one out — a 'band' is a group of musicians who play together."},
+ h1:"Three are groups of musicians. Which one is a single individual?",h2:"Music vocabulary"},
+{s:"Vocabulary",
+ q:"4. lovely / eventually / loudly / immediately\nWhich is the odd one out?",
+ t:"ooo",o:["lovely","eventually","loudly","immediately"],a:"lovely",alt:[],
+ reasons:{"lovely":"✅ Correct! 'Lovely' is the odd one out — it is an adjective (describing a noun). The others are all adverbs (describing verbs or adjectives).","eventually":"❌ Not the odd one out — 'eventually' is an adverb meaning 'in the end'.","loudly":"❌ Not the odd one out — 'loudly' is an adverb describing how something is done.","immediately":"❌ Not the odd one out — 'immediately' is an adverb meaning 'right away'."},
+ h1:"Three are adverbs (-ly words describing manner/time). Which one is an adjective?",h2:"Word class"},
+{s:"Vocabulary",
+ q:"5. newspaper / play / novel / poem\nWhich is the odd one out?",
+ t:"ooo",o:["newspaper","play","novel","poem"],a:"newspaper",alt:[],
+ reasons:{"newspaper":"✅ Correct! 'Newspaper' is the odd one out — it reports current news. The others are all creative/literary works of fiction or poetry.","play":"❌ Not the odd one out — a 'play' is a literary/dramatic work performed on stage.","novel":"❌ Not the odd one out — a 'novel' is a long work of literary fiction.","poem":"❌ Not the odd one out — a 'poem' is a literary form using rhythm and imagery."},
+ h1:"Three are creative literary forms. Which one is a factual publication?",h2:"Literary vocabulary"},
+{s:"Vocabulary",
+ q:"6. good-looking / stupid / boring / mean\nWhich is the odd one out?",
+ t:"ooo",o:["good-looking","stupid","boring","mean"],a:"good-looking",alt:[],
+ reasons:{"good-looking":"✅ Correct! 'Good-looking' is the odd one out — it describes physical appearance. The others describe personality or character.","stupid":"❌ Not the odd one out — 'stupid' describes someone's intelligence/character.","boring":"❌ Not the odd one out — 'boring' describes someone's personality or behaviour.","mean":"❌ Not the odd one out — 'mean' describes character (unkind, stingy)."},
+ h1:"Three describe personality or character. Which one is about physical appearance?",h2:"Describing people"},
+{s:"Vocabulary",
+ q:"7. monastery / castle / hotel / house\nWhich is the odd one out?",
+ t:"ooo",o:["monastery","castle","hotel","house"],a:"hotel",alt:[],
+ reasons:{"monastery":"❌ Not the odd one out — a 'monastery' is a historic building where monks live; a permanent community.","castle":"❌ Not the odd one out — a 'castle' is a historic fortified building, often a permanent residence.","hotel":"✅ Correct! 'Hotel' is the odd one out — it is a commercial building where anyone pays to stay temporarily. The others are all permanent or historic residences/institutions.","house":"❌ Not the odd one out — a 'house' is a permanent private residence."},
+ h1:"Three are permanent buildings (residence/institution). Which is a commercial/temporary one?",h2:"Buildings vocabulary"},
+{s:"Vocabulary",
+ q:"8. do / have / make / be\nWhich is the odd one out?",
+ t:"ooo",o:["do","have","make","be"],a:"be",alt:[],
+ reasons:{"do":"❌ Not the odd one out — 'do' collocates with many activities (do homework, do sport).","have":"❌ Not the odd one out — 'have' collocates with many nouns (have lunch, have a shower).","make":"❌ Not the odd one out — 'make' collocates with many nouns (make a decision, make a mistake).","be":"✅ Correct! 'Be' is the odd one out — unlike do/have/make, it does not form collocations with nouns in the same way. It is primarily a linking verb or auxiliary."},
+ h1:"Three are used to form collocations with nouns. Which one is mainly a linking verb?",h2:"Verb collocations"},
+
+// ─── Exercise 9: Everyday English (free-write) ────────────────────────────
+];
+
+const T6=[
+{s:"Reported Speech",
+ d:"Turn the direct speech into reported speech. Pay attention to tense backshift and pronoun changes.",
+ q:'Jim: "I haven\'t seen you for ages. What have you been doing?"\n→ Jim said (1) _______ and asked her (2) _______.\n(Write both answers separated by /)',
+ t:"free",
+ a:"that he hadn't seen her for ages / what she had been doing",
+ alt:[],h1:"Present Perfect → Past Perfect; indirect question word order.",h2:"Reported speech backshift"},
+{s:"Reported Speech",
+ q:'Sue: "I\'ve been abroad. I spent a year in France."\n→ Sue replied (3) _______ and said (4) _______.\n(Write both answers separated by /)',
+ t:"free",
+ a:"that she had been abroad / that she had spent a year in france",
+ alt:[],h1:"Present Perfect → Past Perfect; Past Simple → Past Perfect.",h2:"Reported speech backshift"},
+{s:"Reported Speech",
+ q:'Jim: "What do you think of France?"\n→ Jim asked her (5) _______.',
+ t:"free",a:"what she thought of france",alt:[],
+ h1:"Present Simple → Past Simple. Indirect question word order.",h2:"Reported question"},
+{s:"Reported Speech",
+ q:'Sue: "The people are very friendly and the food is great."\n→ Sue said (6) the people _______ very friendly and that (7) the food _______ great.\n(Write both answers separated by /)',
+ t:"free",a:"were / was",alt:[],
+ h1:"'Are' → 'were'; 'is' → 'was' in reported speech.",h2:"Present Simple → Past Simple"},
+{s:"Reported Speech",
+ q:'Jim: "Are you going to stay in this country now?"\n→ Jim asked her (8) _______.',
+ t:"free",a:"whether she was going to stay in that country",
+ alt:["if she was going to stay in that country"],
+ h1:"Yes/no reported question: whether/if + subject + was going to.",h2:"Reported yes/no question"},
+{s:"Reported Speech",
+ q:'Sue: "I\'ll probably stay for a while. Are you driving back to London today?"\n→ Sue said (9) _______ and asked Jim (10) _______.\n(Write both answers separated by /)',
+ t:"free",
+ a:"she would probably stay for a while / if he was driving back to london that day",
+ alt:["she'd probably stay for a while / if he was driving back to london that day",
+      "she would probably stay for a while / whether he was driving back to london that day"],
+ h1:"'Will' → 'would'; 'today' → 'that day'. Yes/no question with if.",h2:"Reported speech + question"},
+{s:"Reported Speech",
+ q:'Jim: "Yes I am."\n→ Jim said (11) _______.',
+ t:"free",a:"that he was",alt:["he was"],
+ h1:"'Am' → 'was' in reported speech.",h2:"am → was"},
+{s:"Reported Speech",
+ q:'Sue: "Can you give me a lift?"\n→ Sue asked him (12) _______.',
+ t:"free",a:"if he could give her a lift",
+ alt:["whether he could give her a lift"],
+ h1:"'Can' → 'could'. Yes/no reported question.",h2:"can → could"},
+
+// ─── Reported Commands (mc — choose the reporting verb) ──────────────────,
+{s:"Reported Commands",
+ d:"Choose the verb that correctly reports the direct speech.",
+ q:'"Would you like to spend the weekend with us?"\nThey _______ her to spend the weekend with them.',
+ t:"mc",o:["invited","encouraged","told","ordered"],a:"invited",alt:[],
+ h1:"'Would you like to...' = an invitation.",h2:"invited + object + to-infinitive"},
+{s:"Reported Commands",
+ q:'"Could you open the window, please?"\nShe _______ him to open the window.',
+ t:"mc",o:["invited","ordered","asked","begged"],a:"asked",alt:[],
+ h1:"A polite request → 'asked'.",h2:"asked + object + to-infinitive"},
+{s:"Reported Commands",
+ q:'"Go to bed immediately!"\nKate\'s mother _______ her to go to bed immediately.',
+ t:"mc",o:["begged","asked","ordered","invited"],a:"ordered",alt:[],
+ h1:"A strong command → 'ordered'.",h2:"ordered + object + to-infinitive"},
+{s:"Reported Commands",
+ q:'"Don\'t forget to post the letter!"\nHe _______ me to post the letter.',
+ t:"mc",o:["asked","reminded","warned","ordered"],a:"reminded",alt:[],
+ h1:"'Don't forget' = reminder.",h2:"reminded + object + to-infinitive"},
+{s:"Reported Commands",
+ q:'"Park the car behind the lorry."\nThe instructor _______ him to park behind the van.',
+ t:"mc",o:["warned","told","advised","asked"],a:"told",alt:[],
+ h1:"Neutral instruction → 'told'.",h2:"told + object + to-infinitive"},
+{s:"Reported Commands",
+ q:'"Please, please, turn down the music!"\nDick\'s sister _______ him to turn down the music.',
+ t:"mc",o:["begged","advised","warned","asked"],a:"begged",alt:[],
+ h1:"Repeated 'please' = desperation → 'begged'.",h2:"begged + object + to-infinitive"},
+{s:"Reported Commands",
+ q:'"Don\'t play with matches. They\'re very dangerous."\nHe _______ the children not to play with matches.',
+ t:"mc",o:["encouraged","reminded","warned","advised"],a:"warned",alt:[],
+ h1:"Warning about danger → 'warned'.",h2:"warned + object + not to-infinitive"},
+{s:"Reported Commands",
+ q:'"I\'ll give you a lift to the station."\nHe _______ to give him a lift.',
+ t:"mc",o:["offered","warned","refused","asked"],a:"offered",alt:[],
+ h1:"Voluntary offer → 'offered'.",h2:"offered + to-infinitive (no object)"},
+{s:"Reported Commands",
+ q:'"I won\'t lend you any more money."\nShe _______ to lend me any more money.',
+ t:"mc",o:["begged","warned","refused","asked"],a:"refused",alt:[],
+ h1:"'Won't' = refusal → 'refused'.",h2:"refused + to-infinitive"},
+{s:"Reported Commands",
+ q:'"Please, don\'t touch it."\nShe _______ us not to touch the painting.',
+ t:"mc",o:["asked","told","ordered","warned"],a:"asked",alt:[],
+ h1:"'Please' + don't = polite request → 'asked'.",h2:"asked + object + not to-infinitive"},
+
+// ─── Auxiliary Verbs (free-write) ─────────────────────────────────────────
+];
+
+const T7=[
+{s:"Indirect Questions",
+ d:"Complete the indirect questions. Remember: no auxiliary inversion after the introductory phrase.",
+ q:"Where does James live?\n→ I've no idea _______.",
+ t:"free",a:"where james lives",alt:[],
+ h1:"In indirect questions, use statement word order (subject + verb, no inversion).",h2:"Indirect question: wh- + subject + verb"},
+{s:"Indirect Questions",
+ q:"Do you want to go out tonight?\n→ I'm not sure _______.",
+ t:"free",a:"if i want to go out tonight",alt:["whether i want to go out tonight"],
+ h1:"Yes/no indirect question — use 'if' or 'whether', then statement order.",h2:"if/whether + subject + verb"},
+{s:"Indirect Questions",
+ q:"Have I passed the exam?\n→ I'm sorry. I can't tell you _______.",
+ t:"free",a:"if you've passed the exam",
+ alt:["whether you've passed the exam","if you have passed the exam","whether you have passed the exam"],
+ h1:"Yes/no indirect — 'if' + subject + have + past participle.",h2:"if + subject + Present Perfect"},
+{s:"Indirect Questions",
+ q:"How many languages are there in the world?\n→ I haven't a clue _______.",
+ t:"free",a:"how many languages there are in the world",alt:[],
+ h1:"No inversion — 'how many' + subject + verb (no 'are there').",h2:"how many + subject + verb"},
+{s:"Indirect Questions",
+ q:"Who's that woman over there?\n→ I can't remember _______.",
+ t:"free",a:"who that woman is",alt:["who she is"],
+ h1:"Statement word order after 'who' — no inversion.",h2:"who + subject + verb"},
+{s:"Indirect Questions",
+ q:"Did Ben buy some more sugar?\n→ I don't know _______.",
+ t:"free",a:"if ben bought some more sugar",
+ alt:["whether ben bought some more sugar"],
+ h1:"Past yes/no indirect — 'if' + subject + Past Simple.",h2:"if + subject + Past Simple"},
+
+// ─── Reported Speech (free-write) ─────────────────────────────────────────
+];
+
+const T8=[
+{s:"Auxiliary Verbs",
+ d:"Complete the sentences using the correct auxiliary verb. Some are affirmative, some are negative.",
+ q:"What _______ you doing when the phone rang?",
+ t:"free",a:"were",alt:[],h1:"Past Continuous question.",h2:"were"},
+{s:"Auxiliary Verbs",
+ q:"_______ you ever read any Agatha Christie?",
+ t:"free",a:"have",alt:[],h1:"Experience up to now — Present Perfect.",h2:"have"},
+{s:"Auxiliary Verbs",
+ q:"I'm sorry. I can't drive you to the station because my car _______ being serviced.",
+ t:"free",a:"is",alt:[],h1:"Present Continuous Passive — the car is in the middle of being serviced.",h2:"is"},
+{s:"Auxiliary Verbs",
+ q:"How long _______ she been learning English?",
+ t:"free",a:"has",alt:[],h1:"Present Perfect Continuous — singular subject.",h2:"has"},
+{s:"Auxiliary Verbs",
+ q:"In France they say 'Bon appétit'. But in Britain people _______ usually say anything before they start their meal.",
+ t:"free",a:"don't",alt:["do not"],h1:"Negative Present Simple.",h2:"don't"},
+{s:"Auxiliary Verbs",
+ q:"_______ you go to work yesterday?",
+ t:"free",a:"did",alt:[],h1:"Past Simple question.",h2:"did"},
+{s:"Auxiliary Verbs",
+ q:"'Where _______ BMW cars made?' 'In Germany.'",
+ t:"free",a:"are",alt:[],h1:"Present Simple Passive — where are things made?",h2:"are"},
+{s:"Auxiliary Verbs",
+ q:"I _______ watch the film last night. Was it good?",
+ t:"free",a:"didn't",alt:["did not"],h1:"Negative Past Simple.",h2:"didn't"},
+
+// ─── Vocabulary 5: Word groups (play/do/make/go/have) ────────────────────
+];
+
+const T9=[
+{s:"Translate",
+ d:"Translate these sentences into Portuguese. Translate the ideas, not word by word.",
+ q:"Translate into Portuguese:\nHe has lived in London for ten years.",
+ t:"free",a:"ele mora em londres há dez anos",
+ alt:["ele vive em londres há dez anos","ele tem vivido em londres por dez anos"],
+ h1:"Present Perfect with 'for' — ongoing situation from the past to now.",h2:"Present Perfect (for)"},
+{s:"Translate",
+ q:"Translate into Portuguese:\nIf I won the lottery, I'd travel around the world.",
+ t:"free",a:"se eu ganhasse na loteria, viajaria pelo mundo",
+ alt:["se eu ganhasse na loteria, eu viajaria pelo mundo","se eu ganhasse a loteria, viajaria pelo mundo"],
+ h1:"Second conditional — hypothetical/unreal present situation.",h2:"Second Conditional"},
+{s:"Translate",
+ q:"Translate into Portuguese:\nWhen I get home, I'll have a bath.",
+ t:"free",a:"quando eu chegar em casa, vou tomar banho",
+ alt:["quando chegar em casa, vou tomar banho","quando eu chegar em casa, tomarei banho"],
+ h1:"Future time clause — use present after 'quando' in Portuguese too.",h2:"Future + time clause"},
+{s:"Translate",
+ q:"Translate into Portuguese:\nShe might have gone out.",
+ t:"free",a:"ela pode ter saído",
+ alt:["ela talvez tenha saído","pode ser que ela tenha saído"],
+ h1:"Modal verb expressing past possibility.",h2:"might have + past participle"},
+{s:"Translate",
+ q:"Translate into Portuguese:\nI saw the film yesterday.",
+ t:"free",a:"eu vi o filme ontem",
+ alt:["vi o filme ontem"],
+ h1:"Simple completed past action.",h2:"Past Simple"},
+{s:"Translate",
+ q:"Translate into Portuguese:\nIf it's a nice day on Sunday we'll have a picnic.",
+ t:"free",a:"se o dia estiver bonito no domingo, faremos um piquenique",
+ alt:["se estiver um dia bonito no domingo, vamos fazer um piquenique","se o tempo estiver bom no domingo, faremos um piquenique"],
+ h1:"First conditional — real/possible future situation.",h2:"First Conditional"},
+
+// ─── Indirect Questions (free-write) ─────────────────────────────────────
+];
+
+const T10=[
+{s:"Everyday English",
+ d:"What would you say in these situations? Write a natural response in English.",
+ q:"Situation 1: Somebody telephones your house and wants to speak to your son, but he isn't at home. Tell the caller where your son is and offer to take a message.\n\nWrite what you would say:",
+ t:"reflect",a:"i'm sorry, he's not here at the moment. can i take a message?",
+ alt:["he's not in at the moment. would you like to leave a message?","i'm afraid he's out. shall i take a message?"],
+ h1:"Be polite. Tell the caller where he is (or that he's out) and offer to help.",h2:"Telephone English"},
+{s:"Everyday English",
+ q:"Situation 2: You phone the travel agent about flights to the USA. The office is closed so you leave a voicemail. Introduce yourself, explain why you're calling, ask them to call you back, and leave your number.\n\nWrite your message:",
+ t:"reflect",a:"hello, my name is [name]. i'm calling to enquire about flights to the usa. could you please call me back? my number is [number]. thank you.",
+ alt:["hi, this is [name]. i'd like some information about flights to the united states. please give me a call back on [number]. thanks."],
+ h1:"Structure: greet + name + reason + request to call back + number + farewell.",h2:"Leaving a voicemail"},
+{s:"Everyday English",
+ q:"Situation 3: Your friend says she has a headache. Make helpful suggestions.\n\nWrite two or three suggestions:",
+ t:"reflect",a:"why don't you take a paracetamol? you should lie down for a while. you could try drinking some water.",
+ alt:["you should take some aspirin. why don't you have a rest? maybe you should drink some water."],
+ h1:"Use: Why don't you...? / You should... / You could... / Have you tried...?",h2:"Making suggestions"},
+{s:"Everyday English",
+ q:"Situation 4: Your brother has just won £100,000 on the National Lottery. Suggest things he could do with the money.\n\nWrite three suggestions:",
+ t:"reflect",a:"you could invest some of it. why don't you buy a new car? you should save some for the future.",
+ alt:["you could travel around the world. why not put some in the bank? you should give some to charity."],
+ h1:"Use: You could... / Why don't you...? / Why not...? / You should...",h2:"Making suggestions"},
+{s:"Everyday English",
+ q:"Situation 5: You arranged to go to the cinema with a friend, but your sister had an accident and is in hospital. You need to cancel.\n\nWrite what you would say to your friend:",
+ t:"reflect",a:"i'm really sorry but i can't make it tonight. my sister has had an accident and i need to visit her in hospital. can we rearrange for another time?",
+ alt:["i'm so sorry, i'm going to have to cancel. my sister's been in an accident. i hope you understand. let's rearrange soon."],
+ h1:"Apologise → explain → offer to reschedule.",h2:"Cancelling plans"},
+{s:"Everyday English",
+ q:"Situation 6: Your friend has just failed to get a place at university and has to stay at school for another year.\n\nWhat would you say to him?",
+ t:"reflect",a:"i'm really sorry to hear that. don't worry, i'm sure you'll get in next year. is there anything i can do to help?",
+ alt:["that's really tough, i'm sorry. but at least you'll have another chance next year. try not to be too hard on yourself."],
+ h1:"Show empathy → encourage → offer support.",h2:"Giving support / consolation"}
+];
+
+const M0=[
+// 1
+  {s:"Story",
+   q:'<b>Last month</b>, a very strange thing __________ (<b>happen</b>) to me <b>while I was walking</b> home from school. It was already late in the evening.',
+   t:"free",a:"happened",alt:[],
+   h1:"'Last month' tells you this is finished past. One event occurred during another ongoing one.",h2:"Past Simple"},
+  // 2
+  {s:"Story",
+   q:'I was alone and it was quite dark because I __________ (<b>leave</b>) school later than usual that day — we had to stay for a rehearsal.',
+   t:"free",a:"had left",alt:[],
+   h1:"The darkness was a result of something that happened even earlier that day. It was 'the past of the past'.",h2:"Past Perfect"},
+  // 3
+  {s:"Story",
+   q:'We stayed until around 6pm because we __________ (<b>must</b>) practise for the school concert — there was no choice.',
+   t:"free",a:"had to",alt:[],
+   h1:"'Must' has no past form. Use the past of 'have to' to express obligation in the past.",h2:"Past Simple Modal (had to)"},
+  // 4
+  {s:"Story",
+   q:'After __________ (<b>walk</b>) for a few minutes along the dark street, I could see the old Headley Mansion in the distance.',
+   t:"free",a:"walking",alt:[],
+   h1:"A verb that directly follows a preposition like 'after' must be in the -ing form.",h2:"Gerund (after + -ing)"},
+  // 5
+  {s:"Story",
+   q:'I always feel nervous when I pass by that old house, because everyone says it __________ (<b>haunt</b>) by the ghost of an old man who died there.',
+   t:"free",a:"is haunted",alt:[],
+   h1:"'Everyone says' = general present belief. The house receives the action (passive). What is the present passive form?",h2:"Present Simple Passive"},
+  // 6
+  {s:"Story",
+   q:'In fact, I __________ (<b>hear</b>) many frightening stories over the years from people who claim to have seen strange things there.',
+   t:"free",a:"have heard",alt:[],
+   h1:"'Over the years' = from some point in the past up to now, with no specific date. The experience is still relevant.",h2:"Present Perfect"},
+  // 7
+  {s:"Story",
+   q:'Once, a friend told me that he __________ (<b>see</b>) the ghost standing at one of the upstairs windows the previous night.',
+   t:"free",a:"had seen",alt:[],
+   h1:"He saw the ghost BEFORE he told me. Two past events — the earlier one needs the 'past of the past'.",h2:"Past Perfect"},
+  // 8
+  {s:"Story",
+   q:'At the time I __________ (<b>think</b>) he was exaggerating — I did not believe in ghosts and found his story hard to accept.',
+   t:"free",a:"thought",alt:[],
+   h1:"'At the time' anchors this to a single point in the past. This is a simple past opinion/state.",h2:"Past Simple"},
+  // 9
+  {s:"Story",
+   q:'I thought he __________ (<b>just be</b>) silly — after all, he was always trying to scare people with dramatic stories.',
+   t:"free",a:"was just being",alt:[],
+   h1:"He was acting silly at that moment — a temporary behaviour in progress at a past time.",h2:"Past Continuous"},
+  // 10
+  {s:"Story",
+   q:'...or maybe he __________ (<b>just imagine</b>) the whole thing — his mind playing tricks after watching too many horror films.',
+   t:"free",a:"had just imagined",alt:[],
+   h1:"The imagining happened before the moment of my thought. It was already completed in his past.",h2:"Past Perfect"},
+  // 11
+  {s:"Story",
+   q:'I thought he was being silly — but I __________ (<b>not say</b>) anything to him about it at the time.',
+   t:"free",a:"did not say",alt:["didn't say"],
+   h1:"A negative statement about a completed action in the past.",h2:"Past Simple Negative"},
+  // 12
+  {s:"Story",
+   q:'As I was approaching the house, I __________ (<b>can</b>) feel a cold chill go up my spine — the air seemed to drop in temperature.',
+   t:"free",a:"could",alt:[],
+   h1:"'Can' has no -ing or infinitive form in the past. Use its simple past equivalent.",h2:"Past Simple Modal (could)"},
+  // 13
+  {s:"Story",
+   q:'I was trying to walk normally when, suddenly, I __________ (<b>hear</b>) a strange noise coming from behind the gate.',
+   t:"free",a:"heard",alt:[],
+   h1:"'Suddenly' signals an abrupt, short event that interrupted the ongoing walking.",h2:"Past Simple"},
+  // 14
+  {s:"Story",
+   q:'I jumped in shock before __________ (<b>realise</b>) that it was just an owl sitting on the fence.',
+   t:"free",a:"realising",alt:[],
+   h1:"A verb that follows the preposition 'before' must be in the -ing form.",h2:"Gerund (before + -ing)"},
+  // 15
+  {s:"Story",
+   q:'I walked a little faster, trying __________ (<b>ignore</b>) all the strange sounds and shadows around me.',
+   t:"free",a:"to ignore",alt:[],
+   h1:"'Try' followed by this form means 'make an effort to do something'.",h2:"Full Infinitive (try + to-verb)"},
+  // 16
+  {s:"Story",
+   q:'When I finally got to the gates, I noticed the figure of a man. He __________ (<b>sit</b>) quietly on the porch, completely still.',
+   t:"free",a:"was sitting",alt:[],
+   h1:"When I arrived (past simple), the man was already there in the middle of an action.",h2:"Past Continuous"},
+  // 17
+  {s:"Story",
+   q:'I froze. My heart __________ (<b>beat</b>) faster and faster as I stood there staring at the dark figure on the porch.',
+   t:"free",a:"was beating",alt:[],
+   h1:"An ongoing process in the past, describing a continuous state at that moment.",h2:"Past Continuous"},
+  // 18
+  {s:"Story",
+   q:'I avoided __________ (<b>make</b>) eye contact with the figure and kept my gaze fixed firmly on the pavement.',
+   t:"free",a:"making",alt:[],
+   h1:"Some verbs are always followed by the -ing form. 'Avoid' is one of them.",h2:"Gerund (avoid + -ing)"},
+  // 19
+  {s:"Story",
+   q:'I panicked and __________ (<b>begin</b>) to run — I could not control it, my legs just moved on their own.',
+   t:"free",a:"began",alt:[],
+   h1:"This is an irregular verb in a past narrative sequence. What is its simple past form?",h2:"Past Simple (Irregular)"},
+  // 20
+  {s:"Story",
+   q:'I panicked and began to __________ (<b>run</b>). I ran all the way home without looking back once.',
+   t:"free",a:"run",alt:[],
+   h1:"After 'to', always use the base (infinitive) form of the verb.",h2:"Base Infinitive (to + verb)"},
+  // 21
+  {s:"Story",
+   q:'When I got home, I went straight up to my room and __________ (<b>think</b>) about what had just happened to me.',
+   t:"free",a:"thought",alt:[],
+   h1:"A series of completed actions in sequence: got home → went to my room → did this.",h2:"Past Simple"},
+  // 22
+  {s:"Story",
+   q:'I sat on my bed thinking about what I __________ (<b>just see</b>) a few minutes before, outside the old mansion.',
+   t:"free",a:"had just seen",alt:[],
+   h1:"I was thinking NOW about something that had already happened BEFORE I got home.",h2:"Past Perfect"},
+  // 23
+  {s:"Story",
+   q:'After sitting in silence for a while, I __________ (<b>decide</b>) to take action and not keep it to myself.',
+   t:"free",a:"decided",alt:[],
+   h1:"A completed decision made at a specific point during the past sequence of events.",h2:"Past Simple"},
+  // 24
+  {s:"Story",
+   q:'I decided to __________ (<b>message</b>) my friend right away, to tell him about everything I had seen.',
+   t:"free",a:"message",alt:[],
+   h1:"After 'to', always use the base (infinitive) form of the verb.",h2:"Base Infinitive (to + verb)"},
+  // 25
+  {s:"Story",
+   q:'I decided to message the friend who __________ (<b>tell</b>) me the ghost story previously — the one who claimed to have seen the ghost himself.',
+   t:"free",a:"had told",alt:[],
+   h1:"He told me the story before the night of the incident. Two past events — which came first?",h2:"Past Perfect"},
+  // 26
+  {s:"Story",
+   q:'I wanted to tell him what I __________ (<b>experience</b>) that night — to let him know that maybe his ghost story was true after all.',
+   t:"free",a:"had experienced",alt:[],
+   h1:"The experience was finished before the moment of telling. It already belonged to the past.",h2:"Past Perfect"},
+  // 27
+  {s:"Story",
+   q:'Ever since that day, I __________ (<b>take</b>) a completely different route home from school to avoid passing the mansion.',
+   t:"free",a:"have taken",alt:[],
+   h1:"'Ever since that day' = from a past moment up to and including now. The habit is still ongoing.",h2:"Present Perfect"},
+  // 28
+  {s:"Story",
+   q:'I now walk ten minutes out of my way in order __________ (<b>avoid</b>) the old house and its dark, silent porch.',
+   t:"free",a:"to avoid",alt:[],
+   h1:"'In order ___' is used to express the purpose of an action. What form follows 'in order'?",h2:"Infinitive of Purpose (in order to)"},
+  // 29
+  {s:"Story",
+   q:"My friend suggests __________ (<b>explore</b>) the house together one day, but I don't think I'll ever be brave enough to go back.",
+   t:"free",a:"exploring",alt:[],
+   h1:"Some verbs are always followed by the -ing form. 'Suggest' is one of them.",h2:"Gerund (suggest + -ing)"}
+];
+
+const M1=[
+{s:"Tense Review",q:'Tom <b>walked/was walking</b> home when someone <b>called/was calling</b> out his name. — Which pair is correct?',t:"mc",o:["was walking / called","walked / was calling","was walking / was calling","walked / called"],a:"was walking / called",h1:"Ongoing action interrupted by a sudden event.",h2:"Past Continuous + Past Simple"},
+  {s:"Tense Review",q:'When John <b>phoned/was phoning</b>, I <b>wrote/was writing</b> an essay. I <b>finished/was finishing</b> it at midnight.',t:"mc",o:["phoned / was writing / finished","was phoning / wrote / finished","phoned / wrote / finished","was phoning / was writing / was finishing"],a:"phoned / was writing / finished",h1:"John's call interrupted essay-writing. 'Finished' = completed event with time marker.",h2:"Past Simple / Past Continuous / Past Simple"},
+  {s:"Tense Review",q:'Right or wrong? — <i>"When she was getting home, her husband was watching football on television."</i>',t:"mc",o:["Right","Wrong — 'was getting home' should be 'got home'","Wrong — 'was watching' should be 'watched'","Right — two simultaneous actions"],a:"Wrong — 'was getting home' should be 'got home'",h1:"'Get home' is a momentary arrival event — use Past Simple.",h2:"Past Simple for instantaneous events"},
+  {s:"Tense Review",q:'Right or wrong? — <i>"As soon as she was seeing the time, she was jumping out of bed."</i>',t:"mc",o:["Right","Wrong — both should be Past Simple: saw / jumped","Wrong — only 'was seeing' is wrong","Wrong — only 'was jumping' is wrong"],a:"Wrong — both should be Past Simple: saw / jumped",h1:"'As soon as' triggers two sequential completed actions — both Past Simple.",h2:"As soon as + Past Simple"},
+  {s:"Tense Review",q:"While we _______ (wait) for the guests to arrive, Sally _______ (ring) to say she couldn't come.",t:"mc",o:["waited / was ringing","were waiting / rang","were waiting / was ringing","waited / rang"],a:"were waiting / rang",h1:"Ongoing background action + sudden interruption.",h2:"Past Continuous / Past Simple"},
+  {s:"Tense Review",q:'When he _______ (arrive) at the party, everyone _______ (talk) and _______ (laugh).',t:"mc",o:["arrived / was talking / was laughing","arrived / talked / laughed","was arriving / was talking / was laughing","had arrived / was talking / was laughing"],a:"arrived / was talking / was laughing",h1:"His arrival (sudden) happened while the party was already in progress.",h2:"Past Simple / Past Continuous"},
+  {s:"Tense Review",q:"Sam's friends <b>had already gone / had already been going</b> by the time he <b>got / was getting</b> there.",t:"mc",o:["had already gone / got","had already been going / got","had already gone / was getting","had already been going / was getting"],a:"had already gone / got",h1:"Completed departure before Sam arrived. 'Got there' = arrival (instantaneous).",h2:"Past Perfect Simple / Past Simple"},
+  {s:"Tense Review",q:'As soon as Cath shut the car door, she <b>realised/was realising</b> she <b>had left/had been leaving</b> the keys inside.',t:"mc",o:["realised / had left","was realising / had left","realised / had been leaving","was realising / had been leaving"],a:"realised / had left",h1:"'Realised' = instantaneous mental event. 'Had left' = completed action before realising.",h2:"Past Simple / Past Perfect Simple"},
+  {s:"Tense Review",q:'They <b>waited/were waiting</b> until everybody <b>had left/had been leaving</b> the bank, then <b>broke in/were breaking in</b>.',t:"mc",o:["waited / had left / broke in","were waiting / had left / broke in","waited / had been leaving / broke in","were waiting / had been leaving / were breaking in"],a:"were waiting / had left / broke in",h1:"Ongoing wait → completed departure → next completed action.",h2:"Past Continuous / Past Perfect / Past Simple"},
+  {s:"Tense Review",q:'When the helicopter found us we _______ (sit) in the lifeboat for hours and _______ (eat) all our food.',t:"mc",o:["had been sitting / had eaten","were sitting / ate","had sat / had been eating","sat / had eaten"],a:"had been sitting / had eaten",h1:"Duration up to rescue (Continuous) + completed action (Simple).",h2:"Past Perfect Continuous / Past Perfect Simple"},
+  {s:"Tense Review",q:"Right or wrong? — <i>\"Tom was exhausted because he'd been working too hard.\"</i>",t:"mc",o:["Right","Wrong — should be 'he'd worked'","Wrong — should be 'he was working'","Wrong — should be 'he has been working'"],a:"Right",h1:"Past Perfect Continuous explains the cause of a past state through prolonged activity.",h2:"Past Perfect Continuous: had been + verb-ing"},
+  {s:"Tense Review",q:"Right or wrong? — <i>\"By the time the emergency food supplies arrived, thirty people had been dying.\"</i>",t:"mc",o:["Right","Wrong — should be 'thirty people had died'","Wrong — should be 'thirty people were dying'","Wrong — should be 'thirty people have died'"],a:"Wrong — should be 'thirty people had died'",h1:"'Die' is instantaneous — use Past Perfect Simple, not Continuous.",h2:"Past Perfect Simple for instantaneous/permanent results"},
+  {s:"Tense Review",q:"Right or wrong? — <i>\"Before the accident, he'd never been thinking anything like this would happen.\"</i>",t:"mc",o:["Right","Wrong — should be 'he'd never thought'","Wrong — should be 'he was never thinking'","Wrong — should be 'he hasn't ever thought'"],a:"Wrong — should be 'he'd never thought'",h1:"'Think' (mental state) is stative and doesn't normally take continuous forms.",h2:"Stative verbs don't use continuous forms"},
+  {s:"Tense Review",q:"What's the difference?<br>(a) He'd been trying to phone her before she left the country.<br>(b) He'd tried to phone her before she left the country.",t:"mc",o:["No difference.","(a) = repeated/prolonged attempts; (b) = at least one completed attempt","(a) = successful call; (b) = unsuccessful call","(a) = before she left; (b) = after she left"],a:"(a) = repeated/prolonged attempts; (b) = at least one completed attempt",h1:"Continuous = duration/repetition; Simple = completed result.",h2:"Past Perfect Simple vs Continuous"},
+  {s:"Tense Review",q:'He <b>is working / has been working</b> there since he <b>left / was leaving</b> university.',t:"mc",o:["is working / left","has been working / left","is working / was leaving","has been working / was leaving"],a:"has been working / left",h1:"'Since' triggers Present Perfect. 'Left university' = completed point-in-time event.",h2:"Present Perfect Continuous / Past Simple"},
+  {s:"Tense Review",q:'He <b>is playing / has been playing</b> tennis since he <b>started / was starting</b> school.',t:"mc",o:["is playing / started","has been playing / started","is playing / was starting","has been playing / was starting"],a:"has been playing / started",h1:"Ongoing activity from a past point — 'since he started' (completed).",h2:"Present Perfect Continuous / Past Simple"},
+  {s:"Tense Review",q:'Oh no! The train _______ (stop) again! I _______ (sit) on this train for hours, and I _______ (already miss) my first meeting.',t:"mc",o:["has stopped / have been sitting / have already missed","stopped / sat / missed","has stopped / have sat / have missed","has been stopping / am sitting / have missed"],a:"has stopped / have been sitting / have already missed",h1:"Recent event / duration up to now / completed result.",h2:"Present Perfect Simple / Continuous"},
+  {s:"Tense Review",q:"You're covered in blood and you _______ (tear) your jacket! You _______ (fight) again, haven't you?",t:"mc",o:["have torn / have been fighting","tore / fought","have been tearing / fought","tore / have been fighting"],a:"have torn / have been fighting",h1:"Visible present result / recent repeated activity causing current state.",h2:"Present Perfect Simple / Continuous"},
+  {s:"Tense Review",q:"Right or wrong? — <i>\"Careful where you walk. Susie's been breaking a vase, and Johnny's already cut himself.\"</i>",t:"mc",o:["Right","Wrong — 'been breaking a vase' should be 'broken a vase'","Wrong — 'already cut' should be 'been cutting'","Both are wrong"],a:"Wrong — 'been breaking a vase' should be 'broken a vase'",h1:"Breaking a vase is a single completed event — use Present Perfect Simple.",h2:"Present Perfect Simple for single events"},
+  {s:"Tense Review",q:"Right or wrong? — <i>\"They've been living next door for years, but we've never spoken to them.\"</i>",t:"mc",o:["Right","Wrong — 'living' should be 'lived'","Wrong — 'spoken' should be 'been speaking'","Both are wrong"],a:"Right",h1:"Ongoing situation with duration + life experience — both forms are correct.",h2:"Present Perfect Simple and Continuous both valid"},
+  {s:"Tense Review",q:"Right or wrong? — <i>\"I've been knowing him for a few months, but I've only been meeting his sister once.\"</i>",t:"mc",o:["Right","Wrong — both should be simple: 'I've known' and 'I've only met'","Wrong — only 'been knowing' is wrong","Wrong — only 'been meeting' is wrong"],a:"Wrong — both should be simple: 'I've known' and 'I've only met'",h1:"'Know' is stative (no continuous). 'Meet once' = single event (no continuous).",h2:"Stative verbs + single events → Present Perfect Simple"},
+  {s:"Tense Review",q:'Normally I <b>get up / am getting up</b> at eight, but this week I <b>get up / am getting up</b> at seven. — Which pair is correct?',t:"mc",o:["get up / am getting up","am getting up / get up","get up / get up","am getting up / am getting up"],a:"get up / am getting up",h1:"Permanent habit (Simple) vs temporary current situation (Continuous).",h2:"Present Simple (habit) / Present Continuous (temporary)"},
+  {s:"Tense Review",q:'Peter _______ (play) football at the moment. He _______ (want) to be a footballer when he grows up.',t:"mc",o:["is playing / wants","plays / wants","is playing / is wanting","plays / is wanting"],a:"is playing / wants",h1:"Activity happening now (Continuous) + stative verb 'want' (always Simple).",h2:"Present Continuous / Present Simple (stative)"},
+  {s:"Tense Review",q:"Right or wrong? — <i>\"I'm loving hamburgers! I eat five every day, and I eat one at the moment!\"</i>",t:"mc",o:["Right","Wrong — 'I'm loving' should be 'I love'; 'I eat one at the moment' should be 'I'm eating one'","Wrong — only 'I'm loving' is wrong","Wrong — only 'I eat at the moment' is wrong"],a:"Wrong — 'I'm loving' should be 'I love'; 'I eat one at the moment' should be 'I'm eating one'",h1:"'Love' is stative (use Simple). Current action needs Continuous.",h2:"Stative verbs use Simple; current actions use Continuous"},
+  {s:"Tense Review",q:"What's the difference?<br>(a) What do you think?<br>(b) What are you thinking?",t:"mc",o:["No difference.","(a) = What is your opinion? (b) = What is going through your mind?","(a) = current thought; (b) = general opinion","(a) = future plan; (b) = present state"],a:"(a) = What is your opinion? (b) = What is going through your mind?",h1:"'Think' as opinion = stative (Simple). 'Think' as mental process = dynamic (Continuous).",h2:"Think: opinion (Simple) vs mental process (Continuous)"},
+  {s:"Tense Review",q:"What's the difference?<br>(a) He's very rude.<br>(b) He's being very rude.",t:"mc",o:["No difference.","(a) = permanent character trait; (b) = rude temporarily right now","(a) = rude right now; (b) = always rude","(a) = an opinion; (b) = a fact"],a:"(a) = permanent character trait; (b) = rude temporarily right now",h1:"Present Simple for permanent traits; Continuous for temporary behaviour.",h2:"be + adjective: Simple (permanent) vs Continuous (temporary)"},
+  {s:"Tense Review",q:"This time next week I <b>'ll lie / 'll be lying</b> on a beach in Spain. — Which is correct?",t:"mc",o:["'ll be lying","'ll lie","lie","'m lying"],a:"'ll be lying",h1:"'This time next week' signals an action in progress at a future moment.",h2:"Future Continuous: will be + verb-ing"},
+  {s:"Tense Review",q:"Don't come round at eight. I <b>'ll put / 'll be putting</b> the children in bed then. — Which is correct?",t:"mc",o:["'ll be putting","'ll put","put","am putting"],a:"'ll be putting",h1:"'At eight' = a future point when an action will be in progress.",h2:"Future Continuous for action in progress at a future time"},
+  {s:"Tense Review",q:"Right or wrong? — <i>\"When I arrive at the station, my parents will wait for me.\"</i>",t:"mc",o:["Right","Wrong — 'will wait' should be 'will be waiting'","Wrong — 'arrive' should be 'will arrive'","Both are wrong"],a:"Wrong — 'will wait' should be 'will be waiting'",h1:"The waiting will be in progress at the moment of arrival → Future Continuous.",h2:"Future Continuous: action in progress when you arrive"},
+  {s:"Tense Review",q:"What's the difference?<br>(a) I'll be cooking dinner when you get home.<br>(b) I'll cook dinner when you get home.",t:"mc",o:["No difference.","(a) = dinner already in progress; (b) = I'll start after you arrive","(a) = I start when you arrive; (b) = dinner is already cooking","(a) = a promise; (b) = a plan"],a:"(a) = dinner already in progress; (b) = I'll start after you arrive",h1:"Future Continuous = already happening at that point; Future Simple = action following arrival.",h2:"Future Continuous (in progress) vs Future Simple (sequence)"}
+];
+
+
+const MODULES=[
+  {id:'t0', name:'Tenses & Verb Forms',    icon:'📖', time:'~10 min', color:'#4f8ef7', data:T0},
+  {id:'t1', name:'Conditionals',           icon:'🔀', time:'~8 min',  color:'#6dd5ed', data:T1},
+  {id:'t2', name:'Passives',               icon:'🔄', time:'~6 min',  color:'#a78bfa', data:T2},
+  {id:'t3', name:'Modals',                 icon:'💬', time:'~5 min',  color:'#f472b6', data:T3},
+  {id:'t4', name:'Time Expressions',       icon:'🕐', time:'~5 min',  color:'#34d399', data:T4},
+  {id:'t5', name:'Vocabulary',             icon:'📚', time:'~10 min', color:'#f59e0b', data:T5},
+  {id:'t6', name:'Reported Speech',        icon:'🗣️', time:'~10 min', color:'#fb7185', data:T6},
+  {id:'t7', name:'Indirect Questions',     icon:'❓', time:'~5 min',  color:'#38bdf8', data:T7},
+  {id:'t8', name:'Auxiliary Verbs',        icon:'⚙️', time:'~4 min',  color:'#a3e635', data:T8},
+  {id:'t9', name:'Translation',            icon:'🌍', time:'~5 min',  color:'#fb923c', data:T9},
+  {id:'t10',name:'Everyday English',       icon:'💬', time:'~6 min',  color:'#c084fc', data:T10},
+  {id:'m0', name:'Mixed Tenses Story',     icon:'👻', time:'~15 min', color:'#4f8ef7', data:M0},
+  {id:'m1', name:'Tense Review',           icon:'⏱️', time:'~20 min', color:'#a78bfa', data:M1},
+  {id:'boss',name:'Boss Challenge',        icon:'💀', time:'~90 min', color:'#f87171', data:[...T0,...T1,...T2,...T3,...T4,...T5,...T6,...T7,...T8,...T9,...T10,...M0,...M1]}
+];
+
+// ── Build home page dynamically ──
+function buildHome(){
+  // Topic grid (indices 0-10)
+  const tg=document.getElementById('topic-grid');
+  tg.innerHTML='';
+  MODULES.slice(0,11).forEach((mod,i)=>{
+    tg.appendChild(makeTopicCard(mod,i));
+  });
+
+  // Story grid (indices 11,12)
+  const sg=document.getElementById('story-grid');
+  sg.innerHTML='';
+  MODULES.slice(11,13).forEach((mod,i)=>{
+    sg.appendChild(makeTopicCard(mod,11+i));
+  });
+
+  // Boss card
+  const bw=document.getElementById('boss-card-wrap');
+  const boss=MODULES[13];
+  const bs=stats[boss.id]||{att:0,c:0,w:0,best:null,bestPct:null};
+  bw.innerHTML=`
+    <div class="boss-card" onclick="startModule(13)">
+      <div class="boss-tag">⚔️ Boss Challenge · The Final Test</div>
+      <div class="boss-name">The <em>Complete Grammar</em> Gauntlet</div>
+      <div class="boss-desc">Every question from every topic, combined into one relentless test. No hints allowed (just kidding — hints are still there). Conquer all ${boss.data.length} questions in a single run and earn bragging rights.</div>
+      <div class="boss-pills">
+        <span class="boss-pill">${boss.data.length} questions</span>
+        <span class="boss-pill">${boss.time}</span>
+        <span class="boss-pill">All topics</span>
+        <span class="boss-pill">Mixed types</span>
+      </div>
+      <div class="boss-stats-row">
+        <div class="boss-stat"><span class="boss-stat-val" id="mod-att-boss">${bs.att}</span><div class="boss-stat-lbl">Attempts</div></div>
+        <div class="boss-stat"><span class="boss-stat-val" id="mod-best-boss">${bs.best||'—'}</span><div class="boss-stat-lbl">Best</div></div>
+        <div class="boss-stat"><span class="boss-stat-val" id="mod-acc-boss">${(bs.c+bs.w)>0?Math.round(bs.c/(bs.c+bs.w)*100)+'%':'—'}</span><div class="boss-stat-lbl">Accuracy</div></div>
+      </div>
+    </div>`;
+}
+
+function makeTopicCard(mod,i){
+  const m=stats[mod.id]||{att:0,c:0,w:0,best:null,bestPct:null};
+  const acc=(m.c+m.w)>0?Math.round(m.c/(m.c+m.w)*100)+'%':'—';
+  const div=document.createElement('div');
+  div.className='topic-card';
+  div.style.setProperty('--tc',mod.color||'var(--accent)');
+  div.style.cssText+=`;--tc:${mod.color||'var(--accent)'}`;
+  div.innerHTML=`
+    <style>.topic-card:nth-child(${i+1})::before{background:${mod.color}}</style>
+    <span class="topic-icon">${mod.icon}</span>
+    <div class="topic-name">${mod.name}</div>
+    <div class="topic-meta">
+      <span>${mod.data.length} questions</span>
+      <span>${mod.time}</span>
+    </div>
+    <div class="topic-stats-row">
+      <div class="ts b"><span class="ts-val" id="mod-att-${mod.id}">${m.att}</span><div class="ts-lbl">Tries</div></div>
+      <div class="ts g"><span class="ts-val" id="mod-best-${mod.id}">${m.best||'—'}</span><div class="ts-lbl">Best</div></div>
+      <div class="ts go"><span class="ts-val" id="mod-acc-${mod.id}">${acc}</span><div class="ts-lbl">Acc.</div></div>
+    </div>`;
+  div.onclick=()=>startModule(i);
+  return div;
+}
+
+function toggleRef(){
+  const p=document.getElementById('ref-panel');
+  const b=document.getElementById('ref-btn');
+  p.classList.toggle('open');
+  b.classList.toggle('active');
+  b.textContent=p.classList.contains('open')?'✕ Close Reference':'📋 Grammar Reference Table';
+}
+
+
+// ── State ──
+let AMI=-1,Qs=[],cur=0,cc=0,wc=0,UA=[],done=false;
+let stats={};
+MODULES.forEach(m=>{stats[m.id]={att:0,c:0,w:0,best:null,bestPct:null};});
+
+// ── Screens ──
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
+function goHome(){closeModal();refreshHome();showScreen('screen-home');}
+function confirmHome(){
+  if(done){goHome();return;}
+  if(UA.filter(a=>a!==null).length===0){goHome();return;}
+  showModal('Leave this quiz?','Your answers in this attempt will be lost.',()=>{closeModal();goHome();});
+}
+function confirmRestart(){
+  if(done){restartModule();return;}
+  if(UA.filter(a=>a!==null).length===0){restartModule();return;}
+  showModal('Restart this module?','Your current answers will be cleared.',()=>{closeModal();restartModule();});
+}
+function restartModule(){if(!done&&UA.filter(a=>a!==null).length>0)recordAttempt(false);initQuiz();}
+
+// ── Start ──
+function startModule(i){
+  AMI=i;
+  const mod=MODULES[i];
+  Qs=mod.data;
+  document.getElementById('quiz-title').innerHTML=mod.icon+' '+mod.name+' <em>'+Qs.length+' questions</em>';
+  initQuiz();
+  showScreen('screen-quiz');
+}
+function initQuiz(){
+  cur=0;cc=0;wc=0;UA=new Array(Qs.length).fill(null);done=false;
+  document.getElementById('q-card').style.display='block';
+  document.getElementById('result-card').style.display='none';
+  updateLS();loadQ();
+}
+
+// ── Load question ──
+let lastDesc='';
+function loadQ(){
+  const q=Qs[cur],tot=Qs.length,ans=UA[cur]!==null;
+  document.getElementById('prog-txt').textContent=`Q ${cur+1} / ${tot}`;
+  document.getElementById('prog-sec').textContent=q.s||'';
+  document.getElementById('prog-bar').style.width=((cur/tot)*100)+'%';
+  document.getElementById('q-lbl').textContent=q.s||'';
+  const de=document.getElementById('q-desc');
+  if(q.d&&q.d!==lastDesc){de.innerHTML=q.d.replace(/\n/g,'<br>');de.style.display='block';lastDesc=q.d;}
+  else if(!q.d){de.style.display='none';lastDesc='';}
+  else{de.style.display='block';}
+  document.getElementById('q-sent').innerHTML=q.q.replace(/\n/g,'<br>');
+  const t1d=document.getElementById('tip1-det'),t2d=document.getElementById('tip2-det');
+  if(q.h1){document.getElementById('tip1-body').textContent=q.h1;t1d.style.display='block';t1d.open=false;}else t1d.style.display='none';
+  if(q.h2){document.getElementById('tip2-body').textContent=q.h2;t2d.style.display='block';t2d.open=false;}else t2d.style.display='none';
+  const fb=document.getElementById('feedback');fb.style.display='none';fb.className='feedback';
+  const ia=document.getElementById('input-area');ia.innerHTML='';
+  const sb=document.getElementById('submit-btn');
+
+  if(q.t==='mc'){
+    renderMC(q,ia,ans,sb);
+  } else if(q.t==='free'){
+    renderFree(q,ia,ans,sb);
+  } else if(q.t==='build'){
+    renderBuild(q,ia,ans,sb);
+  } else if(q.t==='sort-table'){
+    renderSortTable(q,ia,ans,sb);
+  } else if(q.t==='word-group'){
+    renderWordGroup(q,ia,ans,sb);
+  } else if(q.t==='ooo'){
+    renderOOO(q,ia,ans,sb);
+  } else if(q.t==='reflect'){
+    renderReflect(q,ia,ans,sb);
+  }
+}
+
+// ── Render helpers ──
+
+function renderMC(q,ia,ans,sb){
+  const w=document.createElement('div');w.className='choices';
+  q.o.forEach((opt,i)=>{
+    const b=document.createElement('button');b.className='choice-btn';b.disabled=ans;
+    b.innerHTML=`<span class="choice-letter">${String.fromCharCode(65+i)}</span>${opt}`;
+    if(ans){if(opt===q.a)b.classList.add('correct-choice');else if(opt===UA[cur])b.classList.add('wrong-choice');}
+    else{b.onclick=()=>{document.querySelectorAll('.choice-btn').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');b.dataset.v=opt;};}
+    w.appendChild(b);
+  });
+  ia.appendChild(w);sb.style.display=ans?'none':'';
+  if(ans)showFB(UA[cur],q.a,q.alt);
+}
+
+function renderFree(q,ia,ans,sb){
+  const ta=document.createElement('textarea');ta.className='input-free';ta.placeholder='Type your answer here…';ta.value=UA[cur]||'';ta.disabled=ans;ta.id='fi';
+  ta.style.minHeight='60px';
+  ta.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey&&!ans){e.preventDefault();submitAnswer();}});
+  ia.appendChild(ta);sb.style.display=ans?'none':'';
+  if(ans)showFB(UA[cur],q.a,q.alt);
+}
+
+// ── SENTENCE BUILDER ──
+let buildSelected=[];
+function renderBuild(q,ia,ans,sb){
+  buildSelected=ans?(UA[cur]||'').split('|||').filter(Boolean):[];
+  // Drop zone
+  const dz=document.createElement('div');
+  dz.id='build-dz';
+  dz.style.cssText='min-height:54px;padding:10px 14px;border-radius:10px;border:1px dashed var(--border);background:var(--surface2);margin-bottom:12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;cursor:pointer;';
+  function refreshDZ(){
+    dz.innerHTML='';
+    if(buildSelected.length===0){const ph=document.createElement('span');ph.style.color='var(--muted)';ph.style.fontSize='14px';ph.textContent='Click words below to build your sentence…';dz.appendChild(ph);}
+    else{
+      buildSelected.forEach((w,i)=>{
+        const chip=document.createElement('span');
+        chip.style.cssText='padding:6px 12px;border-radius:20px;background:var(--accent2);color:#fff;font-size:14px;cursor:pointer;user-select:none;display:flex;align-items:center;gap:6px;';
+        chip.innerHTML=`${w} <span style="font-size:11px;opacity:.7">✕</span>`;
+        if(!ans){chip.onclick=()=>{buildSelected.splice(i,1);refreshDZ();refreshBank();};}
+        else chip.style.cursor='default';
+        dz.appendChild(chip);
+      });
+    }
+  }
+  ia.appendChild(dz);
+  // Word bank
+  const wb=document.createElement('div');wb.id='build-wb';wb.style.cssText='display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;';
+  function refreshBank(){
+    wb.innerHTML='';
+    q.words.forEach(w=>{
+      const used=buildSelected.includes(w);
+      const chip=document.createElement('span');
+      chip.style.cssText=`padding:7px 16px;border-radius:20px;border:1px solid var(--border);background:${used?'var(--border)':'var(--surface2)'};color:${used?'var(--muted)':'var(--text)'};font-size:14px;cursor:${used||ans?'not-allowed':'pointer'};user-select:none;transition:all .15s;`;
+      chip.textContent=w;
+      if(!used&&!ans){chip.onclick=()=>{buildSelected.push(w);refreshDZ();refreshBank();};}
+      wb.appendChild(chip);
+    });
+  }
+  ia.appendChild(wb);
+  refreshDZ();refreshBank();
+  if(ans){
+    // show stored answer
+    const stored=(UA[cur]||'').replace(/\|\|\|/g,' ');
+    buildSelected=stored.split(' ').filter(Boolean);
+    // Just display stored text
+    dz.innerHTML='';
+    const s=document.createElement('span');s.style.fontSize='15px';s.style.color='var(--text)';s.textContent=stored;dz.appendChild(s);
+    showFB(stored,q.a,q.alt);
+  }
+  sb.style.display=ans?'none':'';
+}
+
+// ── SORT TABLE ──
+let sortState={};
+function renderSortTable(q,ia,ans,sb){
+  const allWords=[...Object.values(q.correct).flat()].sort(()=>Math.random()-0.5);
+  sortState={};
+  q.cols.forEach(c=>{sortState[c]=[];});
+
+  // Parse stored if answered
+  if(ans&&UA[cur]){try{const p=JSON.parse(UA[cur]);Object.assign(sortState,p);}catch(e){}}
+
+  const wrapper=document.createElement('div');wrapper.style.cssText='width:100%;';
+
+  // Columns
+  const colsWrap=document.createElement('div');
+  colsWrap.style.cssText='display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px;';
+  const colEls={};
+  q.cols.forEach(col=>{
+    const colDiv=document.createElement('div');
+    colDiv.style.cssText='flex:1;min-width:140px;';
+    const header=document.createElement('div');
+    header.style.cssText='font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;padding:6px 10px;background:var(--surface2);border-radius:6px;text-align:center;';
+    header.textContent=col;
+    colDiv.appendChild(header);
+    const dropArea=document.createElement('div');
+    dropArea.dataset.col=col;
+    dropArea.style.cssText='min-height:80px;border:1px dashed var(--border);border-radius:10px;padding:8px;display:flex;flex-wrap:wrap;gap:6px;align-items:flex-start;background:var(--surface2);';
+    colDiv.appendChild(dropArea);
+    colsWrap.appendChild(colDiv);
+    colEls[col]=dropArea;
+  });
+  wrapper.appendChild(colsWrap);
+
+  // Word pool
+  const pool=document.createElement('div');
+  pool.id='sort-pool';
+  pool.style.cssText='display:flex;flex-wrap:wrap;gap:8px;padding:12px;border:1px solid var(--border);border-radius:10px;background:var(--surface2);min-height:50px;';
+  const poolLabel=document.createElement('div');
+  poolLabel.style.cssText='width:100%;font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;';
+  poolLabel.textContent='Word pool — click to move to a column';
+  pool.appendChild(poolLabel);
+  wrapper.appendChild(pool);
+  ia.appendChild(wrapper);
+
+  function makeChip(word,inCol){
+    const c=document.createElement('span');
+    c.style.cssText='padding:5px 12px;border-radius:16px;background:var(--accent);color:#fff;font-size:13px;cursor:pointer;user-select:none;';
+    c.textContent=word;
+    if(!ans){
+      c.onclick=()=>{
+        if(inCol){
+          // remove from col, put back in pool
+          const ci=sortState[inCol].indexOf(word);
+          if(ci>-1)sortState[inCol].splice(ci,1);
+          refreshSort();
+        } else {
+          // assign to first col or cycle
+          showColPicker(word,c);
+        }
+      };
+    }
+    return c;
+  }
+
+  function showColPicker(word,anchor){
+    // small popover
+    let pop=document.getElementById('col-picker');if(pop)pop.remove();
+    pop=document.createElement('div');pop.id='col-picker';
+    pop.style.cssText='position:absolute;z-index:200;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px;display:flex;flex-direction:column;gap:4px;box-shadow:0 8px 24px rgba(0,0,0,.4);';
+    q.cols.forEach(col=>{
+      const btn=document.createElement('button');
+      btn.style.cssText='padding:6px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--text);cursor:pointer;font-size:13px;text-align:left;';
+      btn.textContent='→ '+col;
+      btn.onclick=()=>{sortState[col].push(word);pop.remove();refreshSort();};
+      pop.appendChild(btn);
+    });
+    const cancelBtn=document.createElement('button');
+    cancelBtn.style.cssText='padding:6px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--muted);cursor:pointer;font-size:12px;';
+    cancelBtn.textContent='Cancel';cancelBtn.onclick=()=>pop.remove();pop.appendChild(cancelBtn);
+    document.body.appendChild(pop);
+    const r=anchor.getBoundingClientRect();
+    pop.style.top=(r.bottom+window.scrollY+4)+'px';
+    pop.style.left=(r.left+window.scrollX)+'px';
+    document.addEventListener('click',function h(e){if(!pop.contains(e.target)&&e.target!==anchor){pop.remove();document.removeEventListener('click',h);}},{once:false});
+  }
+
+  function refreshSort(){
+    // clear cols
+    q.cols.forEach(col=>{colEls[col].innerHTML='';});
+    // clear pool (keep label)
+    while(pool.children.length>1)pool.removeChild(pool.lastChild);
+    // placed words
+    const placed=new Set(Object.values(sortState).flat());
+    // fill cols
+    q.cols.forEach(col=>{
+      sortState[col].forEach(w=>{
+        const c=makeChip(w,col);
+        if(ans){
+          const correct=(q.correct[col]||[]).includes(w);
+          c.style.background=correct?'var(--green)':'var(--red)';
+        }
+        colEls[col].appendChild(c);
+      });
+    });
+    // fill pool
+    allWords.forEach(w=>{
+      if(!placed.has(w)){
+        const c=makeChip(w,null);
+        pool.appendChild(c);
+      }
+    });
+  }
+
+  if(ans){
+    // Show correct grouping
+    q.cols.forEach(c=>{sortState[c]=(q.correct[c]||[]);});
+    refreshSort();
+    // compute score text
+    const fb=document.getElementById('feedback');
+    let correct=0,total=0;
+    q.cols.forEach(col=>{
+      (q.correct[col]||[]).forEach(w=>{total++;if((sortState[col]||[]).includes(w))correct++;});
+    });
+    fb.style.display='block';
+    fb.className=(correct===total)?'feedback correct':'feedback wrong';
+    fb.innerHTML=(correct===total)?'🎉 All correct!':'📋 See correct grouping above — green = correct, red = misplaced.';
+    sb.style.display='none';
+  } else {
+    refreshSort();
+    sb.style.display='';
+  }
+}
+
+// ── WORD GROUP ──
+let wgState={};
+function renderWordGroup(q,ia,ans,sb){
+  const allWords=[...Object.values(q.correct).flat()].sort(()=>Math.random()-0.5);
+  wgState={};
+  q.cols.forEach(c=>{wgState[c]=[];});
+  if(ans&&UA[cur]){try{const p=JSON.parse(UA[cur]);Object.assign(wgState,p);}catch(e){}}
+
+  const wrapper=document.createElement('div');
+  // Column headers + drop areas
+  const colsWrap=document.createElement('div');
+  colsWrap.style.cssText='display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;';
+  const colEls={};
+  q.cols.forEach(col=>{
+    const colDiv=document.createElement('div');colDiv.style.cssText='flex:1;min-width:110px;';
+    const hd=document.createElement('div');
+    hd.style.cssText='font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:6px;padding:5px 8px;background:var(--surface2);border-radius:6px;text-align:center;';
+    hd.textContent=col;colDiv.appendChild(hd);
+    const drop=document.createElement('div');
+    drop.dataset.col=col;
+    drop.style.cssText='min-height:70px;border:1px dashed var(--border);border-radius:10px;padding:6px;display:flex;flex-wrap:wrap;gap:5px;align-items:flex-start;background:var(--surface2);';
+    colDiv.appendChild(drop);colsWrap.appendChild(colDiv);colEls[col]=drop;
+  });
+  wrapper.appendChild(colsWrap);
+
+  const pool=document.createElement('div');
+  pool.style.cssText='display:flex;flex-wrap:wrap;gap:7px;padding:10px;border:1px solid var(--border);border-radius:10px;background:var(--surface2);min-height:44px;margin-bottom:4px;';
+  const pl=document.createElement('span');pl.style.cssText='width:100%;font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;';pl.textContent='Click a word then choose a column';pool.appendChild(pl);
+  wrapper.appendChild(pool);
+  ia.appendChild(wrapper);
+
+  function makeWGChip(word,inCol){
+    const c=document.createElement('span');
+    c.style.cssText='padding:4px 10px;border-radius:14px;background:var(--accent);color:#fff;font-size:12px;cursor:pointer;user-select:none;';
+    c.textContent=word;
+    if(!ans){
+      c.onclick=()=>{
+        if(inCol){
+          const ci=wgState[inCol].indexOf(word);if(ci>-1)wgState[inCol].splice(ci,1);
+          refreshWG();
+        } else {
+          showWGPicker(word,c);
+        }
+      };
+    }
+    return c;
+  }
+  function showWGPicker(word,anchor){
+    let pop=document.getElementById('wg-picker');if(pop)pop.remove();
+    pop=document.createElement('div');pop.id='wg-picker';
+    pop.style.cssText='position:absolute;z-index:200;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px;display:flex;flex-direction:column;gap:4px;box-shadow:0 8px 24px rgba(0,0,0,.4);';
+    q.cols.forEach(col=>{
+      const btn=document.createElement('button');
+      btn.style.cssText='padding:5px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--text);cursor:pointer;font-size:12px;';
+      btn.textContent='→ '+col;
+      btn.onclick=()=>{wgState[col].push(word);pop.remove();refreshWG();};
+      pop.appendChild(btn);
+    });
+    const cb=document.createElement('button');cb.style.cssText='padding:5px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--muted);cursor:pointer;font-size:11px;';
+    cb.textContent='Cancel';cb.onclick=()=>pop.remove();pop.appendChild(cb);
+    document.body.appendChild(pop);
+    const r=anchor.getBoundingClientRect();
+    pop.style.top=(r.bottom+window.scrollY+4)+'px';pop.style.left=(r.left+window.scrollX)+'px';
+    document.addEventListener('click',function h(e){if(!pop.contains(e.target)&&e.target!==anchor){pop.remove();}},{once:true});
+  }
+  function refreshWG(){
+    q.cols.forEach(col=>{colEls[col].innerHTML='';});
+    while(pool.children.length>1)pool.removeChild(pool.lastChild);
+    const placed=new Set(Object.values(wgState).flat());
+    q.cols.forEach(col=>{
+      wgState[col].forEach(w=>{
+        const c=makeWGChip(w,col);
+        if(ans){const ok=(q.correct[col]||[]).includes(w);c.style.background=ok?'var(--green)':'var(--red)';}
+        colEls[col].appendChild(c);
+      });
+    });
+    allWords.forEach(w=>{
+      if(!placed.has(w)){pool.appendChild(makeWGChip(w,null));}
+    });
+  }
+
+  if(ans){
+    q.cols.forEach(c=>{wgState[c]=(q.correct[c]||[]);});
+    refreshWG();
+    const fb=document.getElementById('feedback');
+    let correct=0,total=0;
+    q.cols.forEach(col=>{(q.correct[col]||[]).forEach(w=>{total++;if((wgState[col]||[]).includes(w))correct++;});});
+    fb.style.display='block';fb.className=(correct===total)?'feedback correct':'feedback wrong';
+    fb.innerHTML=(correct===total)?'🎉 All correct!':'📋 Correct grouping shown above.';
+    sb.style.display='none';
+  } else {
+    refreshWG();sb.style.display='';
+  }
+}
+function showFB(u,a,alt){
+  const fb=document.getElementById('feedback');fb.style.display='block';
+  if(chk(u,a,alt)){fb.className='feedback correct';fb.innerHTML='🎉 Correct!';}
+  else{fb.className='feedback wrong';fb.innerHTML=`💀 Wrong. Correct answer: <b>${a}</b>`;}
+}
+function normalise(s){
+  return s.toLowerCase().trim().replace(/\s+/g,' ')
+    .replace(/didn\u2019t|didn't/g,"did not")
+    .replace(/wasn\u2019t|wasn't/g,"was not")
+    .replace(/weren\u2019t|weren't/g,"were not")
+    .replace(/hadn\u2019t|hadn't/g,"had not")
+    .replace(/haven\u2019t|haven't/g,"have not")
+    .replace(/hasn\u2019t|hasn't/g,"has not")
+    .replace(/couldn\u2019t|couldn't/g,"could not")
+    .replace(/wouldn\u2019t|wouldn't/g,"would not")
+    .replace(/shouldn\u2019t|shouldn't/g,"should not")
+    .replace(/isn\u2019t|isn't/g,"is not")
+    .replace(/aren\u2019t|aren't/g,"are not")
+    .replace(/won\u2019t|won't/g,"will not")
+    .replace(/can\u2019t|can't/g,"can not")
+    .replace(/mustn\u2019t|mustn't/g,"must not")
+    .replace(/needn\u2019t|needn't/g,"need not")
+    .replace(/\u2019/g,"'");
+}
+function chk(u,a,altArr){
+  const nu=normalise(u),na=normalise(a);
+  if(nu===na)return true;
+  if(altArr&&altArr.length)return altArr.some(x=>normalise(x)===nu);
+  return false;
+}
+
+// ── ODD ONE OUT renderer ──
+// All choices are accepted; feedback shows the specific reason for the chosen word.
+function renderOOO(q,ia,ans,sb){
+  const w=document.createElement('div');w.className='choices';
+  q.o.forEach((opt,i)=>{
+    const b=document.createElement('button');b.className='choice-btn';b.disabled=ans;
+    b.innerHTML=`<span class="choice-letter">${String.fromCharCode(65+i)}</span>${opt}`;
+    if(ans){
+      // highlight: chosen = purple, answer = green outline
+      if(opt===UA[cur])b.classList.add('selected');
+      if(opt===q.a)b.classList.add('correct-choice');
+    } else {
+      b.onclick=()=>{document.querySelectorAll('.choice-btn').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');b.dataset.v=opt;};
+    }
+    w.appendChild(b);
+  });
+  ia.appendChild(w);
+  sb.style.display=ans?'none':'';
+  if(ans){
+    // Show reason for chosen word
+    const chosen=UA[cur];
+    const reason=(q.reasons&&q.reasons[chosen])||'Here is the explanation:';
+    const fb=document.getElementById('feedback');
+    fb.style.display='block';
+    const isCorrect=chosen===q.a;
+    fb.className='feedback '+(isCorrect?'correct':'wrong');
+    fb.innerHTML=`<b>${chosen}:</b> ${reason}<br><br><span style="color:var(--muted);font-size:12px">The intended answer was: <b>${q.a}</b></span>`;
+  }
+}
+
+// ── REFLECT renderer ──
+// Free-write but no auto-correction. User writes, submits, sees model answer.
+function renderReflect(q,ia,ans,sb){
+  if(!ans){
+    const ta=document.createElement('textarea');
+    ta.className='input-free';ta.placeholder='Write your response here…';ta.id='fi';
+    ta.style.minHeight='100px';
+    ia.appendChild(ta);
+    sb.style.display='';
+  } else {
+    // show what they wrote + model answer
+    const written=document.createElement('div');
+    written.style.cssText='padding:12px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;margin-bottom:12px;font-size:14px;line-height:1.7;';
+    written.innerHTML=`<div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:6px;">Your answer</div>${(UA[cur]||'').replace(/\n/g,'<br>')}`;
+    ia.appendChild(written);
+    const model=document.createElement('div');
+    model.style.cssText='padding:12px 14px;background:rgba(52,211,153,.08);border:1px solid var(--green);border-radius:10px;font-size:14px;line-height:1.7;color:var(--green);';
+    model.innerHTML=`<div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--green);text-transform:uppercase;margin-bottom:6px;">Model answer</div>${q.a}`;
+    ia.appendChild(model);
+    const note=document.createElement('p');
+    note.style.cssText='font-size:12px;color:var(--muted);margin-top:8px;';
+    note.textContent='Self-assess: compare your answer with the model. There is no single correct answer — focus on structure and vocabulary.';
+    ia.appendChild(note);
+    sb.style.display='none';
+    // auto-mark as correct for scoring (self-assessed)
+    const fb=document.getElementById('feedback');
+    fb.style.display='block';fb.className='feedback correct';
+    fb.innerHTML='✍️ Submitted! Compare your response with the model answer above.';
+  }
+}
+
+function submitAnswer(){
+  if(UA[cur]!==null)return;
+  const q=Qs[cur];let ua='';
+  if(q.t==='mc'||q.t==='ooo'){
+    const s=document.querySelector('.choice-btn.selected');if(!s)return;ua=s.dataset.v;
+  } else if(q.t==='free'){
+    ua=(document.getElementById('fi')?document.getElementById('fi').value:'').trim();if(!ua)return;
+  } else if(q.t==='reflect'){
+    const fi=document.getElementById('fi');ua=(fi?fi.value:'').trim();if(!ua)ua='(no response)';
+  } else if(q.t==='build'){
+    if(buildSelected.length===0)return;
+    ua=buildSelected.join(' ');
+  } else if(q.t==='sort-table'){
+    const placed=Object.values(sortState).flat().length;
+    const total=Object.values(q.correct).flat().length;
+    if(placed<total){alert('Please sort all words before submitting!');return;}
+    ua=JSON.stringify(sortState);
+  } else if(q.t==='word-group'){
+    const placed=Object.values(wgState).flat().length;
+    const total=Object.values(q.correct).flat().length;
+    if(placed<total){alert('Please sort all words before submitting!');return;}
+    ua=JSON.stringify(wgState);
+  }
+  UA[cur]=ua;
+  // compute correct
+  let isCorrect=false;
+  if(q.t==='sort-table'){
+    const st=JSON.parse(ua);
+    let c=0,t=0;
+    q.cols.forEach(col=>{(q.correct[col]||[]).forEach(w=>{t++;if((st[col]||[]).includes(w))c++;});});
+    isCorrect=(c===t);
+  } else if(q.t==='word-group'){
+    const st=JSON.parse(ua);
+    let c=0,t=0;
+    q.cols.forEach(col=>{(q.correct[col]||[]).forEach(w=>{t++;if((st[col]||[]).includes(w))c++;});});
+    isCorrect=(c===t);
+  } else {
+    isCorrect=chk(ua,q.a,q.alt);
+  }
+  if(isCorrect)cc++;else wc++;
+  updateLS();loadQ();
+  if(!UA.includes(null)){done=true;recordAttempt(true);setTimeout(showResults,900);}
+}
+function prevQ(){if(cur>0){cur--;loadQ();}}
+function nextQ(){if(cur<Qs.length-1){cur++;loadQ();}else if(done)showResults();}
+function updateLS(){
+  document.getElementById('ls-c').textContent=cc;
+  document.getElementById('ls-w').textContent=wc;
+  const d=UA.filter(a=>a!==null).length;
+  document.getElementById('ls-a').textContent=(d?Math.round(cc/d*100):0)+'%';
+}
+
+function showResults(){
+  document.getElementById('q-card').style.display='none';
+  document.getElementById('result-card').style.display='block';
+  window.scrollTo(0,0);
+  const tot=Qs.length,acc=Math.round(cc/tot*100),m=stats[MODULES[AMI].id]||{att:0,bestPct:null};
+  const cls=acc>=80?'party':acc>=50?'good':'funeral';
+  const ttl=acc>=80?'🥳 Outstanding! Grammar Master!':acc>=50?'😐 Good effort — keep going!':'⚰️ Back to the books, friend…';
+  const ri=document.getElementById('result-inner');ri.className='result-card-inner '+cls;
+  document.getElementById('result-title').textContent=ttl;
+  document.getElementById('result-msg').innerHTML=`Score: <b>${cc}/${tot}</b> &nbsp;(${acc}%)`;
+  document.getElementById('result-grid').innerHTML=`
+    <div class="rstat green"><span class="rstat-val">${cc}</span><div class="rstat-label">Correct</div></div>
+    <div class="rstat red"><span class="rstat-val">${wc}</span><div class="rstat-label">Wrong</div></div>
+    <div class="rstat gold"><span class="rstat-val">${acc}%</span><div class="rstat-label">Accuracy</div></div>
+    <div class="rstat blue"><span class="rstat-val">${m.att}</span><div class="rstat-label">Attempts</div></div>
+    <div class="rstat blue"><span class="rstat-val">${m.bestPct!==null?m.bestPct+'%':'—'}</span><div class="rstat-label">Best Score</div></div>`;
+  const errs=[...new Set(UA.map((a,i)=>{
+    const qq=Qs[i];
+    if(!a)return qq.h2||qq.s;
+    if(qq.t==='sort-table'||qq.t==='word-group'){
+      try{const st=JSON.parse(a);let c=0,t=0;
+        qq.cols.forEach(col=>{(qq.correct[col]||[]).forEach(w=>{t++;if((st[col]||[]).includes(w))c++;});});
+        return(c===t)?null:(qq.h2||qq.s);
+      }catch(e){return qq.h2||qq.s;}
+    }
+    return chk(a,qq.a,qq.alt)?null:(qq.h2||qq.s);
+  }).filter(Boolean))].slice(0,6).join(', ');
+  document.getElementById('result-errors').innerHTML=errs?`📌 Focus on: <b>${errs}</b>`:'';
+}
+
+function recordAttempt(fin){
+  const id=MODULES[AMI].id;
+  if(!stats[id])stats[id]={att:0,c:0,w:0,best:null,bestPct:null};
+  const m=stats[id];m.att++;
+  if(fin){m.c+=cc;m.w+=wc;const p=Math.round(cc/Qs.length*100);if(m.bestPct===null||p>m.bestPct){m.bestPct=p;m.best=cc+'/'+Qs.length;}}
+  refreshHome();
+}
+function refreshHome(){
+  let ta=0,tc=0,tw=0;
+  MODULES.forEach((mod,i)=>{
+    const m=stats[mod.id]||{att:0,c:0,w:0,best:null,bestPct:null};
+    ta+=m.att;tc+=m.c;tw+=m.w;
+    const attEl=document.getElementById(`mod-att-${mod.id}`);
+    const bestEl=document.getElementById(`mod-best-${mod.id}`);
+    const accEl=document.getElementById(`mod-acc-${mod.id}`);
+    if(attEl)attEl.textContent=m.att;
+    if(bestEl)bestEl.textContent=m.best||'—';
+    if(accEl)accEl.textContent=(m.c+m.w)>0?Math.round(m.c/(m.c+m.w)*100)+'%':'—';
+  });
+  document.getElementById('o-attempts').textContent=ta;
+  document.getElementById('o-correct').textContent=tc;
+  document.getElementById('o-wrong').textContent=tw;
+  document.getElementById('o-acc').textContent=(tc+tw)>0?Math.round(tc/(tc+tw)*100)+'%':'—';
+}
+
+// ── Modal ──
+let mCB=null;
+function showModal(t,m,cb){document.getElementById('modal-title').textContent=t;document.getElementById('modal-msg').textContent=m;mCB=cb;document.getElementById('modal-ok').onclick=()=>{if(mCB)mCB();};document.getElementById('modal').classList.add('open');}
+function closeModal(){document.getElementById('modal').classList.remove('open');mCB=null;}
+
+refreshHome();
+
+// Init
+buildHome();
+refreshHome();
+</script>
+</body>
+</html>
