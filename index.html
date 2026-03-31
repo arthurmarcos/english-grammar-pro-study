@@ -26,6 +26,15 @@ body::after{content:'';position:fixed;bottom:-200px;right:-200px;width:700px;hei
 .qr-corner canvas,.qr-corner img{display:block;border-radius:4px;}
 .qr-label{font-family:var(--mono);font-size:8px;color:var(--muted);text-align:center;margin-top:3px;letter-spacing:1px;}
 
+/* Floating grammar ref button - quiz screen only */
+.float-ref-btn{position:fixed;bottom:24px;right:20px;z-index:900;background:var(--surface2);border:1px solid var(--accent2);border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 16px rgba(167,139,250,.25);transition:all .2s;font-size:18px;}
+.float-ref-btn:hover{background:var(--accent2);box-shadow:0 6px 20px rgba(167,139,250,.4);}
+.float-ref-panel{position:fixed;bottom:76px;right:16px;z-index:901;width:min(700px,95vw);max-height:70vh;overflow-y:auto;background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:0 16px 48px rgba(0,0,0,.5);display:none;}
+.float-ref-panel.open{display:block;}
+.float-ref-close{position:sticky;top:0;background:var(--surface2);border-bottom:1px solid var(--border);padding:10px 14px;display:flex;justify-content:space-between;align-items:center;border-radius:16px 16px 0 0;}
+.float-ref-close span{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);}
+.float-ref-close button{background:none;border:none;color:var(--muted);cursor:pointer;font-size:16px;padding:2px 6px;}
+
 /* ── HOME ── */
 .home-wrap{max-width:1060px;margin:0 auto;padding:50px 20px 120px;position:relative;z-index:1}
 .home-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:4px;color:var(--accent);text-transform:uppercase;text-align:center;margin-bottom:12px}
@@ -38,7 +47,6 @@ body::after{content:'';position:fixed;bottom:-200px;right:-200px;width:700px;hei
 .ostat-val{font-family:var(--mono);font-size:20px;font-weight:700;color:var(--accent);display:block}
 .ostat-label{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:3px}
 
-/* Grammar Reference + Search row */
 .ref-search-row{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:24px;flex-wrap:wrap;}
 .ref-toggle button{font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:9px 22px;border-radius:20px;border:1px solid var(--border);background:var(--surface2);color:var(--muted);cursor:pointer;transition:all .2s;white-space:nowrap;}
 .ref-toggle button:hover,.ref-toggle button.active{border-color:var(--accent2);color:var(--accent2)}
@@ -48,7 +56,6 @@ body::after{content:'';position:fixed;bottom:-200px;right:-200px;width:700px;hei
 .search-input{background:none;border:none;outline:none;color:var(--text);font-family:'Outfit',sans-serif;font-size:13px;width:100%;}
 .search-input::placeholder{color:var(--muted);}
 
-/* Search results */
 .search-results{margin-bottom:20px;display:none;}
 .search-results.visible{display:block;}
 .search-results-title{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:10px;}
@@ -72,19 +79,16 @@ body::after{content:'';position:fixed;bottom:-200px;right:-200px;width:700px;hei
 .ref-formula{font-family:var(--mono);font-size:11px;color:var(--accent);background:rgba(79,142,247,.08);padding:2px 7px;border-radius:5px;display:inline-block;margin-top:2px}
 .ref-ex{color:var(--muted);font-style:italic}
 
-/* Section headers in home */
 .section-header{margin-bottom:16px}
 .section-header h2{font-family:'DM Serif Display',serif;font-size:22px;margin-bottom:2px}
 .section-header p{color:var(--muted);font-size:13px}
 .section-divider{border:none;border-top:1px solid var(--border);margin:36px 0 28px}
 
-/* Topic group (lane) */
 .topic-lane{margin-bottom:32px;}
 .lane-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
 .lane-title{font-family:'DM Serif Display',serif;font-size:18px;}
 .lane-badge{font-family:var(--mono);font-size:10px;padding:3px 10px;border-radius:20px;background:var(--surface2);border:1px solid var(--border);color:var(--muted);}
 
-/* Topic grid */
 .topic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-bottom:16px}
 .topic-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px 18px;cursor:pointer;transition:border-color .2s,transform .15s,box-shadow .2s;position:relative;overflow:hidden}
 .topic-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;opacity:.7;transition:opacity .2s}
@@ -99,11 +103,8 @@ body::after{content:'';position:fixed;bottom:-200px;right:-200px;width:700px;hei
 .ts-lbl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
 .ts.g .ts-val{color:var(--green)}.ts.b .ts-val{color:var(--accent)}.ts.go .ts-val{color:var(--gold)}
 
-/* Boss section */
 .boss-section{background:linear-gradient(135deg,rgba(26,15,15,.6),rgba(11,15,26,.6));border:1px solid rgba(248,113,113,.2);border-radius:20px;padding:28px;margin-top:12px;}
 .boss-section-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--red);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
-
-/* Boss card */
 .boss-card{background:linear-gradient(135deg,#1a0f0f 0%,#0b0f1a 100%);border:2px solid var(--red);border-radius:18px;padding:28px 28px 24px;cursor:pointer;position:relative;overflow:hidden;transition:all .2s;margin-top:12px}
 .boss-card:hover{border-color:#ff6b6b;box-shadow:0 0 40px rgba(248,113,113,.2);transform:translateY(-2px)}
 .boss-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#f87171,#f59e0b,#f87171);background-size:200% 100%;animation:bossglow 3s linear infinite}
@@ -118,8 +119,6 @@ body::after{content:'';position:fixed;bottom:-200px;right:-200px;width:700px;hei
 .boss-stat{flex:1;text-align:center}
 .boss-stat-val{font-family:var(--mono);font-size:18px;font-weight:700;display:block;color:var(--red)}
 .boss-stat-lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
-
-/* Boss subtopics grid */
 .boss-subtopics{margin-top:20px;}
 .boss-subtopics-label{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:rgba(248,113,113,.7);text-transform:uppercase;margin-bottom:10px;}
 .boss-subtopic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;}
@@ -180,7 +179,11 @@ details[open] summary{color:var(--text)}
 .btn-ghost{background:var(--surface2);color:var(--text);border:1px solid var(--border)}.btn-ghost:hover{border-color:var(--accent)}
 .btn-danger{background:#dc2626;color:#fff}.btn-danger:hover{background:#ef4444}
 .btn-warning{background:var(--gold);color:#000;font-weight:700}.btn-warning:hover{background:#fbbf24}
+.btn-reveal{background:rgba(167,139,250,.15);color:var(--accent2);border:1px solid var(--accent2);}.btn-reveal:hover{background:rgba(167,139,250,.3);}
 .btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;align-items:center}
+
+.revealed-answer{margin-top:10px;padding:12px 16px;background:rgba(167,139,250,.1);border:1px solid var(--accent2);border-radius:10px;font-size:14px;color:var(--accent2);display:none;}
+.revealed-answer.show{display:block;}
 
 .result-card-inner{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px;position:relative;overflow:hidden;text-align:center}
 .result-card-inner::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
@@ -196,7 +199,6 @@ details[open] summary{color:var(--text)}
 .rstat.green .rstat-val{color:var(--green)}.rstat.red .rstat-val{color:var(--red)}.rstat.gold .rstat-val{color:var(--gold)}.rstat.blue .rstat-val{color:var(--accent)}
 .result-errors{font-size:13px;color:var(--muted);margin-bottom:24px;line-height:1.6}
 
-/* Inline multi-fill exercise */
 .inline-fill-wrap{line-height:2.4;font-size:16px;margin-bottom:16px;}
 .inline-fill-input{display:inline-block;background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:2px 8px;font-family:'Outfit',sans-serif;font-size:15px;color:var(--text);outline:none;transition:border-color .2s;width:120px;vertical-align:middle;}
 .inline-fill-input:focus{border-color:var(--accent);}
@@ -205,7 +207,6 @@ details[open] summary{color:var(--text)}
 .inline-fill-input:disabled{opacity:.75;cursor:not-allowed;}
 .fill-score-tag{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:8px;display:block;}
 
-/* Word list with strikethrough for used words */
 .word-list-box{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:13px;line-height:1.8;color:var(--muted);}
 .word-list-box .wl-label{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:6px;display:block;}
 .word-item{display:inline;margin-right:4px;}
@@ -229,17 +230,10 @@ details[open] summary{color:var(--text)}
   .sentence{font-size:16px}
   .boss-name{font-size:20px}
   .qr-corner{top:8px;right:8px;}
+  .float-ref-btn{bottom:16px;right:12px;}
 }
 
-/* ── Footer / Credits ── */
-.site-footer{
-  text-align:center;
-  padding:40px 20px 36px;
-  position:relative;
-  z-index:1;
-  border-top:1px solid var(--border);
-  margin-top:20px;
-}
+.site-footer{text-align:center;padding:40px 20px 36px;position:relative;z-index:1;border-top:1px solid var(--border);margin-top:20px;}
 .footer-inner{max-width:400px;margin:0 auto;}
 .footer-avatar-photo{width:80px;height:80px;border-radius:50%;margin:0 auto 16px;box-shadow:0 4px 20px rgba(79,142,247,.35);border:2px solid var(--border);overflow:hidden;}
 .footer-avatar-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;}
@@ -261,6 +255,72 @@ details[open] summary{color:var(--text)}
   <div class="qr-label">SCAN ME</div>
 </div>
 
+<!-- Floating grammar ref (quiz screen only) -->
+<button class="float-ref-btn" id="float-ref-btn" onclick="toggleFloatRef()" title="Grammar Reference" style="display:none">📋</button>
+<div class="float-ref-panel" id="float-ref-panel">
+  <div class="float-ref-close">
+    <span>Grammar Reference</span>
+    <button onclick="toggleFloatRef()">✕</button>
+  </div>
+  <div style="overflow:hidden;border-radius:0 0 16px 16px;">
+    <table class="ref-table" style="width:100%;">
+      <thead><tr>
+        <th style="width:18%">Tense / Structure</th>
+        <th style="width:22%">What it is</th>
+        <th style="width:24%">Formula</th>
+        <th style="width:36%">Example</th>
+      </tr></thead>
+      <tbody>
+        <tr class="topic-header"><td colspan="4">PAST TENSES</td></tr>
+        <tr><td>Past Simple</td><td>Completed action at a specific past time</td><td><span class="ref-formula">S + V-ed / irregular</span></td><td class="ref-ex">She <em>left</em> school at 6pm.</td></tr>
+        <tr><td>Past Continuous</td><td>Action in progress at a past moment</td><td><span class="ref-formula">S + was/were + V-ing</span></td><td class="ref-ex">He <em>was sitting</em> on the porch.</td></tr>
+        <tr><td>Past Perfect</td><td>Action completed before another past event</td><td><span class="ref-formula">S + had + past participle</span></td><td class="ref-ex">I saw she <em>had left</em> already.</td></tr>
+        <tr><td>Past Perfect Continuous</td><td>Ongoing action up to a past point</td><td><span class="ref-formula">S + had been + V-ing</span></td><td class="ref-ex">She <em>had been teaching</em> for 5 years.</td></tr>
+        <tr class="topic-header"><td colspan="4">PRESENT TENSES</td></tr>
+        <tr><td>Present Simple</td><td>Habits, facts, states</td><td><span class="ref-formula">S + V / S + V-s</span></td><td class="ref-ex">She <em>works</em> in London.</td></tr>
+        <tr><td>Present Continuous</td><td>Action happening now or temp. arrangement</td><td><span class="ref-formula">S + am/is/are + V-ing</span></td><td class="ref-ex">I <em>am going</em> to the dentist tomorrow.</td></tr>
+        <tr><td>Present Perfect</td><td>Past action with present relevance / experience</td><td><span class="ref-formula">S + have/has + past participle</span></td><td class="ref-ex">I <em>have heard</em> many stories.</td></tr>
+        <tr><td>Present Perfect Continuous</td><td>Action ongoing from past to now</td><td><span class="ref-formula">S + have/has been + V-ing</span></td><td class="ref-ex">She <em>has been teaching</em> since 2019.</td></tr>
+        <tr class="topic-header"><td colspan="4">FUTURE FORMS</td></tr>
+        <tr><td>will + infinitive</td><td>Prediction / spontaneous decision</td><td><span class="ref-formula">S + will + V</span></td><td class="ref-ex">I think I <em>will stay</em> here.</td></tr>
+        <tr><td>be going to</td><td>Planned intention / evidence-based prediction</td><td><span class="ref-formula">S + am/is/are going to + V</span></td><td class="ref-ex">She <em>is going to do</em> a training course.</td></tr>
+        <tr class="topic-header"><td colspan="4">CONDITIONALS</td></tr>
+        <tr><td>First Conditional</td><td>Real / likely future situation</td><td><span class="ref-formula">If + Present Simple, will + V</span></td><td class="ref-ex">If I <em>find</em> it, I <em>will bring</em> it to you.</td></tr>
+        <tr><td>Second Conditional</td><td>Unreal / hypothetical present or future</td><td><span class="ref-formula">If + Past Simple, would + V</span></td><td class="ref-ex">If I <em>won</em> the lottery, I <em>would travel</em>.</td></tr>
+        <tr><td>Time Clauses</td><td>Future meaning after when/before/as soon as/until</td><td><span class="ref-formula">conjunction + Present Simple</span></td><td class="ref-ex">Call me <em>when</em> dinner <em>is</em> ready.</td></tr>
+        <tr class="topic-header"><td colspan="4">PASSIVES</td></tr>
+        <tr><td>Passive Voice</td><td>Subject receives the action</td><td><span class="ref-formula">S + be (correct tense) + past participle</span></td><td class="ref-ex">Oil <em>has been discovered</em> near the islands.</td></tr>
+        <tr><td>Modal Passive</td><td>Modal + passive infinitive</td><td><span class="ref-formula">modal + be + past participle</span></td><td class="ref-ex">Photos <em>must not be taken</em> here.</td></tr>
+        <tr class="topic-header"><td colspan="4">MODALS</td></tr>
+        <tr><td>must / can't</td><td>Logical deduction (present)</td><td><span class="ref-formula">must/can't + be/V</span></td><td class="ref-ex">He <em>must be</em> hungry.</td></tr>
+        <tr><td>must have / can't have</td><td>Logical deduction (past)</td><td><span class="ref-formula">must/can't + have + past participle</span></td><td class="ref-ex">He <em>must have left</em> already.</td></tr>
+        <tr><td>might / could + have</td><td>Past possibility / speculation</td><td><span class="ref-formula">might/could + have + past participle</span></td><td class="ref-ex">She <em>could have phoned</em> while I was out.</td></tr>
+        <tr class="topic-header"><td colspan="4">REPORTED SPEECH</td></tr>
+        <tr><td>Reported Statements</td><td>Backshift: present→past, will→would</td><td><span class="ref-formula">said (that) + backshifted clause</span></td><td class="ref-ex">"I'm fine" → She said <em>she was</em> fine.</td></tr>
+        <tr><td>Reported Questions</td><td>Statement word order, no auxiliary inversion</td><td><span class="ref-formula">asked + wh-/if + subject + verb</span></td><td class="ref-ex">"Where do you live?" → asked <em>where she lived</em>.</td></tr>
+        <tr><td>Reported Commands</td><td>Reporting verb + object + to-infinitive</td><td><span class="ref-formula">told/asked/warned + object + (not) to V</span></td><td class="ref-ex">She <em>asked him to open</em> the window.</td></tr>
+        <tr class="topic-header"><td colspan="4">VERB PATTERNS</td></tr>
+        <tr><td>Gerund (-ing)</td><td>After: avoid, enjoy, suggest, before, after</td><td><span class="ref-formula">verb + V-ing</span></td><td class="ref-ex">She <em>avoided making</em> eye contact.</td></tr>
+        <tr><td>Infinitive (to-V)</td><td>After: try, want, decide, manage</td><td><span class="ref-formula">verb + to + V</span></td><td class="ref-ex">She tried <em>to ignore</em> the sounds.</td></tr>
+        <tr class="topic-header"><td colspan="4">ADJECTIVES</td></tr>
+        <tr><td>Base adjectives</td><td>Use with: very, quite, rather</td><td><span class="ref-formula">very/quite + base adj</span></td><td class="ref-ex">It's <em>very cold</em>.</td></tr>
+        <tr><td>Strong adjectives</td><td>Use with: absolutely, completely, totally</td><td><span class="ref-formula">absolutely + strong adj</span></td><td class="ref-ex">It's <em>absolutely freezing</em>!</td></tr>
+        <tr class="topic-header"><td colspan="4">PHRASAL VERBS (common)</td></tr>
+        <tr><td>look forward to</td><td>feel excited about</td><td><span class="ref-formula">look forward to + -ing/noun</span></td><td class="ref-ex">I'm <em>looking forward to</em> the party.</td></tr>
+        <tr><td>fall out (with)</td><td>have an argument</td><td><span class="ref-formula">fall out + with + person</span></td><td class="ref-ex">They <em>fell out</em> over housework.</td></tr>
+        <tr><td>come up with</td><td>create / produce an idea</td><td><span class="ref-formula">come up with + noun</span></td><td class="ref-ex">She <em>came up with</em> a plan.</td></tr>
+        <tr><td>bring up</td><td>raise a child</td><td><span class="ref-formula">bring + person + up</span></td><td class="ref-ex">She was <em>brought up</em> by her aunt.</td></tr>
+        <tr><td>go out with</td><td>date / be in a relationship</td><td><span class="ref-formula">go out with + person</span></td><td class="ref-ex">They've been <em>going out</em> for years.</td></tr>
+        <tr><td>take up</td><td>start a hobby/activity</td><td><span class="ref-formula">take up + noun/-ing</span></td><td class="ref-ex">I've decided to <em>take up</em> jogging.</td></tr>
+        <tr><td>put up with</td><td>tolerate</td><td><span class="ref-formula">put up with + noun</span></td><td class="ref-ex">I can't <em>put up with</em> the noise.</td></tr>
+        <tr><td>come across</td><td>find coincidentally</td><td><span class="ref-formula">come across + noun</span></td><td class="ref-ex">I <em>came across</em> this photo.</td></tr>
+        <tr><td>pick up</td><td>learn informally</td><td><span class="ref-formula">pick up + noun</span></td><td class="ref-ex">I <em>picked up</em> the word abroad.</td></tr>
+        <tr><td>make out</td><td>see/understand clearly</td><td><span class="ref-formula">make out + noun/clause</span></td><td class="ref-ex">I can't <em>make out</em> what it says.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
 <!-- ══════════ HOME ══════════ -->
 <div id="screen-home" class="screen active">
 <div class="home-wrap">
@@ -275,7 +335,6 @@ details[open] summary{color:var(--text)}
     <div class="ostat"><span class="ostat-val" id="o-acc" style="color:var(--gold)">—</span><div class="ostat-label">Overall Accuracy</div></div>
   </div>
 
-  <!-- Grammar Reference + Search row -->
   <div class="ref-search-row">
     <div class="ref-toggle">
       <button id="ref-btn" onclick="toggleRef()">📋 Grammar Reference Table</button>
@@ -286,7 +345,6 @@ details[open] summary{color:var(--text)}
     </div>
   </div>
 
-  <!-- Search results -->
   <div class="search-results" id="search-results">
     <div class="search-results-title">Search results</div>
     <div class="search-results-grid" id="search-results-grid"></div>
@@ -295,14 +353,12 @@ details[open] summary{color:var(--text)}
   <div class="ref-panel" id="ref-panel">
     <div class="ref-panel-inner">
       <table class="ref-table">
-        <thead>
-          <tr>
-            <th style="width:18%">Tense / Structure</th>
-            <th style="width:22%">What it is</th>
-            <th style="width:24%">Formula</th>
-            <th style="width:36%">Example</th>
-          </tr>
-        </thead>
+        <thead><tr>
+          <th style="width:18%">Tense / Structure</th>
+          <th style="width:22%">What it is</th>
+          <th style="width:24%">Formula</th>
+          <th style="width:36%">Example</th>
+        </tr></thead>
         <tbody>
           <tr class="topic-header"><td colspan="4">PAST TENSES</td></tr>
           <tr><td>Past Simple</td><td>Completed action at a specific past time</td><td><span class="ref-formula">S + V-ed / irregular</span></td><td class="ref-ex">She <em>left</em> school at 6pm.</td></tr>
@@ -317,7 +373,6 @@ details[open] summary{color:var(--text)}
           <tr class="topic-header"><td colspan="4">FUTURE FORMS</td></tr>
           <tr><td>will + infinitive</td><td>Prediction / spontaneous decision</td><td><span class="ref-formula">S + will + V</span></td><td class="ref-ex">I think I <em>will stay</em> here.</td></tr>
           <tr><td>be going to</td><td>Planned intention / evidence-based prediction</td><td><span class="ref-formula">S + am/is/are going to + V</span></td><td class="ref-ex">She <em>is going to do</em> a training course.</td></tr>
-          <tr><td>Future Continuous</td><td>Action in progress at a future moment</td><td><span class="ref-formula">S + will be + V-ing</span></td><td class="ref-ex">This time next week I <em>will be lying</em> on a beach.</td></tr>
           <tr class="topic-header"><td colspan="4">CONDITIONALS</td></tr>
           <tr><td>First Conditional</td><td>Real / likely future situation</td><td><span class="ref-formula">If + Present Simple, will + V</span></td><td class="ref-ex">If I <em>find</em> it, I <em>will bring</em> it to you.</td></tr>
           <tr><td>Second Conditional</td><td>Unreal / hypothetical present or future</td><td><span class="ref-formula">If + Past Simple, would + V</span></td><td class="ref-ex">If I <em>won</em> the lottery, I <em>would travel</em>.</td></tr>
@@ -326,7 +381,7 @@ details[open] summary{color:var(--text)}
           <tr><td>Passive Voice</td><td>Subject receives the action</td><td><span class="ref-formula">S + be (correct tense) + past participle</span></td><td class="ref-ex">Oil <em>has been discovered</em> near the islands.</td></tr>
           <tr><td>Modal Passive</td><td>Modal + passive infinitive</td><td><span class="ref-formula">modal + be + past participle</span></td><td class="ref-ex">Photos <em>must not be taken</em> here.</td></tr>
           <tr class="topic-header"><td colspan="4">MODALS</td></tr>
-          <tr><td>must / can't</td><td>Logical deduction (present)</td><td><span class="ref-formula">must/can't + be/V</span></td><td class="ref-ex">He <em>must be</em> hungry. She <em>can't be</em> there.</td></tr>
+          <tr><td>must / can't</td><td>Logical deduction (present)</td><td><span class="ref-formula">must/can't + be/V</span></td><td class="ref-ex">He <em>must be</em> hungry.</td></tr>
           <tr><td>must have / can't have</td><td>Logical deduction (past)</td><td><span class="ref-formula">must/can't + have + past participle</span></td><td class="ref-ex">He <em>must have left</em> already.</td></tr>
           <tr><td>might / could + have</td><td>Past possibility / speculation</td><td><span class="ref-formula">might/could + have + past participle</span></td><td class="ref-ex">She <em>could have phoned</em> while I was out.</td></tr>
           <tr class="topic-header"><td colspan="4">REPORTED SPEECH</td></tr>
@@ -344,9 +399,7 @@ details[open] summary{color:var(--text)}
     </div>
   </div>
 
-  <!-- HOME CONTENT filled by JS -->
   <div id="home-content"></div>
-
 </div>
 </div>
 
@@ -372,11 +425,13 @@ details[open] summary{color:var(--text)}
       <div class="exercise-desc" id="q-desc" style="display:none"></div>
       <div class="sentence" id="q-sent"></div>
       <div id="input-area"></div>
+      <div class="revealed-answer" id="revealed-answer"></div>
       <div class="feedback" id="feedback"></div>
       <details id="tip1-det" style="display:none"><summary>💡 Hint</summary><div class="tip-body" id="tip1-body"></div></details>
       <details id="tip2-det" style="display:none"><summary>📘 Grammar Note</summary><div class="tip-body" id="tip2-body"></div></details>
       <div class="btn-row">
         <button class="btn btn-primary" id="submit-btn" onclick="submitAnswer()">Submit</button>
+        <button class="btn btn-reveal" id="reveal-btn" onclick="revealAnswer()" style="display:none">👁 Reveal Answer</button>
         <button class="btn btn-ghost" onclick="prevQ()">⬅ Prev</button>
         <button class="btn btn-ghost" onclick="nextQ()">Next ➡</button>
         <button class="btn btn-warning" onclick="confirmRestart()" style="margin-left:auto">🔁 Restart</button>
@@ -398,7 +453,6 @@ details[open] summary{color:var(--text)}
   </div>
 </div>
 
-<!-- Modal -->
 <div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
   <div class="modal-box">
     <h3 id="modal-title">Are you sure?</h3>
@@ -411,29 +465,36 @@ details[open] summary{color:var(--text)}
 </div>
 
 <script>
+// ─── SHUFFLE HELPER ──────────────────────────────────────────────────────────
+function shuffle(arr){
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+
 // ─── DATA ───────────────────────────────────────────────────────────────────
 const T0=[
 {s:"Tenses",d:"Put the verb in brackets in the correct tense.",
  q:"Sarah Jenkins is an English teacher. She _______ (work) in a language school in London.",
- t:"free",a:"works",alt:[],h1:"She still works there — present habit.",h2:"Present Simple"},
+ prefix:"She ",t:"free",a:"works",alt:[],h1:"She still works there — present habit.",h2:"Present Simple"},
 {s:"Tenses",
  q:"She _______ (teach) English since she _______ (leave) university five years ago.\n(Write both answers separated by /  e.g. answer2 / answer3)",
  t:"free",a:"has been teaching / left",alt:["has taught / left"],h1:"2 = ongoing from a past point; 3 = completed past event.",h2:"Present Perfect Continuous / Past Simple"},
 {s:"Tenses",
  q:'I asked her first if she _______ (enjoy) teaching English.',
- t:"free",a:"enjoyed",alt:[],h1:"Reported speech shifts tense back — backshift.",h2:"Past Simple (reported speech)"},
+ prefix:"if she ",t:"free",a:"enjoyed",alt:[],h1:"Reported speech shifts tense back — backshift.",h2:"Past Simple (reported speech)"},
 {s:"Tenses",
  q:'"_______ you ever _______ (work) abroad?"\nWrite both words separated by /  (e.g. Have / worked)',
  t:"free",a:"have / worked",alt:[],h1:"Life experience up to now, no specific time.",h2:"Present Perfect"},
 {s:"Tenses",
  q:'"Yes," replied Sarah, "I _______ (spend) two years in Madrid."',
- t:"free",a:"spent",alt:[],h1:"Completed past — the two years are over.",h2:"Past Simple"},
+ prefix:"I ",t:"free",a:"spent",alt:[],h1:"Completed past — the two years are over.",h2:"Past Simple"},
 {s:"Tenses",
  q:'"But the school soon closed and I _______ (make) redundant."',
- t:"free",a:"was made",alt:[],h1:"Subject received the action — past passive.",h2:"Past Simple Passive"},
+ prefix:"I ",t:"free",a:"was made",alt:[],h1:"Subject received the action — past passive.",h2:"Past Simple Passive"},
 {s:"Tenses",
  q:'"Luckily, some of my students asked me if I _______ (continue) to teach them privately, so I stayed in Madrid."',
- t:"free",a:"would continue",alt:["'d continue"],h1:"Reported speech: 'will' shifts to 'would'.",h2:"Reported Speech (would + infinitive)"},
+ prefix:"if I ",t:"free",a:"would continue",alt:["'d continue"],h1:"Reported speech: 'will' shifts to 'would'.",h2:"Reported Speech (would + infinitive)"},
 {s:"Tenses",
  q:'"And how long _______ you _______ (teach) in London?" I asked.\n(Write both words separated by /)',
  t:"free",a:"have / taught",alt:[],h1:"Started in the past and still happening now.",h2:"Present Perfect"},
@@ -442,25 +503,25 @@ const T0=[
  t:"free",a:"happened / was working",alt:[],h1:"Sudden event interrupted an ongoing action.",h2:"Past Simple / Past Continuous"},
 {s:"Tenses",
  q:"I tried very hard _______ (help) her, but things got worse.",
- t:"free",a:"to help",alt:[],h1:"'Try' + this form = making an effort.",h2:"Full Infinitive (try + to)"},
+ prefix:"to ",t:"free",a:"to help",alt:["help"],h1:"'Try' + this form = making an effort.",h2:"Full Infinitive (try + to)"},
 {s:"Tenses",
  q:"The day before she _______ (tell) me a sad story about her boyfriend.",
- t:"free",a:"had told",alt:[],h1:"She told the story before the moment already in the past.",h2:"Past Perfect"},
+ prefix:"she ",t:"free",a:"had told",alt:[],h1:"She told the story before the moment already in the past.",h2:"Past Perfect"},
 {s:"Tenses",
  q:"She looked surprised and told me that her name _______ (be) Victoria, not Gloria.",
- t:"free",a:"was",alt:[],h1:"Reported speech: 'is' → 'was'.",h2:"Reported Speech (Past Simple)"},
+ prefix:"her name ",t:"free",a:"was",alt:[],h1:"Reported speech: 'is' → 'was'.",h2:"Reported Speech (Past Simple)"},
 {s:"Tenses",
  q:"'My twin sister and I _______ (alternate) in your classes since September — two for the price of one!'",
- t:"free",a:"have been alternating",alt:["have alternated"],h1:"Repeated ongoing action that started in September.",h2:"Present Perfect Continuous"},
+ prefix:"I ",t:"free",a:"have been alternating",alt:["have alternated"],h1:"Repeated ongoing action that started in September.",h2:"Present Perfect Continuous"},
 {s:"Tenses",
  q:"\"Well, I'm very interested in teaching young children, so next September I _______ (do) a special training course.\"",
- t:"free",a:"am going to do",alt:["'m going to do","am going to do"],h1:"A planned, decided future intention.",h2:"be going to (future plan)"},
+ prefix:"I ",t:"free",a:"am going to do",alt:["'m going to do","am going to do"],h1:"A planned, decided future intention.",h2:"be going to (future plan)"},
 {s:"Tenses",
  q:"\"I _______ (promote) recently. I'm now Director of Studies.\"",
- t:"free",a:"have been promoted",alt:["'ve been promoted"],h1:"Recent past with present relevance — passive.",h2:"Present Perfect Passive"},
+ prefix:"I ",t:"free",a:"have been promoted",alt:["'ve been promoted"],h1:"Recent past with present relevance — passive.",h2:"Present Perfect Passive"},
 {s:"Tenses",
  q:"\"So I think I _______ (stay) here for a few more years.\"",
- t:"free",a:"will stay",alt:["'ll stay"],h1:"Prediction / decision made at the moment of speaking.",h2:"Future Simple (will)"},
+ prefix:"I ",t:"free",a:"will stay",alt:["'ll stay"],h1:"Prediction / decision made at the moment of speaking.",h2:"Future Simple (will)"},
 {s:"Tenses",
  q:"\"Of course, if someone _______ (offer) me a well-paid job in Italy or Greece, I _______ (take) it!\"\n(Write both answers separated by /)",
  t:"free",a:"offered / would take",alt:["offered / 'd take"],h1:"Unreal/unlikely present hypothesis — Second Conditional.",h2:"Second Conditional"},
@@ -535,69 +596,69 @@ const T1=[
 const T2=[
 {s:"Passives",d:"Make these active sentences passive. Write the complete passive sentence.",
  q:"Active: Do you think aliens will ever visit Earth?\nPassive: Do you think Earth _______ ?",
- t:"free",a:"do you think earth will ever be visited by aliens",
- alt:[],h1:"Future passive: will + be + past participle.",h2:"Future Passive"},
+ prefix:"Earth ",t:"free",a:"will ever be visited by aliens",
+ alt:["do you think earth will ever be visited by aliens"],h1:"Future passive: will + be + past participle.",h2:"Future Passive"},
 {s:"Passives",
  q:"Active: The Chinese invented printing.\nPassive: Printing _______ .",
- t:"free",a:"printing was invented by the chinese",
- alt:[],h1:"Past Simple Passive: was/were + past participle.",h2:"Past Simple Passive"},
+ prefix:"Printing ",t:"free",a:"was invented by the chinese",
+ alt:["printing was invented by the chinese"],h1:"Past Simple Passive: was/were + past participle.",h2:"Past Simple Passive"},
 {s:"Passives",
  q:"Active: You mustn't take photographs in the museum.\nPassive: Photographs _______ .",
- t:"free",a:"photographs must not be taken in the museum",
- alt:["photographs mustn't be taken in the museum"],
+ prefix:"Photographs ",t:"free",a:"must not be taken in the museum",
+ alt:["photographs must not be taken in the museum","mustn't be taken in the museum","must not be taken in the museum"],
  h1:"Modal passive: must not + be + past participle.",h2:"Modal Passive"},
 {s:"Passives",
  q:"Active: They have recently discovered oil near the Falkland Islands.\nPassive: Oil _______ .",
- t:"free",a:"oil has recently been discovered near the falkland islands",
- alt:[],h1:"Present Perfect Passive: has/have + been + past participle.",h2:"Present Perfect Passive"},
+ prefix:"Oil ",t:"free",a:"has recently been discovered near the falkland islands",
+ alt:["oil has recently been discovered near the falkland islands"],h1:"Present Perfect Passive: has/have + been + past participle.",h2:"Present Perfect Passive"},
 {s:"Passives",
  q:"Active: They're planning a big celebration to mark the end of the millennium.\nPassive: A big celebration _______ .",
- t:"free",a:"a big celebration is being planned to mark the end of the millennium",
- alt:[],h1:"Present Continuous Passive: is/are + being + past participle.",h2:"Present Continuous Passive"},
+ prefix:"A big celebration ",t:"free",a:"is being planned to mark the end of the millennium",
+ alt:["a big celebration is being planned to mark the end of the millennium"],h1:"Present Continuous Passive: is/are + being + past participle.",h2:"Present Continuous Passive"},
 {s:"Passives",
  q:"Active: The police think that someone might have murdered him.\nPassive: The police think he _______ .",
- t:"free",a:"the police think he might have been murdered",
- alt:[],h1:"Perfect modal passive: might + have been + past participle.",h2:"Perfect Modal Passive"},
+ prefix:"he ",t:"free",a:"might have been murdered",
+ alt:["the police think he might have been murdered"],h1:"Perfect modal passive: might + have been + past participle.",h2:"Perfect Modal Passive"},
 {s:"Passives",
  q:"Active: They didn't know the bones were human until they had carried out a number of tests.\nPassive: ...until a number of tests _______ .",
- t:"free",a:"until a number of tests had been carried out",
- alt:[],h1:"Past Perfect Passive: had + been + past participle.",h2:"Past Perfect Passive"},
+ prefix:"a number of tests ",t:"free",a:"had been carried out",
+ alt:["until a number of tests had been carried out"],h1:"Past Perfect Passive: had + been + past participle.",h2:"Past Perfect Passive"},
 {s:"Passives",
  q:"Active: In some countries they are going to make soft drugs legal.\nPassive: In some countries soft drugs _______ .",
- t:"free",a:"in some countries soft drugs are going to be made legal",
- alt:[],h1:"Going-to passive: am/is/are + going to + be + past participle.",h2:"Going-to Passive"},
+ prefix:"soft drugs ",t:"free",a:"are going to be made legal",
+ alt:["in some countries soft drugs are going to be made legal"],h1:"Going-to passive: am/is/are + going to + be + past participle.",h2:"Going-to Passive"},
 {s:"Passives",
  q:"Active: If the car is fitted with an alarm, they can't steal it.\nPassive: If the car is fitted with an alarm, it _______ .",
- t:"free",a:"if the car is fitted with an alarm, it can't be stolen",
- alt:["if the car is fitted with an alarm, it cannot be stolen"],
+ prefix:"it ",t:"free",a:"can't be stolen",
+ alt:["if the car is fitted with an alarm, it can't be stolen","if the car is fitted with an alarm, it cannot be stolen","cannot be stolen"],
  h1:"Modal Passive in a conditional: can't + be + past participle.",h2:"Modal Passive"},
 ];
 
 const T3=[
 {s:"Modals",d:"Finish each sentence (b) so that it means the same as sentence (a). Write only the missing words.",
  q:"(a) The dog's barking. I'm sure he's hungry.\n(b) The dog's barking. He must _______",
- t:"free",a:"be hungry",alt:[],h1:"'I'm sure' = certainty → must + infinitive.",h2:"must (deduction)"},
+ prefix:"He must ",t:"free",a:"be hungry",alt:[],h1:"'I'm sure' = certainty → must + infinitive.",h2:"must (deduction)"},
 {s:"Modals",
  q:"(a) There's no food in his bowl. I'm certain he hasn't eaten anything since this morning.\n(b) He can't _______",
- t:"free",a:"have eaten anything since this morning",alt:["have eaten since this morning"],
+ prefix:"He can't ",t:"free",a:"have eaten anything since this morning",alt:["have eaten since this morning"],
  h1:"Negative certainty in the past → can't + have + past participle.",h2:"can't have + past participle"},
 {s:"Modals",
  q:"(a) Sally hasn't got in touch with me. Perhaps she phoned while I was out.\n(b) She could _______",
- t:"free",a:"have phoned while i was out",alt:["have phoned"],
+ prefix:"She could ",t:"free",a:"have phoned while i was out",alt:["have phoned"],
  h1:"'Perhaps' = past possibility → could + have + past participle.",h2:"could have + past participle"},
 {s:"Modals",
  q:"(a) Ah, the phone's ringing. Perhaps it's Sally.\n(b) It could _______",
- t:"free",a:"be sally",alt:[],h1:"'Perhaps' = present possibility → could + be.",h2:"could (present possibility)"},
+ prefix:"It could ",t:"free",a:"be sally",alt:[],h1:"'Perhaps' = present possibility → could + be.",h2:"could (present possibility)"},
 {s:"Modals",
  q:"(a) Why did the car crash? Perhaps the driver didn't see the red light.\n(b) The driver might _______",
- t:"free",a:"not have seen the red light",alt:[],h1:"Past speculation → might + not + have + past participle.",h2:"might not have + past participle"},
+ prefix:"The driver might ",t:"free",a:"not have seen the red light",alt:[],h1:"Past speculation → might + not + have + past participle.",h2:"might not have + past participle"},
 {s:"Modals",
  q:"(a) I'm sure it was Tom I saw at the theatre last night.\n(b) It must _______",
- t:"free",a:"have been tom",alt:["have been tom i saw at the theatre last night"],
+ prefix:"It must ",t:"free",a:"have been tom",alt:["have been tom i saw at the theatre last night"],
  h1:"Certainty about the past → must + have + past participle.",h2:"must have + past participle"},
 {s:"Modals",
  q:"(a) Why is that man standing at the side of the road? Perhaps he's trying to hitch a lift.\n(b) He might _______",
- t:"free",a:"be trying to hitch a lift",alt:[],h1:"Present speculation → might + be + verb-ing.",h2:"might be + -ing"},
+ prefix:"He might ",t:"free",a:"be trying to hitch a lift",alt:[],h1:"Present speculation → might + be + verb-ing.",h2:"might be + -ing"},
 ];
 
 const T4=[
@@ -615,21 +676,30 @@ const T4=[
 ];
 
 const T5=[
-{s:"Vocabulary",d:"Complete the story with the correct word.",
- q:"Last week I went to a clothes shop because I wanted to buy a new _______ (piece of clothing for your legs, not a skirt).",
- t:"free",a:"pair of trousers",alt:["trousers","jeans","pair of jeans"],
- h1:"Think of something you wear on your legs.",h2:"Clothing vocabulary"},
+{s:"Vocabulary",d:"Complete with the correct word.",
+ q:"Put the fire on. It's absolutely _______ in here!",
+ t:"free",a:"freezing",alt:[],h1:"'Absolutely' goes with STRONG adjectives.",h2:"Strong adjective: freezing"},
+{s:"Vocabulary",d:"Word list: tired · surprised · difficult · tasty · cold · astonished · beautiful · clever · funny · impossible · pretty · frightened · brilliant · filthy · delicious · terrified · dirty · exhausted · hilarious · freezing",
+ q:"I was very _______ to see him. I thought he was in Australia!",
+ t:"free",a:"surprised",alt:[],h1:"'Very' goes with BASE adjectives.",h2:"Base adjective: surprised"},
 {s:"Vocabulary",
- q:"I _______ (tried on) several pairs but nothing fitted. The assistant asked me what _______ I was, and I said medium.\n(Write both answers separated by /)",
- t:"free",a:"tried on / size",alt:["tried / size"],
- h1:"2 = phrasal verb meaning to put on clothes to see if they fit; 3 = small/medium/large etc.",h2:"Phrasal verb / clothing vocabulary"},
+ q:"'How was your exam?' 'It was quite _______, but I managed to answer all the questions.'",
+ t:"free",a:"difficult",alt:["hard"],h1:"'Quite' goes with base adjectives.",h2:"Base adjective: difficult"},
 {s:"Vocabulary",
- q:"She showed me some trousers that were in the _______ — they were 30% cheaper than usual.",
- t:"free",a:"sale",alt:["sales"],h1:"When a shop reduces prices, the items are 'in the ___'.",h2:"Shopping vocabulary"},
+ q:"We walked 20 kilometres. I was _______ when we got home!",
+ t:"free",a:"exhausted",alt:["absolutely exhausted"],h1:"After 20km — use the strong, extreme adjective.",h2:"Strong adjective: exhausted"},
 {s:"Vocabulary",
- q:"I decided to _______ them, so I went to the till and paid by credit _______.\n(Write both answers separated by /)",
- t:"free",a:"buy them / card",alt:["take them / card","get them / card"],
- h1:"5 = decide to purchase; 6 = the plastic payment method.",h2:"Shopping vocabulary"},
+ q:"'How was the meal?' 'It was very _______. I really enjoyed it.'",
+ t:"free",a:"tasty",alt:[],h1:"'Very' requires a BASE adjective.",h2:"Base adjective: tasty"},
+{s:"Vocabulary",
+ q:"'What's the weather like?' 'It's quite _______, so put a coat on.'",
+ t:"free",a:"cold",alt:[],h1:"'Quite' goes with BASE adjectives.",h2:"Base adjective: cold"},
+{s:"Vocabulary",
+ q:"Albert Einstein was an absolutely _______ scientist.",
+ t:"free",a:"brilliant",alt:[],h1:"'Absolutely' + STRONG adjective.",h2:"Strong adjective: brilliant"},
+{s:"Vocabulary",
+ q:"The windows were very _______ so I washed them.",
+ t:"free",a:"dirty",alt:[],h1:"'Very' + BASE adjective.",h2:"Base adjective: dirty"},
 {s:"Vocabulary",
  d:"Sort these adjectives into two groups: BASE (mild) and STRONG (extreme).",
  q:"Sort all 20 adjectives into BASE or STRONG.",
@@ -641,30 +711,6 @@ const T5=[
  },
  h1:"Strong adjectives are extreme versions of base ones. They go with 'absolutely', not 'very'.",
  h2:"Base vs Strong adjectives"},
-{s:"Vocabulary",d:"Word list: tired · surprised · difficult · tasty · cold · astonished · beautiful · clever · funny · impossible · pretty · frightened · brilliant · filthy · delicious · terrified · dirty · exhausted · hilarious · freezing",
- q:"Put the fire on. It's absolutely _______ in here!",
- t:"free",a:"freezing",alt:[],h1:"'Absolutely' goes with STRONG adjectives.",h2:"Strong adjective: freezing"},
-{s:"Vocabulary",d:"Word list: tired · surprised · difficult · tasty · cold · astonished · beautiful · clever · funny · impossible · pretty · frightened · brilliant · filthy · delicious · terrified · dirty · exhausted · hilarious · freezing",
- q:"I was very _______ to see him. I thought he was in Australia!",
- t:"free",a:"surprised",alt:[],h1:"'Very' goes with BASE adjectives.",h2:"Base adjective: surprised"},
-{s:"Vocabulary",d:"Word list: tired · surprised · difficult · tasty · cold · astonished · beautiful · clever · funny · impossible · pretty · frightened · brilliant · filthy · delicious · terrified · dirty · exhausted · hilarious · freezing",
- q:"'How was your exam?' 'It was quite _______, but I managed to answer all the questions.'",
- t:"free",a:"difficult",alt:["hard"],h1:"'Quite' goes with base adjectives.",h2:"Base adjective: difficult"},
-{s:"Vocabulary",d:"Word list: tired · surprised · difficult · tasty · cold · astonished · beautiful · clever · funny · impossible · pretty · frightened · brilliant · filthy · delicious · terrified · dirty · exhausted · hilarious · freezing",
- q:"We walked 20 kilometres. I was _______ when we got home!",
- t:"free",a:"exhausted",alt:["absolutely exhausted"],h1:"After 20km — use the strong, extreme adjective.",h2:"Strong adjective: exhausted"},
-{s:"Vocabulary",d:"Word list: tired · surprised · difficult · tasty · cold · astonished · beautiful · clever · funny · impossible · pretty · frightened · brilliant · filthy · delicious · terrified · dirty · exhausted · hilarious · freezing",
- q:"'How was the meal?' 'It was very _______. I really enjoyed it.'",
- t:"free",a:"tasty",alt:[],h1:"'Very' requires a BASE adjective.",h2:"Base adjective: tasty"},
-{s:"Vocabulary",d:"Word list: tired · surprised · difficult · tasty · cold · astonished · beautiful · clever · funny · impossible · pretty · frightened · brilliant · filthy · delicious · terrified · dirty · exhausted · hilarious · freezing",
- q:"'What's the weather like?' 'It's quite _______, so put a coat on.'",
- t:"free",a:"cold",alt:[],h1:"'Quite' goes with BASE adjectives.",h2:"Base adjective: cold"},
-{s:"Vocabulary",d:"Word list: tired · surprised · difficult · tasty · cold · astonished · beautiful · clever · funny · impossible · pretty · frightened · brilliant · filthy · delicious · terrified · dirty · exhausted · hilarious · freezing",
- q:"Albert Einstein was an absolutely _______ scientist.",
- t:"free",a:"brilliant",alt:[],h1:"'Absolutely' + STRONG adjective.",h2:"Strong adjective: brilliant"},
-{s:"Vocabulary",d:"Word list: tired · surprised · difficult · tasty · cold · astonished · beautiful · clever · funny · impossible · pretty · frightened · brilliant · filthy · delicious · terrified · dirty · exhausted · hilarious · freezing",
- q:"The windows were very _______ so I washed them.",
- t:"free",a:"dirty",alt:[],h1:"'Very' + BASE adjective.",h2:"Base adjective: dirty"},
 {s:"Vocabulary",
  d:"Do these words and phrases come after PLAY, DO, MAKE, GO, or HAVE? Drag each word to the correct column.",
  q:"Sort all the words and phrases into the correct verb column.",
@@ -732,7 +778,7 @@ const T6=[
  alt:[],h1:"Present Perfect → Past Perfect; Past Simple → Past Perfect.",h2:"Reported speech backshift"},
 {s:"Reported Speech",
  q:'Jim: "What do you think of France?"\n→ Jim asked her (5) _______.',
- t:"free",a:"what she thought of france",alt:[],
+ prefix:"Jim asked her ",t:"free",a:"what she thought of france",alt:[],
  h1:"Present Simple → Past Simple. Indirect question word order.",h2:"Reported question"},
 {s:"Reported Speech",
  q:'Sue: "The people are very friendly and the food is great."\n→ Sue said (6) the people _______ very friendly and that (7) the food _______ great.\n(Write both answers separated by /)',
@@ -740,7 +786,7 @@ const T6=[
  h1:"'Are' → 'were'; 'is' → 'was' in reported speech.",h2:"Present Simple → Past Simple"},
 {s:"Reported Speech",
  q:'Jim: "Are you going to stay in this country now?"\n→ Jim asked her (8) _______.',
- t:"free",a:"whether she was going to stay in that country",
+ prefix:"Jim asked her ",t:"free",a:"whether she was going to stay in that country",
  alt:["if she was going to stay in that country"],
  h1:"Yes/no reported question: whether/if + subject + was going to.",h2:"Reported yes/no question"},
 {s:"Reported Speech",
@@ -750,10 +796,10 @@ const T6=[
  h1:"'Will' → 'would'; 'today' → 'that day'.",h2:"Reported speech + question"},
 {s:"Reported Speech",
  q:'Jim: "Yes I am."\n→ Jim said (11) _______.',
- t:"free",a:"that he was",alt:["he was"],h1:"'Am' → 'was' in reported speech.",h2:"am → was"},
+ prefix:"Jim said ",t:"free",a:"that he was",alt:["he was"],h1:"'Am' → 'was' in reported speech.",h2:"am → was"},
 {s:"Reported Speech",
  q:'Sue: "Can you give me a lift?"\n→ Sue asked him (12) _______.',
- t:"free",a:"if he could give her a lift",
+ prefix:"Sue asked him ",t:"free",a:"if he could give her a lift",
  alt:["whether he could give her a lift"],
  h1:"'Can' → 'could'. Yes/no reported question.",h2:"can → could"},
 {s:"Reported Commands",d:"Choose the verb that correctly reports the direct speech.",
@@ -801,27 +847,27 @@ const T6=[
 const T7=[
 {s:"Indirect Questions",d:"Complete the indirect questions. Remember: no auxiliary inversion after the introductory phrase.",
  q:"Where does James live?\n→ I've no idea _______.",
- t:"free",a:"where james lives",alt:[],h1:"In indirect questions, use statement word order.",h2:"Indirect question: wh- + subject + verb"},
+ prefix:"I've no idea ",t:"free",a:"where james lives",alt:[],h1:"In indirect questions, use statement word order.",h2:"Indirect question: wh- + subject + verb"},
 {s:"Indirect Questions",
  q:"Do you want to go out tonight?\n→ I'm not sure _______.",
- t:"free",a:"if i want to go out tonight",alt:["whether i want to go out tonight"],
+ prefix:"I'm not sure ",t:"free",a:"if i want to go out tonight",alt:["whether i want to go out tonight"],
  h1:"Yes/no indirect question — use 'if' or 'whether', then statement order.",h2:"if/whether + subject + verb"},
 {s:"Indirect Questions",
  q:"Have I passed the exam?\n→ I'm sorry. I can't tell you _______.",
- t:"free",a:"if you've passed the exam",
+ prefix:"I can't tell you ",t:"free",a:"if you've passed the exam",
  alt:["whether you've passed the exam","if you have passed the exam","whether you have passed the exam"],
  h1:"Yes/no indirect — 'if' + subject + have + past participle.",h2:"if + subject + Present Perfect"},
 {s:"Indirect Questions",
  q:"How many languages are there in the world?\n→ I haven't a clue _______.",
- t:"free",a:"how many languages there are in the world",alt:[],
+ prefix:"I haven't a clue ",t:"free",a:"how many languages there are in the world",alt:[],
  h1:"No inversion — 'how many' + subject + verb (no 'are there').",h2:"how many + subject + verb"},
 {s:"Indirect Questions",
  q:"Who's that woman over there?\n→ I can't remember _______.",
- t:"free",a:"who that woman is",alt:["who she is"],
+ prefix:"I can't remember ",t:"free",a:"who that woman is",alt:["who she is"],
  h1:"Statement word order after 'who' — no inversion.",h2:"who + subject + verb"},
 {s:"Indirect Questions",
  q:"Did Ben buy some more sugar?\n→ I don't know _______.",
- t:"free",a:"if ben bought some more sugar",
+ prefix:"I don't know ",t:"free",a:"if ben bought some more sugar",
  alt:["whether ben bought some more sugar"],
  h1:"Past yes/no indirect — 'if' + subject + Past Simple.",h2:"if + subject + Past Simple"},
 ];
@@ -829,28 +875,28 @@ const T7=[
 const T8=[
 {s:"Auxiliary Verbs",d:"Complete the sentences using the correct auxiliary verb.",
  q:"What _______ you doing when the phone rang?",
- t:"free",a:"were",alt:[],h1:"Past Continuous question.",h2:"were"},
+ prefix:"What ",t:"free",a:"were",alt:[],h1:"Past Continuous question.",h2:"were"},
 {s:"Auxiliary Verbs",
  q:"_______ you ever read any Agatha Christie?",
  t:"free",a:"have",alt:[],h1:"Experience up to now — Present Perfect.",h2:"have"},
 {s:"Auxiliary Verbs",
  q:"I'm sorry. I can't drive you to the station because my car _______ being serviced.",
- t:"free",a:"is",alt:[],h1:"Present Continuous Passive.",h2:"is"},
+ prefix:"my car ",t:"free",a:"is",alt:[],h1:"Present Continuous Passive.",h2:"is"},
 {s:"Auxiliary Verbs",
  q:"How long _______ she been learning English?",
- t:"free",a:"has",alt:[],h1:"Present Perfect Continuous — singular subject.",h2:"has"},
+ prefix:"How long ",t:"free",a:"has",alt:[],h1:"Present Perfect Continuous — singular subject.",h2:"has"},
 {s:"Auxiliary Verbs",
  q:"In France they say 'Bon appétit'. But in Britain people _______ usually say anything before they start their meal.",
- t:"free",a:"don't",alt:["do not"],h1:"Negative Present Simple.",h2:"don't"},
+ prefix:"people ",t:"free",a:"don't",alt:["do not"],h1:"Negative Present Simple.",h2:"don't"},
 {s:"Auxiliary Verbs",
  q:"_______ you go to work yesterday?",
  t:"free",a:"did",alt:[],h1:"Past Simple question.",h2:"did"},
 {s:"Auxiliary Verbs",
  q:"'Where _______ BMW cars made?' 'In Germany.'",
- t:"free",a:"are",alt:[],h1:"Present Simple Passive.",h2:"are"},
+ prefix:"Where ",t:"free",a:"are",alt:[],h1:"Present Simple Passive.",h2:"are"},
 {s:"Auxiliary Verbs",
  q:"I _______ watch the film last night. Was it good?",
- t:"free",a:"didn't",alt:["did not"],h1:"Negative Past Simple.",h2:"didn't"},
+ prefix:"I ",t:"free",a:"didn't",alt:["did not"],h1:"Negative Past Simple.",h2:"didn't"},
 ];
 
 const T9=[
@@ -888,29 +934,141 @@ const T9=[
 const T10=[
 {s:"Everyday English",d:"What would you say in these situations? Write a natural response in English.",
  q:"Situation 1: Somebody telephones your house and wants to speak to your son, but he isn't at home. Tell the caller where your son is and offer to take a message.\n\nWrite what you would say:",
- t:"reflect",a:"i'm sorry, he's not here at the moment. can i take a message?",
- alt:["he's not in at the moment. would you like to leave a message?","i'm afraid he's out. shall i take a message?"],
+ t:"reflect",a:"I'm sorry, he's not here at the moment. Can I take a message?",
+ alt:["He's not in at the moment. Would you like to leave a message?","I'm afraid he's out. Shall I take a message?"],
  h1:"Be polite. Tell the caller where he is (or that he's out) and offer to help.",h2:"Telephone English"},
 {s:"Everyday English",
  q:"Situation 2: You phone the travel agent about flights to the USA. The office is closed so you leave a voicemail.\n\nWrite your message:",
- t:"reflect",a:"hello, my name is [name]. i'm calling to enquire about flights to the usa. could you please call me back? my number is [number]. thank you.",
+ t:"reflect",a:"Hello, my name is [name]. I'm calling to enquire about flights to the USA. Could you please call me back? My number is [number]. Thank you.",
  alt:[],h1:"Structure: greet + name + reason + request to call back + number + farewell.",h2:"Leaving a voicemail"},
 {s:"Everyday English",
  q:"Situation 3: Your friend says she has a headache. Make helpful suggestions.\n\nWrite two or three suggestions:",
- t:"reflect",a:"why don't you take a paracetamol? you should lie down for a while. you could try drinking some water.",
+ t:"reflect",a:"Why don't you take a paracetamol? You should lie down for a while. You could try drinking some water.",
  alt:[],h1:"Use: Why don't you...? / You should... / You could... / Have you tried...?",h2:"Making suggestions"},
 {s:"Everyday English",
  q:"Situation 4: Your brother has just won £100,000 on the National Lottery. Suggest things he could do with the money.\n\nWrite three suggestions:",
- t:"reflect",a:"you could invest some of it. why don't you buy a new car? you should save some for the future.",
+ t:"reflect",a:"You could invest some of it. Why don't you buy a new car? You should save some for the future.",
  alt:[],h1:"Use: You could... / Why don't you...? / Why not...? / You should...",h2:"Making suggestions"},
 {s:"Everyday English",
  q:"Situation 5: You arranged to go to the cinema with a friend, but your sister had an accident and is in hospital. You need to cancel.\n\nWrite what you would say to your friend:",
- t:"reflect",a:"i'm really sorry but i can't make it tonight. my sister has had an accident and i need to visit her in hospital. can we rearrange for another time?",
+ t:"reflect",a:"I'm really sorry but I can't make it tonight. My sister has had an accident and I need to visit her in hospital. Can we rearrange for another time?",
  alt:[],h1:"Apologise → explain → offer to reschedule.",h2:"Cancelling plans"},
 {s:"Everyday English",
  q:"Situation 6: Your friend has just failed to get a place at university and has to stay at school for another year.\n\nWhat would you say to him?",
- t:"reflect",a:"i'm really sorry to hear that. don't worry, i'm sure you'll get in next year. is there anything i can do to help?",
+ t:"reflect",a:"I'm really sorry to hear that. Don't worry, I'm sure you'll get in next year. Is there anything I can do to help?",
  alt:[],h1:"Show empathy → encourage → offer support.",h2:"Giving support / consolation"}
+];
+
+// ─── PHRASAL VERBS (from document 3) ───────────────────────────────────────
+const TPV=[
+{s:"Phrasal Verbs",d:"Complete the sentences with the correct phrasal verb in the right form. Use the definition in brackets to help you.",
+ q:"I _______ the party tonight. It should be lots of fun. (feel excited about the future)",
+ prefix:"I ",t:"free",a:"am looking forward to",alt:["look forward to","'m looking forward to","was looking forward to","looked forward to"],
+ h1:"'Look forward to' = feel excited about something in the future.",h2:"look forward to"},
+{s:"Phrasal Verbs",
+ q:"John and Simon _______ yesterday over who should do the housework. They're not speaking to each other. (have an argument)",
+ t:"free",a:"fell out",alt:["argued","had a row"],
+ h1:"'Fall out' (with someone) = have an argument.",h2:"fall out"},
+{s:"Phrasal Verbs",
+ q:"The text is too small. I can't _______ what it says. (see clearly)",
+ prefix:"I can't ",t:"free",a:"make out",alt:[],
+ h1:"'Make out' = see or understand something with difficulty.",h2:"make out"},
+{s:"Phrasal Verbs",
+ q:"Gina and Nick _______ some wonderful ideas for the Christmas Concert last December. (create something)",
+ t:"free",a:"came up with",alt:[],
+ h1:"'Come up with' = produce or create an idea.",h2:"come up with"},
+{s:"Phrasal Verbs",
+ q:"I _______ this old photo while looking through my desk drawer. (find coincidentally)",
+ prefix:"I ",t:"free",a:"came across",alt:["stumbled across","found"],
+ h1:"'Come across' = find something by chance.",h2:"come across"},
+{s:"Phrasal Verbs",
+ q:"Amy was _______ by her grandmother after her mum died. (raised)",
+ prefix:"Amy was ",t:"free",a:"brought up",alt:[],
+ h1:"'Bring up' = raise a child.",h2:"bring up"},
+{s:"Phrasal Verbs",
+ q:"The teacher refuses _______ students who use their phones in class. (tolerate)",
+ prefix:"The teacher refuses ",t:"free",a:"to put up with",alt:["putting up with"],
+ h1:"'Put up with' = tolerate something unpleasant.",h2:"put up with"},
+{s:"Phrasal Verbs",
+ q:"Mark and Sue _______ for 3 years. They will soon get married. (date)",
+ t:"free",a:"have been going out",alt:["have been going out together","are going out"],
+ h1:"'Go out with' = be in a romantic relationship with someone.",h2:"go out (with)"},
+{s:"Phrasal Verbs",
+ q:"I _______ the word 'mela' while I was in Malta. I still don't know what it means. (learn informally)",
+ prefix:"I ",t:"free",a:"picked up",alt:[],
+ h1:"'Pick up' = learn a language or skill informally.",h2:"pick up"},
+{s:"Phrasal Verbs",
+ q:"I've decided _______ jogging as I've put on weight. (start doing)",
+ prefix:"I've decided ",t:"free",a:"to take up",alt:["taking up"],
+ h1:"'Take up' = start a new hobby or activity.",h2:"take up"},
+];
+
+// ─── Reporting Verbs from doc3 ──────────────────────────────────────────────
+const TPV2=[
+{s:"Reporting Verbs",d:"Change the sentences into indirect speech using a reporting verb from the list: refuse, remind, offer, advise, agree, invite, order, beg, promise, warn",
+ q:"'I think you ought to see the doctor,' Jo said to me.",
+ t:"free",a:"jo advised me to see the doctor",alt:["jo advised me to go to the doctor"],
+ h1:"'I think you ought to' = giving advice → advised.",h2:"advise + object + to-infinitive"},
+{s:"Reporting Verbs",
+ q:"'Don't play with matches or you'll burn yourself,' Sally said to her son.",
+ t:"free",a:"sally warned her son not to play with matches",alt:[],
+ h1:"Warning about danger → warned.",h2:"warn + object + not to"},
+{s:"Reporting Verbs",
+ q:"'Shall we invite Jack to the party?' Tom asked me. 'Yes, OK,' I said.",
+ t:"free",a:"tom and i agreed to invite jack to the party",alt:["we agreed to invite jack"],
+ h1:"Both parties accepting → agreed.",h2:"agree + to-infinitive"},
+{s:"Reporting Verbs",
+ q:"'Please, please, please help me! I'm desperate!' the man said to us.",
+ t:"free",a:"the man begged us to help him",alt:["he begged us to help"],
+ h1:"Desperate plea → begged.",h2:"beg + object + to-infinitive"},
+{s:"Reporting Verbs",
+ q:"'Don't worry! You can rely on me – I'll sort out the problem,' Jane said.",
+ t:"free",a:"jane promised to sort out the problem",alt:["jane promised she would sort out the problem"],
+ h1:"Commitment about the future → promised.",h2:"promise + to-infinitive"},
+{s:"Reporting Verbs",
+ q:"'Don't forget to call the dentist's!' I said to him.",
+ t:"free",a:"i reminded him to call the dentist's",alt:["i reminded him to call the dentist"],
+ h1:"'Don't forget' = reminder → reminded.",h2:"remind + object + to"},
+{s:"Reporting Verbs",
+ q:"'I'll carry your case for you,' my son said.",
+ t:"free",a:"my son offered to carry my case",alt:["he offered to carry my case"],
+ h1:"Voluntary offer → offered.",h2:"offer + to-infinitive"},
+{s:"Reporting Verbs",
+ q:"'Shut up and sit down!' the soldier said to them.",
+ t:"free",a:"the soldier ordered them to shut up and sit down",alt:["he ordered them to be quiet and sit down"],
+ h1:"Strong command → ordered.",h2:"order + object + to"},
+{s:"Reporting Verbs",
+ q:"'I won't speak to him!' she said.",
+ t:"free",a:"she refused to speak to him",alt:[],
+ h1:"'Won't do' = refusal → refused.",h2:"refuse + to-infinitive"},
+{s:"Reporting Verbs",
+ q:"'Would you like to go for a drink?' they said to us.",
+ t:"free",a:"they invited us to go for a drink",alt:["they invited us for a drink"],
+ h1:"'Would you like to' = invitation → invited.",h2:"invite + object + to"},
+];
+
+// ─── Past Modals (doc3) ─────────────────────────────────────────────────────
+const TPV3=[
+{s:"Past Modals",d:"Respond to the sentences using past modals of probability (might have, must have, can't have).",
+ q:"Why aren't they speaking to each other? (might, have an argument)",
+ prefix:"They ",t:"free",a:"might have had an argument",alt:["might have argued"],
+ h1:"'Perhaps/possibly' in the past → might have + past participle.",h2:"might have + past participle"},
+{s:"Past Modals",
+ q:"I have just seen a bank robbery. (must, be frightened)",
+ prefix:"You ",t:"free",a:"must have been frightened",alt:["must have been terrified","must have been scared"],
+ h1:"Certainty about a past feeling → must have been.",h2:"must have been + adjective"},
+{s:"Past Modals",
+ q:"She walked straight past me without saying hello. (can't, see)",
+ prefix:"She ",t:"free",a:"can't have seen me",alt:["can't have seen you","couldn't have seen you"],
+ h1:"Negative certainty about the past → can't have + past participle.",h2:"can't have + past participle"},
+{s:"Past Modals",
+ q:"The team lost 5–0. (must, play badly)",
+ prefix:"They ",t:"free",a:"must have played badly",alt:[],
+ h1:"Strong deduction about a past action → must have + past participle.",h2:"must have + past participle"},
+{s:"Past Modals",
+ q:"They've bought two new cars and a boat in the last month. (must, win the lottery)",
+ prefix:"They ",t:"free",a:"must have won the lottery",alt:[],
+ h1:"Logical conclusion from evidence → must have.",h2:"must have + past participle"},
 ];
 
 const M0=[
@@ -978,208 +1136,118 @@ const M1=[
 {s:"Tense Review",q:"What's the difference?<br>(a) I'll be cooking dinner when you get home.<br>(b) I'll cook dinner when you get home.",t:"mc",o:["(a) = dinner already in progress; (b) = I'll start after you arrive","No difference.","(a) = I start when you arrive; (b) = dinner is already cooking","(a) = a promise; (b) = a plan"],a:"(a) = dinner already in progress; (b) = I'll start after you arrive",h1:"Future Continuous = already happening at that point; Future Simple = action following arrival.",h2:"Future Continuous (in progress) vs Future Simple (sequence)"}
 ];
 
-// ─── NEW MODULE: Verbs Gerund/Infinitive (Part 2 - sentence fill) ─────────────
 const T11_PART2=[
 {s:"Gerund / Infinitive",d:"Complete these sentences with the right form of the verbs in brackets: gerund (-ing) or infinitive (to).",
  q:"1) Learning a foreign language means _______ (be) interested in another culture.",
- t:"free",a:"being",alt:[],h1:"'Mean' here = 'involve' → followed by gerund.",h2:"mean + -ing"},
-{s:"Gerund / Infinitive",d:"Complete these sentences with the right form of the verbs in brackets.",
- q:"2) My friend is giving up _______ (smoke) at last.",
- t:"free",a:"smoking",alt:[],h1:"'Give up' = stop doing → always followed by gerund.",h2:"give up + -ing"},
-{s:"Gerund / Infinitive",
- q:"3) Bob is very skilful. He has managed _______ (fix) his laptop himself.",
- t:"free",a:"to fix",alt:[],h1:"'Manage' = succeed in → followed by infinitive.",h2:"manage + to"},
-{s:"Gerund / Infinitive",
- q:"4) Doctors recommend _______ (sleep) eight hours a day.",
- t:"free",a:"sleeping",alt:[],h1:"'Recommend' → followed by gerund.",h2:"recommend + -ing"},
-{s:"Gerund / Infinitive",
- q:"5) Reliable friends are always there for you. They will never fail _______ (help) you.",
- t:"free",a:"to help",alt:[],h1:"'Fail' = not succeed in → followed by infinitive.",h2:"fail + to"},
-{s:"Gerund / Infinitive",
- q:"6) I don't mind _______ (do) the washing up.",
- t:"free",a:"doing",alt:[],h1:"'Don't mind' → followed by gerund.",h2:"don't mind + -ing"},
-{s:"Gerund / Infinitive",
- q:"7) Mum, can I go out? I've already finished _______ (study).",
- t:"free",a:"studying",alt:[],h1:"'Finish' → followed by gerund.",h2:"finish + -ing"},
-{s:"Gerund / Infinitive",
- q:"8) Tina hopes _______ (become) a prestigious engineer one day.",
- t:"free",a:"to become",alt:[],h1:"'Hope' → followed by infinitive.",h2:"hope + to"},
-{s:"Gerund / Infinitive",
- q:"9) Jerry is very angry. I've phoned him five times but he refuses _______ (speak) to me.",
- t:"free",a:"to speak",alt:[],h1:"'Refuse' → followed by infinitive.",h2:"refuse + to"},
-{s:"Gerund / Infinitive",
- q:"10) The suspect denied _______ (rob) the bank. He said he had an alibi.",
- t:"free",a:"robbing",alt:[],h1:"'Deny' → followed by gerund.",h2:"deny + -ing"},
-{s:"Gerund / Infinitive",
- q:"11) He admitted _______ (make) a serious mistake and apologised.",
- t:"free",a:"making",alt:[],h1:"'Admit' → followed by gerund.",h2:"admit + -ing"},
-{s:"Gerund / Infinitive",
- q:"12) I can't stand _______ (wear) these awful glasses!",
- t:"free",a:"wearing",alt:[],h1:"'Can't stand' → followed by gerund.",h2:"can't stand + -ing"},
-{s:"Gerund / Infinitive",
- q:"13) The teacher agreed _______ (postpone) the exam.",
- t:"free",a:"to postpone",alt:[],h1:"'Agree' → followed by infinitive.",h2:"agree + to"},
-{s:"Gerund / Infinitive",
- q:"14) Peter pretended _______ (have) a stomach ache and left school early.",
- t:"free",a:"to have",alt:[],h1:"'Pretend' → followed by infinitive.",h2:"pretend + to"},
-{s:"Gerund / Infinitive",
- q:"15) Will promised his mum _______ (be) back at 11.",
- t:"free",a:"to be",alt:[],h1:"'Promise' → followed by infinitive.",h2:"promise + to"},
-{s:"Gerund / Infinitive",
- q:"16) Few people can afford _______ (buy) the trendiest smartphone.",
- t:"free",a:"to buy",alt:[],h1:"'Afford' → followed by infinitive.",h2:"afford + to"},
-{s:"Gerund / Infinitive",
- q:"17) Fred chose _______ (work) on Saturday instead of on Friday.",
- t:"free",a:"to work",alt:[],h1:"'Choose' → followed by infinitive.",h2:"choose + to"},
-{s:"Gerund / Infinitive",
- q:"18) Angelina imagined _______ (get) an Oscar for her last movie.",
- t:"free",a:"getting",alt:[],h1:"'Imagine' → followed by gerund.",h2:"imagine + -ing"},
-{s:"Gerund / Infinitive",
- q:"19) We've planned _______ (fly) to Denmark this Christmas.",
- t:"free",a:"to fly",alt:[],h1:"'Plan' → followed by infinitive.",h2:"plan + to"},
-{s:"Gerund / Infinitive",
- q:"20) Tom suggested _______ (spend) a couple of weeks on Majorca.",
- t:"free",a:"spending",alt:[],h1:"'Suggest' → followed by gerund.",h2:"suggest + -ing"},
-{s:"Gerund / Infinitive",
- q:"21) Amanda rejected _______ (eat) the soup because it was salty.",
- t:"free",a:"eating",alt:[],h1:"'Reject' here = refuse → followed by gerund.",h2:"reject + -ing"},
-{s:"Gerund / Infinitive",
- q:"22) People shouldn't risk _______ (ride) a motorbike without wearing a helmet.",
- t:"free",a:"riding",alt:[],h1:"'Risk' → followed by gerund.",h2:"risk + -ing"},
-{s:"Gerund / Infinitive",
- q:"23) I really miss _______ (chat) with you every day.",
- t:"free",a:"chatting",alt:[],h1:"'Miss' → followed by gerund.",h2:"miss + -ing"},
-{s:"Gerund / Infinitive",
- q:"24) Mum asked me _______ (lay) the table.",
- t:"free",a:"to lay",alt:[],h1:"'Ask someone to do' → followed by infinitive.",h2:"ask + object + to"},
-{s:"Gerund / Infinitive",
- q:"25) Mr. Johnson tends _______ (lie) about his age. He's so flirty!",
- t:"free",a:"to lie",alt:[],h1:"'Tend' → followed by infinitive.",h2:"tend + to"},
-{s:"Gerund / Infinitive",
- q:"26) You should avoid _______ (shout). It's too late!",
- t:"free",a:"shouting",alt:[],h1:"'Avoid' → followed by gerund.",h2:"avoid + -ing"},
-{s:"Gerund / Infinitive",
- q:"27) He kept _______ (talk) for hours.",
- t:"free",a:"talking",alt:[],h1:"'Keep' → followed by gerund.",h2:"keep + -ing"},
-{s:"Gerund / Infinitive",
- q:"28) Do you fancy _______ (dance)?",
- t:"free",a:"dancing",alt:[],h1:"'Fancy' → followed by gerund.",h2:"fancy + -ing"},
-{s:"Gerund / Infinitive",
- q:"29) If you try _______ (work) a bit harder, I'm sure you'll pass.",
- t:"free",a:"to work",alt:[],h1:"'Try to' = make an effort.",h2:"try + to (make effort)"},
-{s:"Gerund / Infinitive",
- q:"30) He will arrange _______ (book) a room at the best hotel.",
- t:"free",a:"to book",alt:[],h1:"'Arrange' → followed by infinitive.",h2:"arrange + to"},
-{s:"Gerund / Infinitive",
- q:"31) He seems _______ (be) worried.",
- t:"free",a:"to be",alt:[],h1:"'Seem' → followed by infinitive.",h2:"seem + to"},
-{s:"Gerund / Infinitive",
- q:"32) I wouldn't advise _______ (buy) a used car.",
- t:"free",a:"buying",alt:[],h1:"'Advise' (without object) → followed by gerund.",h2:"advise + -ing"},
-{s:"Gerund / Infinitive",
- q:"33) I want _______ (find) a better job because I need some extra money.",
- t:"free",a:"to find",alt:[],h1:"'Want' → followed by infinitive.",h2:"want + to"},
-{s:"Gerund / Infinitive",
- q:"34) The policeman offered _______ (help) me when someone mugged my bag.",
- t:"free",a:"to help",alt:[],h1:"'Offer' → followed by infinitive.",h2:"offer + to"},
-{s:"Gerund / Infinitive",
- q:"35) I feel like _______ (go) out for dinner tonight.",
- t:"free",a:"going",alt:[],h1:"'Feel like' → followed by gerund.",h2:"feel like + -ing"},
-{s:"Gerund / Infinitive",
- q:"36) Matt has learned _______ (parachute).",
- t:"free",a:"to parachute",alt:[],h1:"'Learn' → followed by infinitive.",h2:"learn + to"},
-{s:"Gerund / Infinitive",
- q:"37) Christian considers _______ (move) to London to improve his English.",
- t:"free",a:"moving",alt:[],h1:"'Consider' → followed by gerund.",h2:"consider + -ing"},
-{s:"Gerund / Infinitive",
- q:"38) I'm very excited. I can't wait _______ (play) this new game.",
- t:"free",a:"to play",alt:[],h1:"'Can't wait' → followed by infinitive.",h2:"can't wait + to"},
-{s:"Gerund / Infinitive",
- q:"39) He practiced _______ (run) every afternoon in the park for the marathon.",
- t:"free",a:"running",alt:[],h1:"'Practice' → followed by gerund.",h2:"practice + -ing"},
-{s:"Gerund / Infinitive",
- q:"40) She expected _______ (see) her favourite singer after the show but she couldn't.",
- t:"free",a:"to see",alt:[],h1:"'Expect' → followed by infinitive.",h2:"expect + to"},
-{s:"Gerund / Infinitive",
- q:"41) He would like _______ (learn) to fly a helicopter.",
- t:"free",a:"to learn",alt:[],h1:"'Would like' → followed by infinitive.",h2:"would like + to"},
-{s:"Gerund / Infinitive",
- q:"42) My aunt invited me _______ (spend) a week in Italy.",
- t:"free",a:"to spend",alt:[],h1:"'Invite someone to do' → followed by infinitive.",h2:"invite + object + to"},
-{s:"Gerund / Infinitive",
- q:"43) Don't worry. Kelly appears _______ (know) what she's doing.",
- t:"free",a:"to know",alt:[],h1:"'Appear' → followed by infinitive.",h2:"appear + to"},
-{s:"Gerund / Infinitive",
- q:"44) They decided _______ (change) the colour of their room.",
- t:"free",a:"to change",alt:[],h1:"'Decide' → followed by infinitive.",h2:"decide + to"},
-{s:"Gerund / Infinitive",
- q:"45) Many people dislike _______ (wait) at the traffic lights.",
- t:"free",a:"waiting",alt:[],h1:"'Dislike' → followed by gerund.",h2:"dislike + -ing"},
-{s:"Gerund / Infinitive",
- q:"46) He deserved _______ (be) punished for driving too fast.",
- t:"free",a:"to be",alt:[],h1:"'Deserve' → followed by infinitive.",h2:"deserve + to"},
-{s:"Gerund / Infinitive",
- q:"47) The boss demanded _______ (arrive) on time.",
- t:"free",a:"to arrive",alt:[],h1:"'Demand' → followed by infinitive.",h2:"demand + to"},
-{s:"Gerund / Infinitive",
- q:"48) Beth helped the children _______ (do) their homework.",
- t:"free",a:"to do",alt:["do"],h1:"'Help someone to do' / 'help someone do' → both accepted.",h2:"help + (object +) to / bare infinitive"},
-{s:"Gerund / Infinitive",
- q:"49) The two friends enjoyed _______ (go) shopping.",
- t:"free",a:"going",alt:[],h1:"'Enjoy' → followed by gerund.",h2:"enjoy + -ing"},
-{s:"Gerund / Infinitive",
- q:"50) Please stop _______ (make) so much noise! I'm trying to sleep.",
- t:"free",a:"making",alt:[],h1:"'Stop + gerund' = no longer do that activity.",h2:"stop + -ing"},
+ prefix:"means ",t:"free",a:"being",alt:[],h1:"'Mean' here = 'involve' → followed by gerund.",h2:"mean + -ing"},
+{s:"Gerund / Infinitive",q:"2) My friend is giving up _______ (smoke) at last.",prefix:"giving up ",t:"free",a:"smoking",alt:[],h1:"'Give up' = stop doing → always followed by gerund.",h2:"give up + -ing"},
+{s:"Gerund / Infinitive",q:"3) Bob is very skilful. He has managed _______ (fix) his laptop himself.",prefix:"managed ",t:"free",a:"to fix",alt:["fix"],h1:"'Manage' = succeed in → followed by infinitive.",h2:"manage + to"},
+{s:"Gerund / Infinitive",q:"4) Doctors recommend _______ (sleep) eight hours a day.",prefix:"recommend ",t:"free",a:"sleeping",alt:[],h1:"'Recommend' → followed by gerund.",h2:"recommend + -ing"},
+{s:"Gerund / Infinitive",q:"5) Reliable friends are always there for you. They will never fail _______ (help) you.",prefix:"fail ",t:"free",a:"to help",alt:[],h1:"'Fail' = not succeed in → followed by infinitive.",h2:"fail + to"},
+{s:"Gerund / Infinitive",q:"6) I don't mind _______ (do) the washing up.",prefix:"don't mind ",t:"free",a:"doing",alt:[],h1:"'Don't mind' → followed by gerund.",h2:"don't mind + -ing"},
+{s:"Gerund / Infinitive",q:"7) Mum, can I go out? I've already finished _______ (study).",prefix:"finished ",t:"free",a:"studying",alt:[],h1:"'Finish' → followed by gerund.",h2:"finish + -ing"},
+{s:"Gerund / Infinitive",q:"8) Tina hopes _______ (become) a prestigious engineer one day.",prefix:"hopes ",t:"free",a:"to become",alt:[],h1:"'Hope' → followed by infinitive.",h2:"hope + to"},
+{s:"Gerund / Infinitive",q:"9) Jerry is very angry. I've phoned him five times but he refuses _______ (speak) to me.",prefix:"refuses ",t:"free",a:"to speak",alt:[],h1:"'Refuse' → followed by infinitive.",h2:"refuse + to"},
+{s:"Gerund / Infinitive",q:"10) The suspect denied _______ (rob) the bank. He said he had an alibi.",prefix:"denied ",t:"free",a:"robbing",alt:[],h1:"'Deny' → followed by gerund.",h2:"deny + -ing"},
+{s:"Gerund / Infinitive",q:"11) He admitted _______ (make) a serious mistake and apologised.",prefix:"admitted ",t:"free",a:"making",alt:[],h1:"'Admit' → followed by gerund.",h2:"admit + -ing"},
+{s:"Gerund / Infinitive",q:"12) I can't stand _______ (wear) these awful glasses!",prefix:"can't stand ",t:"free",a:"wearing",alt:[],h1:"'Can't stand' → followed by gerund.",h2:"can't stand + -ing"},
+{s:"Gerund / Infinitive",q:"13) The teacher agreed _______ (postpone) the exam.",prefix:"agreed ",t:"free",a:"to postpone",alt:[],h1:"'Agree' → followed by infinitive.",h2:"agree + to"},
+{s:"Gerund / Infinitive",q:"14) Peter pretended _______ (have) a stomach ache and left school early.",prefix:"pretended ",t:"free",a:"to have",alt:[],h1:"'Pretend' → followed by infinitive.",h2:"pretend + to"},
+{s:"Gerund / Infinitive",q:"15) Will promised his mum _______ (be) back at 11.",prefix:"promised ",t:"free",a:"to be",alt:[],h1:"'Promise' → followed by infinitive.",h2:"promise + to"},
+{s:"Gerund / Infinitive",q:"16) Few people can afford _______ (buy) the trendiest smartphone.",prefix:"can afford ",t:"free",a:"to buy",alt:[],h1:"'Afford' → followed by infinitive.",h2:"afford + to"},
+{s:"Gerund / Infinitive",q:"17) Fred chose _______ (work) on Saturday instead of on Friday.",prefix:"chose ",t:"free",a:"to work",alt:[],h1:"'Choose' → followed by infinitive.",h2:"choose + to"},
+{s:"Gerund / Infinitive",q:"18) Angelina imagined _______ (get) an Oscar for her last movie.",prefix:"imagined ",t:"free",a:"getting",alt:[],h1:"'Imagine' → followed by gerund.",h2:"imagine + -ing"},
+{s:"Gerund / Infinitive",q:"19) We've planned _______ (fly) to Denmark this Christmas.",prefix:"planned ",t:"free",a:"to fly",alt:[],h1:"'Plan' → followed by infinitive.",h2:"plan + to"},
+{s:"Gerund / Infinitive",q:"20) Tom suggested _______ (spend) a couple of weeks on Majorca.",prefix:"suggested ",t:"free",a:"spending",alt:[],h1:"'Suggest' → followed by gerund.",h2:"suggest + -ing"},
+{s:"Gerund / Infinitive",q:"21) Amanda rejected _______ (eat) the soup because it was salty.",prefix:"rejected ",t:"free",a:"eating",alt:[],h1:"'Reject' here = refuse → followed by gerund.",h2:"reject + -ing"},
+{s:"Gerund / Infinitive",q:"22) People shouldn't risk _______ (ride) a motorbike without wearing a helmet.",prefix:"risk ",t:"free",a:"riding",alt:[],h1:"'Risk' → followed by gerund.",h2:"risk + -ing"},
+{s:"Gerund / Infinitive",q:"23) I really miss _______ (chat) with you every day.",prefix:"miss ",t:"free",a:"chatting",alt:[],h1:"'Miss' → followed by gerund.",h2:"miss + -ing"},
+{s:"Gerund / Infinitive",q:"24) Mum asked me _______ (lay) the table.",prefix:"asked me ",t:"free",a:"to lay",alt:[],h1:"'Ask someone to do' → followed by infinitive.",h2:"ask + object + to"},
+{s:"Gerund / Infinitive",q:"25) Mr. Johnson tends _______ (lie) about his age. He's so flirty!",prefix:"tends ",t:"free",a:"to lie",alt:[],h1:"'Tend' → followed by infinitive.",h2:"tend + to"},
+{s:"Gerund / Infinitive",q:"26) You should avoid _______ (shout). It's too late!",prefix:"avoid ",t:"free",a:"shouting",alt:[],h1:"'Avoid' → followed by gerund.",h2:"avoid + -ing"},
+{s:"Gerund / Infinitive",q:"27) He kept _______ (talk) for hours.",prefix:"kept ",t:"free",a:"talking",alt:[],h1:"'Keep' → followed by gerund.",h2:"keep + -ing"},
+{s:"Gerund / Infinitive",q:"28) Do you fancy _______ (dance)?",prefix:"fancy ",t:"free",a:"dancing",alt:[],h1:"'Fancy' → followed by gerund.",h2:"fancy + -ing"},
+{s:"Gerund / Infinitive",q:"29) If you try _______ (work) a bit harder, I'm sure you'll pass.",prefix:"try ",t:"free",a:"to work",alt:[],h1:"'Try to' = make an effort.",h2:"try + to (make effort)"},
+{s:"Gerund / Infinitive",q:"30) He will arrange _______ (book) a room at the best hotel.",prefix:"arrange ",t:"free",a:"to book",alt:[],h1:"'Arrange' → followed by infinitive.",h2:"arrange + to"},
+{s:"Gerund / Infinitive",q:"31) He seems _______ (be) worried.",prefix:"seems ",t:"free",a:"to be",alt:[],h1:"'Seem' → followed by infinitive.",h2:"seem + to"},
+{s:"Gerund / Infinitive",q:"32) I wouldn't advise _______ (buy) a used car.",prefix:"advise ",t:"free",a:"buying",alt:[],h1:"'Advise' (without object) → followed by gerund.",h2:"advise + -ing"},
+{s:"Gerund / Infinitive",q:"33) I want _______ (find) a better job because I need some extra money.",prefix:"want ",t:"free",a:"to find",alt:[],h1:"'Want' → followed by infinitive.",h2:"want + to"},
+{s:"Gerund / Infinitive",q:"34) The policeman offered _______ (help) me when someone mugged my bag.",prefix:"offered ",t:"free",a:"to help",alt:[],h1:"'Offer' → followed by infinitive.",h2:"offer + to"},
+{s:"Gerund / Infinitive",q:"35) I feel like _______ (go) out for dinner tonight.",prefix:"feel like ",t:"free",a:"going",alt:[],h1:"'Feel like' → followed by gerund.",h2:"feel like + -ing"},
+{s:"Gerund / Infinitive",q:"36) Matt has learned _______ (parachute).",prefix:"learned ",t:"free",a:"to parachute",alt:[],h1:"'Learn' → followed by infinitive.",h2:"learn + to"},
+{s:"Gerund / Infinitive",q:"37) Christian considers _______ (move) to London to improve his English.",prefix:"considers ",t:"free",a:"moving",alt:[],h1:"'Consider' → followed by gerund.",h2:"consider + -ing"},
+{s:"Gerund / Infinitive",q:"38) I'm very excited. I can't wait _______ (play) this new game.",prefix:"can't wait ",t:"free",a:"to play",alt:[],h1:"'Can't wait' → followed by infinitive.",h2:"can't wait + to"},
+{s:"Gerund / Infinitive",q:"39) He practiced _______ (run) every afternoon in the park for the marathon.",prefix:"practiced ",t:"free",a:"running",alt:[],h1:"'Practice' → followed by gerund.",h2:"practice + -ing"},
+{s:"Gerund / Infinitive",q:"40) She expected _______ (see) her favourite singer after the show but she couldn't.",prefix:"expected ",t:"free",a:"to see",alt:[],h1:"'Expect' → followed by infinitive.",h2:"expect + to"},
+{s:"Gerund / Infinitive",q:"41) He would like _______ (learn) to fly a helicopter.",prefix:"would like ",t:"free",a:"to learn",alt:[],h1:"'Would like' → followed by infinitive.",h2:"would like + to"},
+{s:"Gerund / Infinitive",q:"42) My aunt invited me _______ (spend) a week in Italy.",prefix:"invited me ",t:"free",a:"to spend",alt:[],h1:"'Invite someone to do' → followed by infinitive.",h2:"invite + object + to"},
+{s:"Gerund / Infinitive",q:"43) Don't worry. Kelly appears _______ (know) what she's doing.",prefix:"appears ",t:"free",a:"to know",alt:[],h1:"'Appear' → followed by infinitive.",h2:"appear + to"},
+{s:"Gerund / Infinitive",q:"44) They decided _______ (change) the colour of their room.",prefix:"decided ",t:"free",a:"to change",alt:[],h1:"'Decide' → followed by infinitive.",h2:"decide + to"},
+{s:"Gerund / Infinitive",q:"45) Many people dislike _______ (wait) at the traffic lights.",prefix:"dislike ",t:"free",a:"waiting",alt:[],h1:"'Dislike' → followed by gerund.",h2:"dislike + -ing"},
+{s:"Gerund / Infinitive",q:"46) He deserved _______ (be) punished for driving too fast.",prefix:"deserved ",t:"free",a:"to be",alt:[],h1:"'Deserve' → followed by infinitive.",h2:"deserve + to"},
+{s:"Gerund / Infinitive",q:"47) The boss demanded _______ (arrive) on time.",prefix:"demanded ",t:"free",a:"to arrive",alt:[],h1:"'Demand' → followed by infinitive.",h2:"demand + to"},
+{s:"Gerund / Infinitive",q:"48) Beth helped the children _______ (do) their homework.",prefix:"helped the children ",t:"free",a:"to do",alt:["do"],h1:"'Help someone to do' / 'help someone do' → both accepted.",h2:"help + (object +) to / bare infinitive"},
+{s:"Gerund / Infinitive",q:"49) The two friends enjoyed _______ (go) shopping.",prefix:"enjoyed ",t:"free",a:"going",alt:[],h1:"'Enjoy' → followed by gerund.",h2:"enjoy + -ing"},
+{s:"Gerund / Infinitive",q:"50) Please stop _______ (make) so much noise! I'm trying to sleep.",prefix:"stop ",t:"free",a:"making",alt:[],h1:"'Stop + gerund' = no longer do that activity.",h2:"stop + -ing"},
 ];
 
-// Part 3: Gerund or Infinitive with change of meaning
 const T11_PART3=[
 {s:"Gerund / Infinitive – Meaning Change",
- d:"Some verbs change meaning with gerund vs infinitive. Read carefully and choose the correct form.\n\n• forget + to = fail to do\n• forget + -ing = not recall doing\n• regret + to = sorry to (now)\n• regret + -ing = sorry about past\n• remember + to = don't forget to do\n• remember + -ing = recall a memory\n• stop + to = interrupt to do something else\n• stop + -ing = no longer do\n• try + to = make effort\n• try + -ing = experiment/attempt",
+ d:"Some verbs change meaning with gerund vs infinitive. Read carefully and choose the correct form.",
  q:"1) He is angry because I forgot _______ (meet) him. (I didn't meet him because I forgot to do it).",
- t:"free",a:"to meet",alt:[],h1:"Forgot + infinitive = failed to do it.",h2:"forget + to"},
-{s:"Gerund / Infinitive – Meaning Change",
- d:"• forget + to = fail to do\n• forget + -ing = not recall doing\n• regret + to = sorry to (now)\n• regret + -ing = sorry about past\n• remember + to = don't forget to do\n• remember + -ing = recall a memory\n• stop + to = interrupt to do something else\n• stop + -ing = no longer do\n• try + to = make effort\n• try + -ing = experiment/attempt",
+ prefix:"forgot ",t:"free",a:"to meet",alt:[],
+ h1:"#### Gerund Or Infinitive WITHOUT Changes of Meaning\nSome verbs can be followed either infinitive or gerund with little or no change of meaning. The most used are:\n• Verbs of starting or continuing: begin, start, continue, intend, propose (When they are the continuous form, they are usually in the infinitive)\n• Verbs of liking or not liking: hate, love, prefer, like, not bear (Infinitive is preferred when talking in general)\n\n#### Gerund Or Infinitive BUT With Changes of Meaning\n• Forget + infinitive: to fail to do sth. / Forget + gerund: to do sth. and not recall it.\n• Need + infinitive: to have to do sth. / Need + gerund: somebody has to do it (impersonal).\n• Regret + infinitive: be sorry to (sth. unpleasant) / Regret + gerund: to talk about a mistake in the past.\n• Remember + infinitive: not to forget to do sth. / Remember + gerund: to recall a memory.\n• Stop + infinitive: interrupt an action to do another. / Stop + gerund: no to do sth. any more.\n• Try + infinitive: make an effort to. / Try + gerund: experiment with doing sth.",
+ h2:"forget + to (fail to do)"},
+{s:"Gerund / Infinitive – Meaning Change",d:"Some verbs change meaning with gerund vs infinitive.",
  q:"2) He is angry because I forgot _______ (meet) him. (I don't have the memory of meeting him before).",
- t:"free",a:"meeting",alt:[],h1:"Forgot + gerund = don't have the memory of it.",h2:"forget + -ing"},
-{s:"Gerund / Infinitive – Meaning Change",
- d:"• forget + to = fail to do\n• forget + -ing = not recall doing\n• regret + to = sorry to (now)\n• regret + -ing = sorry about past\n• remember + to = don't forget to do\n• remember + -ing = recall a memory\n• stop + to = interrupt to do something else\n• stop + -ing = no longer do\n• try + to = make effort\n• try + -ing = experiment/attempt",
+ prefix:"forgot ",t:"free",a:"meeting",alt:[],
+ h1:"#### Gerund Or Infinitive WITHOUT Changes of Meaning\nSome verbs can be followed either infinitive or gerund with little or no change of meaning. The most used are:\n• Verbs of starting or continuing: begin, start, continue, intend, propose (When they are the continuous form, they are usually in the infinitive)\n• Verbs of liking or not liking: hate, love, prefer, like, not bear (Infinitive is preferred when talking in general)\n\n#### Gerund Or Infinitive BUT With Changes of Meaning\n• Forget + infinitive: to fail to do sth. / Forget + gerund: to do sth. and not recall it.\n• Need + infinitive: to have to do sth. / Need + gerund: somebody has to do it (impersonal).\n• Regret + infinitive: be sorry to (sth. unpleasant) / Regret + gerund: to talk about a mistake in the past.\n• Remember + infinitive: not to forget to do sth. / Remember + gerund: to recall a memory.\n• Stop + infinitive: interrupt an action to do another. / Stop + gerund: no to do sth. any more.\n• Try + infinitive: make an effort to. / Try + gerund: experiment with doing sth.",
+ h2:"forget + -ing (don't recall)"},
+{s:"Gerund / Infinitive – Meaning Change",d:"Some verbs change meaning with gerund vs infinitive.",
  q:"3) I regret _______ (promise) to help you. (I'm sorry that I made the promise in the past).",
- t:"free",a:"promising",alt:[],h1:"Regret + gerund = sorry about a past action.",h2:"regret + -ing"},
-{s:"Gerund / Infinitive – Meaning Change",
- d:"• forget + to = fail to do\n• forget + -ing = not recall doing\n• regret + to = sorry to (now)\n• regret + -ing = sorry about past\n• remember + to = don't forget to do\n• remember + -ing = recall a memory\n• stop + to = interrupt to do something else\n• stop + -ing = no longer do\n• try + to = make effort\n• try + -ing = experiment/attempt",
+ prefix:"regret ",t:"free",a:"promising",alt:[],
+ h1:"#### Gerund Or Infinitive WITHOUT Changes of Meaning\nSome verbs can be followed either infinitive or gerund with little or no change of meaning. The most used are:\n• Verbs of starting or continuing: begin, start, continue, intend, propose (When they are the continuous form, they are usually in the infinitive)\n• Verbs of liking or not liking: hate, love, prefer, like, not bear (Infinitive is preferred when talking in general)\n\n#### Gerund Or Infinitive BUT With Changes of Meaning\n• Forget + infinitive: to fail to do sth. / Forget + gerund: to do sth. and not recall it.\n• Need + infinitive: to have to do sth. / Need + gerund: somebody has to do it (impersonal).\n• Regret + infinitive: be sorry to (sth. unpleasant) / Regret + gerund: to talk about a mistake in the past.\n• Remember + infinitive: not to forget to do sth. / Remember + gerund: to recall a memory.\n• Stop + infinitive: interrupt an action to do another. / Stop + gerund: no to do sth. any more.\n• Try + infinitive: make an effort to. / Try + gerund: experiment with doing sth.",
+ h2:"regret + -ing (past mistake)"},
+{s:"Gerund / Infinitive – Meaning Change",d:"Some verbs change meaning with gerund vs infinitive.",
  q:"4) I regret _______ (tell) you that we can't hire you. (I'm telling you now, and I'm sorry).",
- t:"free",a:"to tell",alt:[],h1:"Regret + infinitive = sorry to say something now.",h2:"regret + to"},
-{s:"Gerund / Infinitive – Meaning Change",
- d:"• forget + to = fail to do\n• forget + -ing = not recall doing\n• regret + to = sorry to (now)\n• regret + -ing = sorry about past\n• remember + to = don't forget to do\n• remember + -ing = recall a memory\n• stop + to = interrupt to do something else\n• stop + -ing = no longer do\n• try + to = make effort\n• try + -ing = experiment/attempt",
+ prefix:"regret ",t:"free",a:"to tell",alt:[],
+ h1:"#### Gerund Or Infinitive WITHOUT Changes of Meaning\nSome verbs can be followed either infinitive or gerund with little or no change of meaning. The most used are:\n• Verbs of starting or continuing: begin, start, continue, intend, propose (When they are the continuous form, they are usually in the infinitive)\n• Verbs of liking or not liking: hate, love, prefer, like, not bear (Infinitive is preferred when talking in general)\n\n#### Gerund Or Infinitive BUT With Changes of Meaning\n• Forget + infinitive: to fail to do sth. / Forget + gerund: to do sth. and not recall it.\n• Need + infinitive: to have to do sth. / Need + gerund: somebody has to do it (impersonal).\n• Regret + infinitive: be sorry to (sth. unpleasant) / Regret + gerund: to talk about a mistake in the past.\n• Remember + infinitive: not to forget to do sth. / Remember + gerund: to recall a memory.\n• Stop + infinitive: interrupt an action to do another. / Stop + gerund: no to do sth. any more.\n• Try + infinitive: make an effort to. / Try + gerund: experiment with doing sth.",
+ h2:"regret + to (sorry to say now)"},
+{s:"Gerund / Infinitive – Meaning Change",d:"Some verbs change meaning with gerund vs infinitive.",
  q:"5) She remembered _______ (visit) her grandmother. (She didn't forget to visit her).",
- t:"free",a:"to visit",alt:[],h1:"Remember + infinitive = didn't forget to do it.",h2:"remember + to"},
-{s:"Gerund / Infinitive – Meaning Change",
- d:"• forget + to = fail to do\n• forget + -ing = not recall doing\n• regret + to = sorry to (now)\n• regret + -ing = sorry about past\n• remember + to = don't forget to do\n• remember + -ing = recall a memory\n• stop + to = interrupt to do something else\n• stop + -ing = no longer do\n• try + to = make effort\n• try + -ing = experiment/attempt",
+ prefix:"remembered ",t:"free",a:"to visit",alt:[],
+ h1:"#### Gerund Or Infinitive WITHOUT Changes of Meaning\nSome verbs can be followed either infinitive or gerund with little or no change of meaning. The most used are:\n• Verbs of starting or continuing: begin, start, continue, intend, propose (When they are the continuous form, they are usually in the infinitive)\n• Verbs of liking or not liking: hate, love, prefer, like, not bear (Infinitive is preferred when talking in general)\n\n#### Gerund Or Infinitive BUT With Changes of Meaning\n• Forget + infinitive: to fail to do sth. / Forget + gerund: to do sth. and not recall it.\n• Need + infinitive: to have to do sth. / Need + gerund: somebody has to do it (impersonal).\n• Regret + infinitive: be sorry to (sth. unpleasant) / Regret + gerund: to talk about a mistake in the past.\n• Remember + infinitive: not to forget to do sth. / Remember + gerund: to recall a memory.\n• Stop + infinitive: interrupt an action to do another. / Stop + gerund: no to do sth. any more.\n• Try + infinitive: make an effort to. / Try + gerund: experiment with doing sth.",
+ h2:"remember + to (don't forget to do)"},
+{s:"Gerund / Infinitive – Meaning Change",d:"Some verbs change meaning with gerund vs infinitive.",
  q:"6) She remembered _______ (visit) her grandmother. (She had memories of this time).",
- t:"free",a:"visiting",alt:[],h1:"Remember + gerund = recall a past memory.",h2:"remember + -ing"},
-{s:"Gerund / Infinitive – Meaning Change",
- d:"• forget + to = fail to do\n• forget + -ing = not recall doing\n• regret + to = sorry to (now)\n• regret + -ing = sorry about past\n• remember + to = don't forget to do\n• remember + -ing = recall a memory\n• stop + to = interrupt to do something else\n• stop + -ing = no longer do\n• try + to = make effort\n• try + -ing = experiment/attempt",
+ prefix:"remembered ",t:"free",a:"visiting",alt:[],
+ h1:"#### Gerund Or Infinitive WITHOUT Changes of Meaning\nSome verbs can be followed either infinitive or gerund with little or no change of meaning. The most used are:\n• Verbs of starting or continuing: begin, start, continue, intend, propose (When they are the continuous form, they are usually in the infinitive)\n• Verbs of liking or not liking: hate, love, prefer, like, not bear (Infinitive is preferred when talking in general)\n\n#### Gerund Or Infinitive BUT With Changes of Meaning\n• Forget + infinitive: to fail to do sth. / Forget + gerund: to do sth. and not recall it.\n• Need + infinitive: to have to do sth. / Need + gerund: somebody has to do it (impersonal).\n• Regret + infinitive: be sorry to (sth. unpleasant) / Regret + gerund: to talk about a mistake in the past.\n• Remember + infinitive: not to forget to do sth. / Remember + gerund: to recall a memory.\n• Stop + infinitive: interrupt an action to do another. / Stop + gerund: no to do sth. any more.\n• Try + infinitive: make an effort to. / Try + gerund: experiment with doing sth.",
+ h2:"remember + -ing (recall memory)"},
+{s:"Gerund / Infinitive – Meaning Change",d:"Some verbs change meaning with gerund vs infinitive.",
  q:"7) I stopped _______ (call) you. (I stopped this activity. Maybe we had a fight).",
- t:"free",a:"calling",alt:[],h1:"Stop + gerund = no longer do that activity.",h2:"stop + -ing"},
-{s:"Gerund / Infinitive – Meaning Change",
- d:"• forget + to = fail to do\n• forget + -ing = not recall doing\n• regret + to = sorry to (now)\n• regret + -ing = sorry about past\n• remember + to = don't forget to do\n• remember + -ing = recall a memory\n• stop + to = interrupt to do something else\n• stop + -ing = no longer do\n• try + to = make effort\n• try + -ing = experiment/attempt",
+ prefix:"stopped ",t:"free",a:"calling",alt:[],
+ h1:"#### Gerund Or Infinitive WITHOUT Changes of Meaning\nSome verbs can be followed either infinitive or gerund with little or no change of meaning. The most used are:\n• Verbs of starting or continuing: begin, start, continue, intend, propose (When they are the continuous form, they are usually in the infinitive)\n• Verbs of liking or not liking: hate, love, prefer, like, not bear (Infinitive is preferred when talking in general)\n\n#### Gerund Or Infinitive BUT With Changes of Meaning\n• Forget + infinitive: to fail to do sth. / Forget + gerund: to do sth. and not recall it.\n• Need + infinitive: to have to do sth. / Need + gerund: somebody has to do it (impersonal).\n• Regret + infinitive: be sorry to (sth. unpleasant) / Regret + gerund: to talk about a mistake in the past.\n• Remember + infinitive: not to forget to do sth. / Remember + gerund: to recall a memory.\n• Stop + infinitive: interrupt an action to do another. / Stop + gerund: no to do sth. any more.\n• Try + infinitive: make an effort to. / Try + gerund: experiment with doing sth.",
+ h2:"stop + -ing (no longer do)"},
+{s:"Gerund / Infinitive – Meaning Change",d:"Some verbs change meaning with gerund vs infinitive.",
  q:"8) I stopped _______ (call) you. (I interrupted another action in order to call you).",
- t:"free",a:"to call",alt:[],h1:"Stop + infinitive = interrupt one action to do another.",h2:"stop + to"},
-{s:"Gerund / Infinitive – Meaning Change",
- d:"• forget + to = fail to do\n• forget + -ing = not recall doing\n• regret + to = sorry to (now)\n• regret + -ing = sorry about past\n• remember + to = don't forget to do\n• remember + -ing = recall a memory\n• stop + to = interrupt to do something else\n• stop + -ing = no longer do\n• try + to = make effort\n• try + -ing = experiment/attempt",
+ prefix:"stopped ",t:"free",a:"to call",alt:[],
+ h1:"#### Gerund Or Infinitive WITHOUT Changes of Meaning\nSome verbs can be followed either infinitive or gerund with little or no change of meaning. The most used are:\n• Verbs of starting or continuing: begin, start, continue, intend, propose (When they are the continuous form, they are usually in the infinitive)\n• Verbs of liking or not liking: hate, love, prefer, like, not bear (Infinitive is preferred when talking in general)\n\n#### Gerund Or Infinitive BUT With Changes of Meaning\n• Forget + infinitive: to fail to do sth. / Forget + gerund: to do sth. and not recall it.\n• Need + infinitive: to have to do sth. / Need + gerund: somebody has to do it (impersonal).\n• Regret + infinitive: be sorry to (sth. unpleasant) / Regret + gerund: to talk about a mistake in the past.\n• Remember + infinitive: not to forget to do sth. / Remember + gerund: to recall a memory.\n• Stop + infinitive: interrupt an action to do another. / Stop + gerund: no to do sth. any more.\n• Try + infinitive: make an effort to. / Try + gerund: experiment with doing sth.",
+ h2:"stop + to (interrupt to do)"},
+{s:"Gerund / Infinitive – Meaning Change",d:"Some verbs change meaning with gerund vs infinitive.",
  q:"9) I tried _______ (open) the window. (I attempted this action but didn't succeed).",
- t:"free",a:"to open",alt:[],h1:"Try + infinitive = attempt/make effort.",h2:"try + to"},
-{s:"Gerund / Infinitive – Meaning Change",
- d:"• forget + to = fail to do\n• forget + -ing = not recall doing\n• regret + to = sorry to (now)\n• regret + -ing = sorry about past\n• remember + to = don't forget to do\n• remember + -ing = recall a memory\n• stop + to = interrupt to do something else\n• stop + -ing = no longer do\n• try + to = make effort\n• try + -ing = experiment/attempt",
+ prefix:"tried ",t:"free",a:"to open",alt:[],
+ h1:"#### Gerund Or Infinitive WITHOUT Changes of Meaning\nSome verbs can be followed either infinitive or gerund with little or no change of meaning. The most used are:\n• Verbs of starting or continuing: begin, start, continue, intend, propose (When they are the continuous form, they are usually in the infinitive)\n• Verbs of liking or not liking: hate, love, prefer, like, not bear (Infinitive is preferred when talking in general)\n\n#### Gerund Or Infinitive BUT With Changes of Meaning\n• Forget + infinitive: to fail to do sth. / Forget + gerund: to do sth. and not recall it.\n• Need + infinitive: to have to do sth. / Need + gerund: somebody has to do it (impersonal).\n• Regret + infinitive: be sorry to (sth. unpleasant) / Regret + gerund: to talk about a mistake in the past.\n• Remember + infinitive: not to forget to do sth. / Remember + gerund: to recall a memory.\n• Stop + infinitive: interrupt an action to do another. / Stop + gerund: no to do sth. any more.\n• Try + infinitive: make an effort to. / Try + gerund: experiment with doing sth.",
+ h2:"try + to (make effort)"},
+{s:"Gerund / Infinitive – Meaning Change",d:"Some verbs change meaning with gerund vs infinitive.",
  q:"10) I tried _______ (open) the window. (This was one option I chose. Maybe the room was hot).",
- t:"free",a:"opening",alt:[],h1:"Try + gerund = experiment with an option.",h2:"try + -ing"},
+ prefix:"tried ",t:"free",a:"opening",alt:[],
+ h1:"#### Gerund Or Infinitive WITHOUT Changes of Meaning\nSome verbs can be followed either infinitive or gerund with little or no change of meaning. The most used are:\n• Verbs of starting or continuing: begin, start, continue, intend, propose (When they are the continuous form, they are usually in the infinitive)\n• Verbs of liking or not liking: hate, love, prefer, like, not bear (Infinitive is preferred when talking in general)\n\n#### Gerund Or Infinitive BUT With Changes of Meaning\n• Forget + infinitive: to fail to do sth. / Forget + gerund: to do sth. and not recall it.\n• Need + infinitive: to have to do sth. / Need + gerund: somebody has to do it (impersonal).\n• Regret + infinitive: be sorry to (sth. unpleasant) / Regret + gerund: to talk about a mistake in the past.\n• Remember + infinitive: not to forget to do sth. / Remember + gerund: to recall a memory.\n• Stop + infinitive: interrupt an action to do another. / Stop + gerund: no to do sth. any more.\n• Try + infinitive: make an effort to. / Try + gerund: experiment with doing sth.",
+ h2:"try + -ing (experiment)"},
 ];
 
-// ─── Verbs Gerund/Infinitive Part 1: column sort (50 words) ─────────────────
 const T11_PART1_DATA = {
   s:"Gerund / Infinitive",
-  d:"For each verb, write whether it is followed by -ing (gerund) or to (infinitive). The most common verbs:\n• Gerund (-ing): admit, avoid, can't stand, consider, deny, dislike, don't mind, enjoy, fancy/feel like, finish, give up, imagine, keep, miss, practice, recommend, risk, suggest\n• Infinitive (to): afford, agree, appear, arrange, ask, choose, decide, demand, deserve, expect, fail, help, hope, invite, learn, manage, mean (intend), offer, plan, pretend, promise, refuse, reject, seem, tend, wait, want, would like",
+  d:"For each verb, select whether it is followed by -ing (gerund) or to (infinitive).\n• Gerund (-ing): admit, advise, avoid, can't stand, consider, deny, dislike, don't mind, enjoy, fancy/feel like, finish, give up, imagine, keep, miss, practice, recommend, reject, risk, stop, suggest\n• Infinitive (to): afford, agree, appear, arrange, ask, choose, decide, demand, deserve, expect, fail, help, hope, invite, learn, manage, mean (intend), offer, plan, pretend, promise, refuse, seem, tend, try, wait, want, would like",
   t:"verb-sort",
   words:[
     {w:"admit",a:"ing"},{w:"advise",a:"ing"},{w:"afford",a:"to"},{w:"agree",a:"to"},
@@ -1198,10 +1266,8 @@ const T11_PART1_DATA = {
   ]
 };
 
-// ─── Yesterday Mixed Tenses (inline multi-fill) ───────────────────────────────
 const M2_DATA = {
-  s:"Mixed Tenses Story",
-  d:"Yesterday Mixed Tenses — Put the verbs into the correct form.",
+  s:"Mixed Tenses Story",d:"Yesterday Mixed Tenses — Put the verbs into the correct form.",
   t:"inline-multi",
   items:[
     {before:"Yesterday I ",verb:"see",after:" an old friend when I ",verb2:"walk",after2:" to work."},
@@ -1223,43 +1289,22 @@ const M2_DATA = {
     {before:'I said, "I will call you next week ',verb:"make",after:' [long]."'},
   ],
   answers:[
-    // answers are per-item in order of verbs
-    // item 0: see, walk
-    ["saw","was walking"],
-    // item 1: go
-    ["was going"],
-    // item 2: not see
-    ["hadn't seen","had not seen"],
-    // item 3: see, change
-    ["to see","had changed"],
-    // item 4: cut, lose
-    ["had cut","had lost"],
-    // item 5: not see
-    ["hadn't seen","had not seen"],
-    // item 6: be, have
-    ["was","had"],
-    // item 7: hear, not want
-    ["to hear","didn't want","did not want"],
-    // item 8: not be, not have
-    ["wasn't","was not","didn't have","did not have"],
-    // item 9: be, get
-    ["had been","got"],
-    // item 10: hear
-    ["to hear"],
-    // item 11: talk, rain
-    ["were talking","to rain","raining"],
-    // item 12: see, not rain
-    ["to see","hadn't rained","had not rained"],
-    // item 13: go, have
-    ["to go","to have"],
-    // item 14: can't go, go
+    ["saw","was walking"],["was going"],["hadn't seen","had not seen"],
+    ["to see","had changed"],["had cut","had lost"],["hadn't seen","had not seen"],
+    ["was","had"],["to hear","didn't want","did not want"],
+    ["wasn't","was not","didn't have","did not have"],["had been","got"],
+    ["to hear"],["were talking","to rain","raining"],
+    ["to see","hadn't rained","had not rained"],["to go","to have"],
     ["couldn't go","could not go","wasn't able to go","was going"],
-    // item 15: talk, call
-    ["talking","to call"],
-    // item 16: make
-    ["to make"],
+    ["talking","to call"],["to make"],
   ]
 };
+
+// ─── BOSS CHALLENGE = Progress Test Unit 2 content only ────────────────────
+// Includes: T0(Tenses), T1(Conditionals), T2(Passives), T3(Modals), T4(Time Expr),
+// T5(Vocabulary), T6(Reported Speech), T7(Indirect Q), T8(Auxiliaries), T9(Translation),
+// T10(Everyday), TPV(Phrasal Verbs), TPV2(Reporting Verbs), TPV3(Past Modals)
+const BOSS_DATA = [...T0,...T1,...T2,...T3,...T4,...T5,...T6,...T7,...T8,...T9,...T10,...TPV,...TPV2,...TPV3];
 
 // ─── MODULE DEFINITIONS ────────────────────────────────────────────────────────
 const MODULES=[
@@ -1274,18 +1319,21 @@ const MODULES=[
   {id:'t8',  name:'Auxiliary Verbs',            icon:'⚙️', time:'~4 min',  color:'#a3e635',  data:T8,    lane:'vocab'},
   {id:'t9',  name:'Translation',                icon:'🌍', time:'~5 min',  color:'#fb923c',  data:T9,    lane:'vocab'},
   {id:'t10', name:'Everyday English',           icon:'💬', time:'~6 min',  color:'#c084fc',  data:T10,   lane:'vocab'},
+  {id:'tpv', name:'Phrasal Verbs',              icon:'🔗', time:'~5 min',  color:'#22d3ee',  data:TPV,   lane:'vocab'},
+  {id:'tpv2',name:'Reporting Verbs',            icon:'📢', time:'~5 min',  color:'#fb923c',  data:TPV2,  lane:'vocab'},
+  {id:'tpv3',name:'Past Modals of Probability', icon:'🔮', time:'~4 min',  color:'#f472b6',  data:TPV3,  lane:'vocab'},
   {id:'t11a',name:'Gerund / Infinitive (List)', icon:'📝', time:'~8 min',  color:'#22d3ee',  data:null,  lane:'verbs', special:'verbsort'},
   {id:'t11b',name:'Gerund / Infinitive (Sentences)',icon:'✏️',time:'~15 min',color:'#4ade80',data:T11_PART2,lane:'verbs'},
   {id:'t11c',name:'Gerund / Inf. – Meaning Change',icon:'🔁',time:'~5 min',color:'#f97316',data:T11_PART3,lane:'verbs'},
   {id:'m0',  name:'Mixed Tenses Story',         icon:'👻', time:'~15 min', color:'#4f8ef7',  data:M0,    lane:'stories'},
   {id:'m1',  name:'Tense Review (30 Q)',         icon:'⏱️', time:'~20 min', color:'#a78bfa',  data:M1,    lane:'stories'},
   {id:'m2',  name:'Yesterday – Mixed Tenses',   icon:'📅', time:'~8 min',  color:'#fb7185',  data:null,  lane:'stories', special:'inline-multi'},
-  {id:'boss',name:'Boss Challenge',             icon:'💀', time:'~90 min', color:'#f87171',  data:[...T0,...T1,...T2,...T3,...T4,...T5,...T6,...T7,...T8,...T9,...T10,...T11_PART2,...T11_PART3,...M0,...M1], lane:'boss'}
+  {id:'boss',name:'Boss Challenge (B1 Upper Oxford)',icon:'💀', time:'~60 min', color:'#f87171',  data:BOSS_DATA, lane:'boss'}
 ];
 
 const LANES = [
   {id:'tenses',  label:'Tenses & Grammar', icon:'📖', desc:'Tenses, conditionals, passives, modals, time expressions'},
-  {id:'vocab',   label:'Vocabulary & Communication', icon:'📚', desc:'Vocabulary, reported speech, indirect questions, auxiliary verbs, translation, everyday English'},
+  {id:'vocab',   label:'Vocabulary & Communication', icon:'📚', desc:'Vocabulary, reported speech, indirect questions, auxiliary verbs, phrasal verbs, translation, everyday English'},
   {id:'verbs',   label:'Verbs: Gerund & Infinitive', icon:'✏️', desc:'Learn and practise verb patterns'},
   {id:'stories', label:'Story & Mixed Practice', icon:'📖', desc:'Full text exercises mixing multiple tenses'},
 ];
@@ -1304,19 +1352,26 @@ window.addEventListener('load', ()=>{
   }
 });
 
+// ─── FLOATING REF ─────────────────────────────────────────────────────────────
+function toggleFloatRef(){
+  document.getElementById('float-ref-panel').classList.toggle('open');
+}
+function showFloatRefBtn(show){
+  document.getElementById('float-ref-btn').style.display = show ? 'flex' : 'none';
+  if (!show) document.getElementById('float-ref-panel').classList.remove('open');
+}
+
 // ─── SEARCH ───────────────────────────────────────────────────────────────────
 function fuzzyMatch(query, text) {
   query = query.toLowerCase().trim();
   text = text.toLowerCase();
   if (!query) return false;
   if (text.includes(query)) return true;
-  // simple fuzzy: all chars of query appear in order
   let qi = 0;
   for (let i = 0; i < text.length && qi < query.length; i++) {
     if (text[i] === query[qi]) qi++;
   }
   if (qi === query.length) return true;
-  // typo tolerance: check if query words match
   const qwords = query.split(/\s+/);
   return qwords.some(w => text.includes(w) && w.length > 2);
 }
@@ -1336,8 +1391,7 @@ function doSearch(val) {
     sg.innerHTML = '<div class="search-no-results">No modules found for "'+val+'"</div>';
     return;
   }
-  sg.innerHTML = matches.map((mod, i) => {
-    const idx = MODULES.indexOf(mod);
+  sg.innerHTML = matches.map((mod) => {
     const qs = mod.data ? mod.data.length : (mod.special === 'verbsort' ? 50 : mod.special === 'inline-multi' ? 17 : '?');
     return `<div class="search-result-card" onclick="startModuleById('${mod.id}')">
       <span class="topic-icon">${mod.icon}</span>
@@ -1351,7 +1405,6 @@ function doSearch(val) {
 function buildHome() {
   const hc = document.getElementById('home-content');
   let html = '';
-  
   LANES.forEach(lane => {
     const laneModules = MODULES.filter(m => m.lane === lane.id);
     if (!laneModules.length) return;
@@ -1362,24 +1415,21 @@ function buildHome() {
         <span class="lane-badge">${lane.desc}</span>
       </div>
       <div class="topic-grid">`;
-    laneModules.forEach(mod => {
-      html += makeTopicCardHTML(mod);
-    });
+    laneModules.forEach(mod => { html += makeTopicCardHTML(mod); });
     html += `</div></div>`;
   });
 
-  // Boss section
   const boss = MODULES.find(m => m.id === 'boss');
   const bs = stats[boss.id] || {att:0,c:0,w:0,best:null,bestPct:null};
-  const bossSubtopics = MODULES.filter(m => m.id !== 'boss');
-  
+  const bossSubtopics = MODULES.filter(m => m.id !== 'boss' && m.lane !== 'stories' && m.lane !== 'verbs');
+
   html += `<hr class="section-divider">
   <div class="boss-section">
-    <div class="boss-section-title">⚔️ Boss Challenge — The Final Test</div>
+    <div class="boss-section-title">⚔️ Boss Challenge — B1 Upper Oxford</div>
     <div class="boss-card" onclick="startModuleById('boss')">
-      <div class="boss-tag">💀 Final Boss · All Topics Combined</div>
+      <div class="boss-tag">💀 Final Boss · Progress Test Unit 2</div>
       <div class="boss-name">The <em>Complete Grammar</em> Gauntlet</div>
-      <div class="boss-desc">Every question from every topic, combined into one relentless test. Conquer all ${boss.data.length} questions in a single run and earn bragging rights.</div>
+      <div class="boss-desc">Every question from the Progress Test Unit 2 combined into one relentless test. Conquer all ${boss.data.length} questions in a single run.</div>
       <div class="boss-pills">
         <span class="boss-pill">${boss.data.length} questions</span>
         <span class="boss-pill">${boss.time}</span>
@@ -1395,8 +1445,9 @@ function buildHome() {
     <div class="boss-subtopics">
       <div class="boss-subtopics-label">🔍 Topics contained in the Boss Challenge</div>
       <div class="boss-subtopic-grid">`;
-  bossSubtopics.forEach(mod => {
-    const qs = mod.data ? mod.data.length : (mod.special==='verbsort'?50:mod.special==='inline-multi'?17:'?');
+  // Only show modules that are in the Boss data (tenses+vocab)
+  MODULES.filter(m=>m.id!=='boss'&&['tenses','vocab'].includes(m.lane)).forEach(mod => {
+    const qs = mod.data ? mod.data.length : '?';
     html += `<div class="boss-subtopic-card" onclick="startModuleById('${mod.id}')">
       <span class="topic-icon">${mod.icon}</span>
       <div class="topic-name">${mod.name}</div>
@@ -1404,7 +1455,6 @@ function buildHome() {
     </div>`;
   });
   html += `</div></div></div>`;
-  
   hc.innerHTML = html;
 }
 
@@ -1414,7 +1464,6 @@ function makeTopicCardHTML(mod) {
   const qs = mod.data ? mod.data.length : (mod.special==='verbsort'?50:mod.special==='inline-multi'?17:'?');
   return `<div class="topic-card" style="--tc:${mod.color||'var(--accent)'}" onclick="startModuleById('${mod.id}')"
     onmouseenter="this.style.borderColor='${mod.color}'" onmouseleave="this.style.borderColor=''">
-    <style>.tc-${mod.id}::before{background:${mod.color}}</style>
     <span class="topic-icon">${mod.icon}</span>
     <div class="topic-name">${mod.name}</div>
     <div class="topic-meta">
@@ -1441,9 +1490,7 @@ function toggleRef(){
 let AMI=-1,AMid='',Qs=[],cur=0,cc=0,wc=0,UA=[],done=false;
 let stats={};
 MODULES.forEach(m=>{stats[m.id]={att:0,c:0,w:0,best:null,bestPct:null};});
-// For verb-sort module
 let verbSortAnswers = {};
-// For inline-multi module
 let inlineMultiAnswers = {};
 let inlineMultiDone = false;
 
@@ -1457,16 +1504,9 @@ function startModule(i) {
   AMI = i;
   const mod = MODULES[i];
   AMid = mod.id;
-  
-  if (mod.special === 'verbsort') {
-    startVerbSort(mod);
-    return;
-  }
-  if (mod.special === 'inline-multi') {
-    startInlineMulti(mod);
-    return;
-  }
-  
+  showFloatRefBtn(true);
+  if (mod.special === 'verbsort') { startVerbSort(mod); return; }
+  if (mod.special === 'inline-multi') { startInlineMulti(mod); return; }
   Qs = mod.data;
   document.getElementById('quiz-title').innerHTML = mod.icon+' '+mod.name+' <em>'+Qs.length+' questions</em>';
   initQuiz();
@@ -1477,7 +1517,6 @@ function startModule(i) {
 function startVerbSort(mod) {
   verbSortAnswers = {};
   const data = T11_PART1_DATA;
-  
   document.getElementById('quiz-title').innerHTML = mod.icon+' '+mod.name+' <em>50 words</em>';
   document.getElementById('q-card').style.display = 'block';
   document.getElementById('result-card').style.display = 'none';
@@ -1492,27 +1531,22 @@ function startVerbSort(mod) {
   document.getElementById('tip2-det').style.display = 'none';
   document.getElementById('submit-btn').style.display = '';
   document.getElementById('submit-btn').textContent = 'Submit All';
-
+  document.getElementById('reveal-btn').style.display = 'none';
+  document.getElementById('revealed-answer').classList.remove('show');
   const q = document.getElementById('q-sent');
   q.innerHTML = 'For each verb below, select <b style="color:var(--green)">-ing</b> or <b style="color:var(--accent)">to</b>:';
-
   const ia = document.getElementById('input-area');
   ia.innerHTML = '';
-
   const grid = document.createElement('div');
   grid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:14px;';
-  
   data.words.forEach((item, idx) => {
     const row = document.createElement('div');
     row.style.cssText = 'background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:8px;';
-    
     const lbl = document.createElement('span');
     lbl.style.cssText = 'font-size:14px;font-weight:600;flex:1;';
     lbl.textContent = item.w;
-    
     const btnWrap = document.createElement('div');
     btnWrap.style.cssText = 'display:flex;gap:6px;';
-    
     ['ing','to'].forEach(opt => {
       const btn = document.createElement('button');
       btn.style.cssText = 'padding:4px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);color:var(--muted);font-size:12px;cursor:pointer;transition:all .15s;font-family:var(--mono);';
@@ -1521,9 +1555,7 @@ function startVerbSort(mod) {
       btn.dataset.idx = idx;
       btn.onclick = () => {
         btnWrap.querySelectorAll('button').forEach(b => {
-          b.style.background = 'var(--surface)';
-          b.style.color = 'var(--muted)';
-          b.style.borderColor = 'var(--border)';
+          b.style.background = 'var(--surface)'; b.style.color = 'var(--muted)'; b.style.borderColor = 'var(--border)';
         });
         btn.style.background = opt === 'ing' ? 'rgba(52,211,153,.2)' : 'rgba(79,142,247,.2)';
         btn.style.color = opt === 'ing' ? 'var(--green)' : 'var(--accent)';
@@ -1533,22 +1565,13 @@ function startVerbSort(mod) {
       };
       btnWrap.appendChild(btn);
     });
-    
-    row.appendChild(lbl);
-    row.appendChild(btnWrap);
-    grid.appendChild(row);
+    row.appendChild(lbl); row.appendChild(btnWrap); grid.appendChild(row);
   });
-  
   ia.appendChild(grid);
   updateVerbSortProgress();
   showScreen('screen-quiz');
-
   document.getElementById('submit-btn').onclick = submitVerbSort;
-  
-  // hide prev/next
-  document.querySelectorAll('.btn-row .btn-ghost').forEach(b => {
-    if (b.textContent.includes('Prev') || b.textContent.includes('Next')) b.style.display = 'none';
-  });
+  document.querySelectorAll('.btn-row .btn-ghost').forEach(b=>{b.style.display='';});
 }
 
 function updateVerbSortProgress() {
@@ -1556,21 +1579,13 @@ function updateVerbSortProgress() {
   const total = T11_PART1_DATA.words.length;
   document.getElementById('prog-txt').textContent = `${done2} / ${total} answered`;
   document.getElementById('prog-bar').style.width = (done2/total*100)+'%';
-  document.getElementById('ls-c').textContent = '?';
-  document.getElementById('ls-w').textContent = '?';
 }
 
 function submitVerbSort() {
   const data = T11_PART1_DATA;
-  if (Object.keys(verbSortAnswers).length < data.words.length) {
-    alert('Please answer all words before submitting!');
-    return;
-  }
+  if (Object.keys(verbSortAnswers).length < data.words.length) { alert('Please answer all words before submitting!'); return; }
   let c = 0, w = 0;
   const ia = document.getElementById('input-area');
-  const rows = ia.querySelectorAll('div[data-verbrow]');
-  
-  // re-render with results
   const grid = ia.firstChild;
   Array.from(grid.children).forEach((row, idx) => {
     const correct = data.words[idx].a;
@@ -1586,27 +1601,22 @@ function submitVerbSort() {
       row.appendChild(note);
     }
   });
-  
   cc = c; wc = w;
   document.getElementById('ls-c').textContent = c;
   document.getElementById('ls-w').textContent = w;
   document.getElementById('ls-a').textContent = Math.round(c/data.words.length*100)+'%';
-  
   const fb = document.getElementById('feedback');
   fb.style.display = 'block';
   fb.className = 'feedback '+(c === data.words.length ? 'correct' : (c > w ? 'correct' : 'wrong'));
   fb.innerHTML = `Score: ${c}/${data.words.length} correct (${Math.round(c/data.words.length*100)}%). Incorrect words are highlighted in red above.`;
-  
   document.getElementById('submit-btn').style.display = 'none';
   done = true;
-  
   if (!stats[AMid]) stats[AMid] = {att:0,c:0,w:0,best:null,bestPct:null};
   const ms = stats[AMid];
   ms.att++; ms.c += c; ms.w += w;
   const pct = Math.round(c/data.words.length*100);
   if (ms.bestPct === null || pct > ms.bestPct) { ms.bestPct = pct; ms.best = c+'/'+data.words.length; }
   refreshHome();
-  
   document.getElementById('prog-bar').style.width = '100%';
 }
 
@@ -1614,7 +1624,6 @@ function submitVerbSort() {
 function startInlineMulti(mod) {
   inlineMultiAnswers = {};
   inlineMultiDone = false;
-  
   const data = M2_DATA;
   document.getElementById('quiz-title').innerHTML = mod.icon+' '+mod.name+' <em>17 sentences</em>';
   document.getElementById('q-card').style.display = 'block';
@@ -1632,68 +1641,37 @@ function startInlineMulti(mod) {
   document.getElementById('submit-btn').style.display = '';
   document.getElementById('submit-btn').textContent = 'Submit All';
   document.getElementById('submit-btn').onclick = submitInlineMulti;
-  
-  document.querySelectorAll('.btn-row .btn-ghost').forEach(b => {
-    if (b.textContent.includes('Prev') || b.textContent.includes('Next')) b.style.display = 'none';
-  });
-  
+  document.getElementById('reveal-btn').style.display = 'none';
+  document.getElementById('revealed-answer').classList.remove('show');
+  document.querySelectorAll('.btn-row .btn-ghost').forEach(b=>{b.style.display='';});
   const ia = document.getElementById('input-area');
   ia.innerHTML = '';
-  
   const wrap = document.createElement('div');
   wrap.className = 'inline-fill-wrap';
-  
   data.items.forEach((item, si) => {
-    const answers = data.answers[si];
-    
-    // sentence number
     const num = document.createElement('span');
     num.style.cssText = 'display:block;margin-top:14px;margin-bottom:2px;font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;';
     num.textContent = 'Sentence ' + (si+1);
     wrap.appendChild(num);
-    
     const sent = document.createElement('p');
     sent.style.cssText = 'margin-bottom:4px;line-height:2.6;';
-    
-    if (item.before) {
-      sent.appendChild(document.createTextNode(item.before));
-    }
-    
-    // first blank
+    if (item.before) sent.appendChild(document.createTextNode(item.before));
     const inp1 = document.createElement('input');
-    inp1.type = 'text';
-    inp1.className = 'inline-fill-input';
-    inp1.placeholder = '('+item.verb+')';
-    inp1.dataset.si = si;
-    inp1.dataset.vi = 0;
-    inp1.addEventListener('input', () => {
-      inlineMultiAnswers[si+'-0'] = inp1.value.trim();
-      updateInlineProgress();
-    });
+    inp1.type = 'text'; inp1.className = 'inline-fill-input';
+    inp1.placeholder = '('+item.verb+')'; inp1.dataset.si = si; inp1.dataset.vi = 0;
+    inp1.addEventListener('input', () => { inlineMultiAnswers[si+'-0'] = inp1.value.trim(); updateInlineProgress(); });
     sent.appendChild(inp1);
-    
-    if (item.after) {
-      sent.appendChild(document.createTextNode(item.after));
-    }
-    
+    if (item.after) sent.appendChild(document.createTextNode(item.after));
     if (item.verb2) {
       const inp2 = document.createElement('input');
-      inp2.type = 'text';
-      inp2.className = 'inline-fill-input';
-      inp2.placeholder = '('+item.verb2+')';
-      inp2.dataset.si = si;
-      inp2.dataset.vi = 1;
-      inp2.addEventListener('input', () => {
-        inlineMultiAnswers[si+'-1'] = inp2.value.trim();
-        updateInlineProgress();
-      });
+      inp2.type = 'text'; inp2.className = 'inline-fill-input';
+      inp2.placeholder = '('+item.verb2+')'; inp2.dataset.si = si; inp2.dataset.vi = 1;
+      inp2.addEventListener('input', () => { inlineMultiAnswers[si+'-1'] = inp2.value.trim(); updateInlineProgress(); });
       sent.appendChild(inp2);
       if (item.after2) sent.appendChild(document.createTextNode(item.after2));
     }
-    
     wrap.appendChild(sent);
   });
-  
   ia.appendChild(wrap);
   updateInlineProgress();
   showScreen('screen-quiz');
@@ -1708,63 +1686,43 @@ function updateInlineProgress() {
 
 function submitInlineMulti() {
   if (inlineMultiDone) return;
-  
   const data = M2_DATA;
   const ia = document.getElementById('input-area');
-  const inputs = ia.querySelectorAll('.inline-fill-input');
-  
   let c = 0, w = 0;
-  
   data.items.forEach((item, si) => {
     const answerSet = data.answers[si];
     const numVerbs = item.verb2 ? 2 : 1;
-    
     for (let vi = 0; vi < numVerbs; vi++) {
       const key = si+'-'+vi;
       const given = (inlineMultiAnswers[key]||'').toLowerCase().trim();
-      // get subset of answers for this verb
       let correctForThis;
-      if (numVerbs === 1) {
-        correctForThis = answerSet;
-      } else {
-        // answers alternate if there are 2 verbs
-        if (vi === 0) {
-          correctForThis = [answerSet[0], answerSet.length > 2 ? answerSet[2] : null].filter(Boolean);
-        } else {
-          correctForThis = [answerSet[1], answerSet.length > 3 ? answerSet[3] : null].filter(Boolean);
-        }
+      if (numVerbs === 1) { correctForThis = answerSet; }
+      else {
+        if (vi === 0) correctForThis = [answerSet[0], answerSet.length > 2 ? answerSet[2] : null].filter(Boolean);
+        else correctForThis = [answerSet[1], answerSet.length > 3 ? answerSet[3] : null].filter(Boolean);
       }
-      
       const isC = correctForThis.some(a => normalise(a) === normalise(given));
       if (isC) c++; else w++;
-      
-      // find the input
       const inp = ia.querySelector(`input[data-si="${si}"][data-vi="${vi}"]`);
       if (inp) {
         inp.classList.add(isC ? 'correct-fill' : 'wrong-fill');
         inp.disabled = true;
-        if (!isC && correctForThis[0]) {
-          inp.title = 'Correct: ' + correctForThis[0];
-        }
+        if (!isC && correctForThis[0]) inp.title = 'Correct: ' + correctForThis[0];
       }
     }
   });
-  
   inlineMultiDone = true;
   cc = c; wc = w;
   const totalBlanks = data.items.reduce((sum, item) => sum + (item.verb2 ? 2 : 1), 0);
   document.getElementById('ls-c').textContent = c;
   document.getElementById('ls-w').textContent = w;
   document.getElementById('ls-a').textContent = Math.round(c/totalBlanks*100)+'%';
-  
   const fb = document.getElementById('feedback');
   fb.style.display = 'block';
   fb.className = 'feedback '+(c >= totalBlanks*0.7 ? 'correct' : 'wrong');
   fb.innerHTML = `Score: ${c}/${totalBlanks} (${Math.round(c/totalBlanks*100)}%). Hover over red blanks to see the correct answer.`;
-  
   document.getElementById('submit-btn').style.display = 'none';
   done = true;
-  
   if (!stats[AMid]) stats[AMid] = {att:0,c:0,w:0,best:null,bestPct:null};
   const ms = stats[AMid];
   ms.att++; ms.c += c; ms.w += w;
@@ -1774,7 +1732,14 @@ function submitInlineMulti() {
 }
 
 // ─── SCREENS ───────────────────────────────────────────────────────────────────
-function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+  // show/hide float ref btn
+  showFloatRefBtn(id === 'screen-quiz');
+}
+
 function goHome(){closeModal();refreshHome();showScreen('screen-home');}
 function confirmHome(){
   if(done){goHome();return;}
@@ -1816,11 +1781,17 @@ function loadQ(){
   else{de.style.display='block';}
   document.getElementById('q-sent').innerHTML=q.q.replace(/\n/g,'<br>');
   const t1d=document.getElementById('tip1-det'),t2d=document.getElementById('tip2-det');
-  if(q.h1){document.getElementById('tip1-body').textContent=q.h1;t1d.style.display='block';t1d.open=false;}else t1d.style.display='none';
+  if(q.h1){document.getElementById('tip1-body').innerHTML=q.h1.replace(/\n/g,'<br>');t1d.style.display='block';t1d.open=false;}else t1d.style.display='none';
   if(q.h2){document.getElementById('tip2-body').textContent=q.h2;t2d.style.display='block';t2d.open=false;}else t2d.style.display='none';
   const fb=document.getElementById('feedback');fb.style.display='none';fb.className='feedback';
+  const ra=document.getElementById('revealed-answer');ra.classList.remove('show');ra.innerHTML='';
   const ia=document.getElementById('input-area');ia.innerHTML='';
   const sb=document.getElementById('submit-btn');
+  const rb=document.getElementById('reveal-btn');
+
+  // Show reveal btn only for free/reflect types when not answered
+  if((q.t==='free'||q.t==='reflect')&&!ans){rb.style.display='';}
+  else{rb.style.display='none';}
 
   if(q.t==='mc') renderMC(q,ia,ans,sb);
   else if(q.t==='free') renderFree(q,ia,ans,sb);
@@ -1830,13 +1801,21 @@ function loadQ(){
   else if(q.t==='reflect') renderReflect(q,ia,ans,sb);
 }
 
+// Reveal answer for current free/reflect question
+function revealAnswer(){
+  const q=Qs[cur];
+  const ra=document.getElementById('revealed-answer');
+  ra.innerHTML='<b>Answer:</b> '+q.a;
+  ra.classList.add('show');
+  document.getElementById('reveal-btn').style.display='none';
+}
+
 function renderMC(q,ia,ans,sb){
-  // Shuffle options each time question loads (if not answered yet)
-  // We keep the order stable by using a shuffled copy seeded by q index
   const w=document.createElement('div');w.className='choices';
-  const opts = q.o; // use original order (already designed to vary)
+  // Shuffle options every time (random each load if not answered)
+  let opts = ans ? q.o : shuffle(q.o);
+  const letters = ['A','B','C','D','E'];
   opts.forEach((opt,i)=>{
-    const letters = ['A','B','C','D','E'];
     const b=document.createElement('button');b.className='choice-btn';b.disabled=ans;
     b.innerHTML=`<span class="choice-letter">${letters[i]||i+1}</span>${opt}`;
     if(ans){
@@ -1856,7 +1835,7 @@ function renderFree(q,ia,ans,sb){
   ta.style.minHeight='60px';
   ta.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey&&!ans){e.preventDefault();submitAnswer();}});
   ia.appendChild(ta);sb.style.display=ans?'none':'';
-  if(ans)showFB(UA[cur],q.a,q.alt);
+  if(ans){showFB(UA[cur],q.a,q.alt);document.getElementById('reveal-btn').style.display='none';}
 }
 
 let sortState={};
@@ -1883,7 +1862,6 @@ function renderSortTable(q,ia,ans,sb){
   const poolLabel=document.createElement('div');poolLabel.style.cssText='width:100%;font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;';
   poolLabel.textContent='Word pool — click to move to a column';pool.appendChild(poolLabel);
   wrapper.appendChild(pool);ia.appendChild(wrapper);
-
   function makeChip(word,inCol){
     const c=document.createElement('span');
     c.style.cssText='padding:5px 12px;border-radius:16px;background:var(--accent);color:#fff;font-size:13px;cursor:pointer;user-select:none;';
@@ -1904,7 +1882,6 @@ function renderSortTable(q,ia,ans,sb){
     cancelBtn.textContent='Cancel';cancelBtn.onclick=()=>pop.remove();pop.appendChild(cancelBtn);
     document.body.appendChild(pop);
     const r=anchor.getBoundingClientRect();pop.style.top=(r.bottom+window.scrollY+4)+'px';pop.style.left=(r.left+window.scrollX)+'px';
-    document.addEventListener('click',function h(e){if(!pop.contains(e.target)&&e.target!==anchor){pop.remove();}},{once:false});
   }
   function refreshSort(){
     q.cols.forEach(col=>{colEls[col].innerHTML='';});
@@ -1948,7 +1925,6 @@ function renderWordGroup(q,ia,ans,sb){
   pool.style.cssText='display:flex;flex-wrap:wrap;gap:7px;padding:10px;border:1px solid var(--border);border-radius:10px;background:var(--surface2);min-height:44px;margin-bottom:4px;';
   const pl=document.createElement('span');pl.style.cssText='width:100%;font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;';pl.textContent='Click a word then choose a column';pool.appendChild(pl);
   wrapper.appendChild(pool);ia.appendChild(wrapper);
-
   function makeWGChip(word,inCol){
     const c=document.createElement('span');c.style.cssText='padding:4px 10px;border-radius:14px;background:var(--accent);color:#fff;font-size:12px;cursor:pointer;user-select:none;';
     c.textContent=word;
@@ -1967,7 +1943,6 @@ function renderWordGroup(q,ia,ans,sb){
     cb.textContent='Cancel';cb.onclick=()=>pop.remove();pop.appendChild(cb);
     document.body.appendChild(pop);
     const r=anchor.getBoundingClientRect();pop.style.top=(r.bottom+window.scrollY+4)+'px';pop.style.left=(r.left+window.scrollX)+'px';
-    document.addEventListener('click',function h(e){if(!pop.contains(e.target)&&e.target!==anchor){pop.remove();}},{once:true});
   }
   function refreshWG(){
     q.cols.forEach(col=>{colEls[col].innerHTML='';});
@@ -2005,17 +1980,42 @@ function normalise(s){
     .replace(/'re\b/g," are").replace(/'m\b/g," am").replace(/'s\b/g," is")
     .replace(/\s+/g,' ').trim();
 }
+
 function chk(u,a,altArr){
-  const nu=normalise(u),na=normalise(a);
+  if(!u)return false;
+  const nu=normalise(u);
+  // Also try: if question has a prefix and user didn't include it, prepend prefix
+  const na=normalise(a);
   if(nu===na)return true;
   if(altArr&&altArr.length)return altArr.some(x=>normalise(x)===nu);
+  return false;
+}
+
+// Enhanced check that also accepts partial answers (without the sentence prefix)
+function chkWithPrefix(u, a, altArr, prefix){
+  if(!u)return false;
+  // direct match
+  if(chk(u,a,altArr))return true;
+  // if user typed the full answer including prefix, strip prefix and check
+  if(prefix){
+    const strippedA = normalise(a).replace(normalise(prefix),'').trim();
+    const nu = normalise(u);
+    if(nu===strippedA)return true;
+    if(altArr&&altArr.length){
+      if(altArr.some(x=>{
+        const strippedX=normalise(x).replace(normalise(prefix),'').trim();
+        return nu===strippedX||normalise(x)===nu;
+      }))return true;
+    }
+  }
   return false;
 }
 
 function renderOOO(q,ia,ans,sb){
   const w=document.createElement('div');w.className='choices';
   const letters=['A','B','C','D'];
-  q.o.forEach((opt,i)=>{
+  const opts = ans ? q.o : shuffle(q.o);
+  opts.forEach((opt,i)=>{
     const b=document.createElement('button');b.className='choice-btn';b.disabled=ans;
     b.innerHTML=`<span class="choice-letter">${letters[i]||i+1}</span>${opt}`;
     if(ans){if(opt===UA[cur])b.classList.add('selected');if(opt===q.a)b.classList.add('correct-choice');}
@@ -2052,6 +2052,7 @@ function renderReflect(q,ia,ans,sb){
     sb.style.display='none';
     const fb=document.getElementById('feedback');fb.style.display='block';fb.className='feedback correct';
     fb.innerHTML='✍️ Submitted! Compare your response with the model answer above.';
+    document.getElementById('reveal-btn').style.display='none';
   }
 }
 
@@ -2076,6 +2077,7 @@ function submitAnswer(){
     ua=JSON.stringify(wgState);
   }
   UA[cur]=ua;
+  document.getElementById('reveal-btn').style.display='none';
   let isCorrect=false;
   if(q.t==='sort-table'){
     const st=JSON.parse(ua);let c=0,t=0;
@@ -2087,6 +2089,8 @@ function submitAnswer(){
     isCorrect=(c===t);
   }else if(q.t==='ooo'){
     isCorrect=ua===q.a;
+  }else if(q.t==='free'){
+    isCorrect=chkWithPrefix(ua,q.a,q.alt,q.prefix);
   }else{
     isCorrect=chk(ua,q.a,q.alt);
   }
@@ -2094,6 +2098,7 @@ function submitAnswer(){
   updateLS();loadQ();
   if(!UA.includes(null)){done=true;recordAttempt(true);setTimeout(showResults,900);}
 }
+
 function prevQ(){if(cur>0){cur--;loadQ();}}
 function nextQ(){if(cur<Qs.length-1){cur++;loadQ();}else if(done)showResults();}
 function updateLS(){
@@ -2127,6 +2132,7 @@ function showResults(){
         return(c===t)?null:(qq.h2||qq.s);
       }catch(e){return qq.h2||qq.s;}
     }
+    if(qq.t==='free'){return chkWithPrefix(a,qq.a,qq.alt,qq.prefix)?null:(qq.h2||qq.s);}
     return(qq.t==='ooo'?a===qq.a:chk(a,qq.a,qq.alt))?null:(qq.h2||qq.s);
   }).filter(Boolean))].slice(0,6).join(', ');
   document.getElementById('result-errors').innerHTML=errs?`📌 Focus on: <b>${errs}</b>`:'';
